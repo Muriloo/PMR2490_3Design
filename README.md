@@ -37,7 +37,7 @@ a) Adicionar no Path do sistema a pasta bin do MySQL
 
 b) No prompt de comando digitar "mysql -u root -p" e Enter
 
-c) Na área do mysql atualizar a senha do root :  update mysql.user set password = password('password_chosen') where user = 'root';
+c) Na área do mysql atualizar a senha do root :  update mysql.user set password = password('Pmr2490') where user = 'root';
 
 (Escolhemos uma senha unica juntos)
 
