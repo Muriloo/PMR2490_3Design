@@ -5,19 +5,14 @@ Repositório para Turma 4 do 2 semestre de 2014 de PMR2490
 
 Instruções GitHub:
 
-1) Baixe o Github para:
-	-Windows: https://windows.github.com/
-	-Mac: https://mac.github.com/
+Repositório:
 
-2) Instale no PC
+1) Download e instalação do Git:
+ http://git-scm.com/downloads
 
-3) Faça login
+2) Clonar repositório (ir até a pasta cd <nome da pasta>):
 
-4) Pule a etapa de adicionar repositórios locais
-
-5) Busque um repositório ( o do projeto )
-
-6) Clone esse repositório no seu pc, ele conterá os dados mais atuais.
+> git clone https://github.com/Muriloo/PMR2490_3Design
 
 ------------------------
 
@@ -63,13 +58,3 @@ a) usar comando, sendo o mydb o nome da base (vamos utilizar o nome do projeto)
 Ao final de tudo isso seu servidor estará pronto! O MySQL Workbench é o programa que tem toda uma interface gráfica para lidar com o servidor, permitindo criar schemas, tabelas e fazer QUERIES.
 
 -------------
-
-Repositório:
-
-1) Download e instalação do Git:
- http://git-scm.com/downloads
-
-
- 2) Clonar repositório:
-
-> git clone https://github.com/Muriloo/PMR2490_3Design
