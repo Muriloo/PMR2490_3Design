@@ -72,4 +72,4 @@ Repositório:
 
  2) Clonar repositório:
 
-> git clone https://github.com/Muriloo/PMR2490_2014AGO_T4.git
+> git clone https://github.com/Muriloo/PMR2490_3Design
