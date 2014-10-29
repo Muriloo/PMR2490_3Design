@@ -14,6 +14,8 @@ public class Teste {
      // declaração de atributos
     // os nomes tem que ser iguais que os nomes dos elementos de INPUT 
     // criados no formulário em index.jsp
+
+    //alteracao marcel
 	
 	//alteracao 1
     private String nome;
