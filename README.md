@@ -49,9 +49,10 @@ d) sair usando "quit"
 
 6) Criando database:
 
-a) usar comando, sendo o mydb o nome da base (vamos utilizar o nome do projeto)
+a) usar comando, sendo o 3Design
++o nome da base (vamos utilizar o nome do projeto)
 
-"CREATE DATABASE mydb
+"CREATE DATABASE 3Design
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;"
 
