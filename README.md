@@ -5,19 +5,14 @@ Repositório para Turma 4 do 2 semestre de 2014 de PMR2490
 
 Instruções GitHub:
 
-1) Baixe o Github para:
-	-Windows: https://windows.github.com/
-	-Mac: https://mac.github.com/
+Repositório:
 
-2) Instale no PC
+1) Download e instalação do Git:
+ http://git-scm.com/downloads
 
-3) Faça login
+2) Clonar repositório (ir até a pasta cd <nome da pasta>):
 
-4) Pule a etapa de adicionar repositórios locais
-
-5) Busque um repositório ( o do projeto )
-
-6) Clone esse repositório no seu pc, ele conterá os dados mais atuais.
+> git clone https://github.com/Muriloo/PMR2490_3Design
 
 ------------------------
 
@@ -42,7 +37,7 @@ a) Adicionar no Path do sistema a pasta bin do MySQL
 
 b) No prompt de comando digitar "mysql -u root -p" e Enter
 
-c) Na área do mysql atualizar a senha do root :  update mysql.user set password = password('password_chosen') where user = 'root';
+c) Na área do mysql atualizar a senha do root :  update mysql.user set password = password('Pmr2490') where user = 'root';
 
 (Escolhemos uma senha unica juntos)
 
@@ -54,22 +49,13 @@ d) sair usando "quit"
 
 6) Criando database:
 
-a) usar comando, sendo o mydb o nome da base (vamos utilizar o nome do projeto)
+a) usar comando, sendo o 3Design
++o nome da base (vamos utilizar o nome do projeto)
 
-"CREATE DATABASE mydb
+"CREATE DATABASE 3Design
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;"
 
 Ao final de tudo isso seu servidor estará pronto! O MySQL Workbench é o programa que tem toda uma interface gráfica para lidar com o servidor, permitindo criar schemas, tabelas e fazer QUERIES.
 
 -------------
-
-Repositório:
-
-1) Download e instalação do Git:
- http://git-scm.com/downloads
-
-
- 2) Clonar repositório:
-
-> git clone https://github.com/Muriloo/PMR2490_3Design
