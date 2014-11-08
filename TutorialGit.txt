@@ -1,0 +1,32 @@
+Guia git:
+IPC (Importante Para Caralho): !!!!!!NUNCA EDITAR OS SCRIPTS DO NETBEANS COM O BRANCH MASTER E NUNCA, NUNCA dar um push no "master"!!!!!!!!!!!
+
+
+1) Clonar (!!!!!SOMENTE NA PRIMEIRA VEZ!!!!)
+//ir ate a pasta onde ficara a pasta do projeto
+> git clone <url>  //ver url no site
+
+
+2) Criar um branch para editar os arquivos //FACA ISSO ANTES DE COMECAR A EDITAR QUALQUER ARQUIVO!!!!!!!!
+> git branch <nome do seu branch> //cria o branch
+> git checkout <nome do seu branch>  //vai para o branch, ou seja, todas as alteracoes feitas a partir de agora estarao somente nesse branch e nao no 
+									//master
+
+//DEPOIS DISSO VC PODE MEXER NO NETBEANS, E FAZER O QUE QUISER
+
+//Se esta funcionando:
+3) Commitar:
+> git status  //verificar (vermelho tem que adiconar, verde os arquivos foram adiconados para commitar)
+> git add -A   //adiciona todos os arquivos de todas as pastas
+> git commit -m "Escreva sua mensagem"     //commita, onde vc pode colocar sua mensagem, escrevam o que foi ALTERADO
+
+
+4) JOGAR NO REPOSITORIO
+> git push origin <nome do seu branch>
+
+
+//QUER MEXER EM MAIS COISA, recomece
+//Primeiro verifique se o seu branch não está no master
+//se nao estiver pode editar os arquivos do netbeans
+
+//depois de alterado, se estiver ok repita 3 e 4
