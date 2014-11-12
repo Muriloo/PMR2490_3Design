@@ -1,0 +1,4 @@
+id,version_status_name,created_at,updated_at,deleted,deleted_at,modified_by
+1,approved,"2014-11-10 21:56:53","0000-00-00 00:00:00",0,NULL,NULL
+2,pending,"2014-11-10 21:56:53","0000-00-00 00:00:00",0,NULL,NULL
+3,rejected,"2014-11-10 21:56:53","0000-00-00 00:00:00",0,NULL,NULL

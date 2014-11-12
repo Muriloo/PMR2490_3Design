@@ -1,0 +1,3 @@
+id,email,name,last_name,password,username,country,created_at,updated_at,deleted,deleted_at,modified_by
+1,murilo.nigris@gmail.com,Murilo,Nigris,jaba,muriloo,BR,"2014-11-10 21:54:24","0000-00-00 00:00:00",0,NULL,NULL
+2,mauri.kawamura@gmail.com,Mauri,Kawamura,mauri,mauri.kawamura,BR,"2014-11-10 21:55:22","0000-00-00 00:00:00",0,NULL,NULL
