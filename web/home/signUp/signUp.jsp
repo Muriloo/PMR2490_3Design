@@ -58,13 +58,21 @@
         } else{
        transacoes.Contato tn = new transacoes.Contato();
        data.ContatoDO contato = new data.ContatoDO();
+              
        contato.setNome(nome);
        contato.setSobrenome(sobrenome);
        contato.setUsername(username);
        contato.setEmail(email);
        contato.setSenha(senha);
        contato.setPais(pais);
-      if ( tn.incluir(contato)) {
+
+if(tn.buscarEmail(email) || tn.buscarUsername(username)){
+%>
+Usuário ou email já cadastrados
+<%
+}else{
+      
+if ( tn.incluir(contato)) {
          // avisar usuario que transacao foi feita com sucesso
 %>
           Transação realizada com sucesso!
@@ -74,15 +82,9 @@
 <%     } else {
 %>
           Erro ao incluir usuário            
-          <form action="/PMR2490_3Design/home/signUp/signUp.jsp" method="post">
-             <input type="submit" name="retry" value="Repetir" />
-          </form>
-<%     }
-       
-%>       
-        %> ok <%
+<%     }       
         }
-    
+    }
     }
     // show signUp form
 %>

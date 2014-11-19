@@ -60,21 +60,37 @@ public class Contato {
 //	 return false;
 //  } // atualizar
 //
-//  public ContatoDO buscar(int idobj) throws Exception{
-//     Transacao tr = new Transacao();
-//	 try{
-//	   tr.beginReadOnly();
-//  	     ContatoData cdata = new ContatoData();
-//	     ContatoDO c = cdata.buscar(idobj, tr);
-//	   tr.commit();
-//	   return c;
-//	 } catch (Exception e) {
-//	   tr.rollback();
-//	   System.out.println("erro ao buscar" + idobj);
-//	   e.printStackTrace();
-//	 }
-//	 return null;
-//  } // buscar
+  public boolean buscarEmail(String email) throws Exception{
+     Transacao tr = new Transacao();
+	 try{
+	   tr.beginReadOnly();
+  	     ContatoData cdata = new ContatoData();
+	     ContatoDO c = cdata.buscarEmail(email, tr);
+	   tr.commit();
+	   return true;
+	 } catch (Exception e) {
+	   tr.rollback();
+	   System.out.println("erro ao buscar" + email);
+	   e.printStackTrace();
+	 }
+	 return false;
+  } // buscar
+  
+   public boolean buscarUsername(String username) throws Exception{
+     Transacao tr = new Transacao();
+	 try{
+	   tr.beginReadOnly();
+  	     ContatoData cdata = new ContatoData();
+	     ContatoDO c = cdata.buscarUsername(username, tr);
+	   tr.commit();
+	   return true;
+	 } catch (Exception e) {
+	   tr.rollback();
+	   System.out.println("erro ao buscar" + username);
+	   e.printStackTrace();
+	 }
+	 return false;
+  } // buscar
 //
 //  public Vector pesquisar(String nome) {
 //     if ( isEmpty(nome) )
