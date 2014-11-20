@@ -19,20 +19,25 @@ public class projectData {
    
   public void approve(versionDO version, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "update version set version_status_id=1 where version_status_id=2 and version_project_id=? and id=?;"
-             + " update version set version_visibility=0 where version_visibility=1 and version_project_id=?;"
-             + " update version set version_visibility=1 where version_project_id=? and id=?;";
+     String sql1 = "update version set version_status_id=1 where version_status_id=2 and version_project_id=? and id=?;";
+     String sql2 = "update version set version_visibility=0 where version_visibility=1 and version_project_id=?;";
+     String sql3 = "update version set version_visibility=1 where version_project_id=? and id=?;";
      int projId = version.getProjectId();
      int versId = version.getId();
-     PreparedStatement ps = con.prepareStatement(sql);
-     ps.setInt(1, projId);
-     ps.setInt(2, versId);
-     ps.setInt(3, projId);
-     ps.setInt(4, projId);
-     ps.setInt(5, versId);
+     PreparedStatement ps1 = con.prepareStatement(sql1);
+     ps1.setInt(1, projId);
+     ps1.setInt(2, versId);
+     PreparedStatement ps2 = con.prepareStatement(sql2);
+     ps2.setInt(1, projId);
+     PreparedStatement ps3 = con.prepareStatement(sql3);
+     ps3.setInt(1, projId);
+     ps3.setInt(2, versId);
+
      System.out.println("projID="+projId+"versID="+versId);
  
-     int result = ps.executeUpdate();
+     int result = ps1.executeUpdate();
+     result = ps2.executeUpdate();
+     result = ps3.executeUpdate();
   } // approve version whose status is "pending"(status_id=2), i.e. set status_id = 1
   
 public void reprove(versionDO version, Transacao tr) throws Exception {

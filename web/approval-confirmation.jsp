@@ -79,6 +79,9 @@ Such 3D!<br>
 %>        
 
 <h2>Versão Aprovada!</h2>
+<form action="./pending-projects.jsp" method="post"
+                <input type="submit" name="voltarAC" value="Voltar" />
+</form>       
 
 <%
     }//se aprovada com sucesso
@@ -86,11 +89,50 @@ Such 3D!<br>
         %>
         
 <h2>Erro na aprovação!</h2>
+<form action="./pending-projects.jsp" method="post"
+                <input type="submit" name="voltarAC" value="Voltar" />
+</form>       
         
         <%
     }//Erro na aprovação
 
 }//aprovarC
+else if ( null != request.getParameter("rejeitarC")) {
+    System.out.println("vai rejeitar");
+    String a = request.getParameter("indiceC");
+    System.out.println("rejeitarC "+a);
+    transaction.pendingProject pp = new transaction.pendingProject();
+    versionDO version = new versionDO();
+    Vector vector = new Vector();
+    vector = (Vector)session.getAttribute("vector");
+    int i = Integer.parseInt(request.getParameter("indiceC"));
+    System.out.println("INDICE="+i);
+    version = (versionDO)vector.elementAt(i);
+    if (version == null){
+        System.out.println("versão nula");
+    }
+    if (pp.reprove(version)){
+%>        
+
+<h2>Versão Rejeitada!</h2>
+<form action="./pending-projects.jsp" method="post"
+                <input type="submit" name="voltarAC" value="Voltar" />
+</form>       
+
+<%
+    }//se rejeitada com sucesso
+    else {
+        %>
+        
+<h2>Erro na rejeição!</h2>
+<form action="./pending-projects.jsp" method="post"
+                <input type="submit" name="voltarAC" value="Voltar" />
+</form>        
+        
+        <%
+    }//Erro na rejeição
+
+}//rejeitarC
 else{
     System.out.println("else");
     String aprovar_rejeitar;
@@ -99,12 +141,12 @@ else{
          System.out.println("aprovar "+i);
         %>
          <h2>Você tem certeza que deseja aprovar essa versão?</h2>
-         <form action="./approval-confirmation.jsp" method="get"
-               <!input type="text" name="teste" value="testee">
-                <input type="hidden" name="indiceC" value="<%=i%>"  > 
-                <input type="submit" name="aprovarC" value="Aprovar" >                 
-                <input type="submit" name="voltar" value="Voltar" >
-         </form>        
+         <form action="./approval-confirmation.jsp" method="post"
+                <!input type="text" name="teste" value="testee">
+                <input type="hidden" name="indice" value="<%=i%>"  />
+                <input type="submit" name="aprovarC" value="Aprovar" />
+                <input type="submit" name="voltar" value="Voltar" />
+            </form>       
             
             <%
     }
@@ -113,6 +155,7 @@ else{
             %>
             <h2>Você tem certeza que deseja rejeitar essa versão?</h2>
             <form action="./approval-confirmation.jsp" method="post"
+                <!input type="text" name="teste" value="testee">
                 <input type="hidden" name="indice" value="<%=i%>"  />
                 <input type="submit" name="rejeitarC" value="Rejeitar" />
                 <input type="submit" name="voltar" value="Voltar" />
