@@ -1,13 +1,22 @@
+<%-- 
+    Document   : blank
+    Created on : 19/11/2014, 12:59:32
+    Author     : Arthur
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
-<head>
-<link rel="stylesheet" type="text/css" href="index.css" media="all">
-</head>
-
-<body>
-    
-<div style="height:90px;margin:0px;background-color: #6ED4B8">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="index.css" media="all">
+    </head>
+    <body>
+        
+<!--------------------Header--------------------------------------------------->
+        
+        <div style="height:90px;margin:0px;background-color: #6ED4B8">
 <div id="header" style="vertical-align: top;height:80px">
     <a href="index.html">
         <img src="images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
@@ -39,16 +48,17 @@ Such 3D!<br>
 </div>
 
 <div id="section">
-<h2>Olha qu&atilde;o 3D est&aacute; isso!</h2>
-<p>
-Sim, estamos 3D, esse texto fala sobre 3D por que queremos somentes coisas 3D,
-uma vez que estudos mostram que coisas 2D nao sao legais.
-</p>
-<p>
-Entao vamos agora falar sobre mais coisas 3D por que ali em cima n&atilde;o falamos o suficiente,
-e se voce ler direito, da pra ver que as letras est&atilde;o 3D tamb&eacute;m.
-Se voce for ainda mais inteligente vai perceber que a ultima frase &eacute; zuera
-</p>
+<h2>Gerenciamento de Versões Pendentes</h2>
+        
+<!-------------Fim do Header--------------------------------------------------->
+
+
+                     <!código da página>
+
+                     
+                     
+<!--------------------------Footer--------------------------------------------->
+
 </div>
 </div>
     
@@ -75,5 +85,8 @@ Se voce for ainda mais inteligente vai perceber que a ultima frase &eacute; zuer
 </div>
 </div>    
     
+<!-------------------Fim do Footer--------------------------------------------->
+
 </body>
+
 </html>
