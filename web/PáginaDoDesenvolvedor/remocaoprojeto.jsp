@@ -43,7 +43,7 @@
     <div id="form_container">
 	
 		<h1><a>Página de exclusão de projeto</a></h1>
-		<form id="form_933363" class="appnitro"  method="post" action="">
+		
 					<div class="form_description">
 			
 			<p>Você deseja realmente excluir este projeto?</p>
@@ -57,9 +57,10 @@
 		</li>
                 <br><br>
                 <li class="buttons">
-			    <input type="hidden" name="form_id" value="933363" />
+                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/uploadnovaversao.jsp">
 			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Cancelar" />
+				<input id="cancelar" class="button_text" type="submit" name="cancelar" value="Cancelar" />
+                    </form>
 		</li>
 			</ul>
 

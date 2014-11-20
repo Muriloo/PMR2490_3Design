@@ -40,7 +40,7 @@
     
 	<div id="form_container">
 	
-		<form id="form_930200" class="appnitro" enctype="multipart/form-data" method="post" action="">
+		
 					<div class="form_description">
 			<h2>Opções de projeto</h2>
 			<p>Faça o upload de uma nova versão do projeto, edite sua descrição ou exclua este projeto.</p>
@@ -57,22 +57,24 @@
                 <li class="buttons">
 			    <input type="hidden" name="form_id" value="930200" />
 			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Enviar" />
+				<input id="enviar" class="button_text" type="submit" name="enviar" value="Enviar" />
 		</li>
                 <br><br>
                 <li class="buttons">
-			    <input type="hidden" name="form_id" value="930200" />
+                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/editarprojeto.jsp">
 			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Editar descrição" />
+				<input id="editar" class="button_text" type="submit" name="editar" value="Editar descrição" >
+                    </form>
 		</li>
                 <br><br>
                 <li class="buttons">
-			    <input type="hidden" name="form_id" value="930200" />
+                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/remocaoprojeto.jsp">
 			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Excluir projeto" />
+				<input id="excluir" class="button_text" type="submit" name="excluir" value="Excluir projeto" />
+                    </form>
 		</li>
 			</ul>
-		</form>
+		
         </div>
     
 <div style="height:160px;margin: 0px auto;display: block;background-color:#6ED4B8;clear:both;">
