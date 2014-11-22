@@ -19,11 +19,13 @@
  <%@include file="../WEB-INF/header.jsp" %>    
     
     <div class="form_description">
-  
+            
         <%
-            String id = request.getParameter("id");
-            id = id.toUpperCase();       
-        %>    
+            String id = request.getParameter("id");       
+        %>
+        <h1>Produtos adicionados no carrinho</h1>
+        
+        <h2><%= id %></h2>
         
         <%
             // Setando parámetros para conectar com o servidor de banco de dados
@@ -35,6 +37,8 @@
             Connection conn = null;
             ResultSet results = null;
             Statement statement = null;
+            
+            ResultSet list = null;
 
             try
             {
@@ -46,38 +50,40 @@
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection(url, uid, pwd);
                 statement = conn.createStatement();
+                results = statement.executeQuery("select * from item_cart "
+                                                 + "where customer_id = 1 AND deleted = 0" );
 
                 // leendo o banco para mostrar conteudo em tabela HTML
-                results = statement.executeQuery("select * from project where id =" + id);
                 %>
+                <TABLE BORDER="1">
+                    <TR>
+                        <TD>Nome do Projeto</TD>
+                        <TD>Descrição</TD>
+                        <TD>Detalhes</TD>
+                        <TD>Preço</TD>
+                    </TR>
                
                     <%
                 // mentras existam dados para processar
                 while(results.next())
-                {
+                { 
+                    list = statement.executeQuery("select * from project where id = " + results.getString(1));
+
                 %>
                         <!lendo cada um dos campos da tabela (nome, sobrenome, etc)
                         e mostrando na tabela HTML>
                         <TR>
-                            <h1> <%= results.getString(3) %> </h1>
-                            
-                            <h3> Preço: <%= results.getString(7) %></h3>
-                            
-                            <form action="/PMR2490_3Design/Search/Cart.jsp">
-                                <button type="submit" name = "id" value=<%= id %>>Adicionar ao carrinho</button>
-                                
-                            </form>
-                            
-                            <h3> Descrição do projeto</h3>
-                            <h4> <%= results.getString(4) %> </h4>
-                            
-                            <h3> Detalhes do projeto</h3>
-                            <h4> <%= results.getString(5) %> </h4>
+                            <TD> <%= list.getString(2) %> </TD>
+                            <TD> <%= list.getString(3) %> </TD>
+                            <TD> <%= list.getString(4) %> </TD>
+                            <TD> t </TD>
                         </TR>
                 <%
                 }
                 %>
                 </TABLE>
+                
+                
                 <%
             }
             // capturando exeções em caso de erro

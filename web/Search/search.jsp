@@ -19,16 +19,13 @@
  <%@include file="../WEB-INF/header.jsp" %>    
     
     <div class="form_description">
-			<h2>Resultados Encontrados</h2>
             
         <%
             String keyword = request.getParameter("keyword");
             keyword = keyword.toUpperCase();       
         %>
         
-        <h1><%=keyword%></h1>
-        
-        
+        <h3>Resultados encontrados para o termo: "<%=keyword%>"</h3>     
         
         <%
             // Setando parámetros para conectar com o servidor de banco de dados
@@ -39,21 +36,12 @@
             Connection conn = null;
             ResultSet results = null;
             Statement statement = null;
+            int count = 0;
             
-
             try
             {
                 %>
-                <!código HTML para a tabela que mostra os dados do banco>
-                <TABLE BORDER="1">
-                    <TR>
-                        <TH>Nome do Projeto</TH>
-                        <TH>Descrição</TH>
-                        <TH>Detalhes</TH>
-                        <TH>Preçoo</TH>
-                    </TR>
-               
-                </TABLE>
+
                 <%
                 // fazendo a conexão com o servidor
                 // carregando driver certo para conexão
@@ -77,7 +65,8 @@
                     <%
                 // mentras existam dados para processar
                 while(results.next())
-                {
+                { 
+                    count++;
                 %>
                         <!lendo cada um dos campos da tabela (nome, sobrenome, etc)
                         e mostrando na tabela HTML>
@@ -91,6 +80,8 @@
                 }
                 %>
                 </TABLE>
+                <h3> Foram encontrados <%= count %> resultado(s)</h3>
+                
                 <%
             }
             // capturando exeções em caso de erro

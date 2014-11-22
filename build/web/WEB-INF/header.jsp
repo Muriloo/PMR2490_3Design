@@ -17,7 +17,7 @@
             <form method="post" action="/3Design/home/logIn/logIn.jsp">
                 <input type="submit" name="LogIn" id="LogIn" value="Log In" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; position:relative; top: -20px; right:85px">
             </form>   
-            <a href="index.html">
+            <a href="/PMR2490_3Design/Search/Cart.jsp">
                 <img src="/3Design/images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-62px">
             </a>
         </div>
