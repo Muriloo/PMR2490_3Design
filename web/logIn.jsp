@@ -13,25 +13,25 @@
         <title>Log In</title>
     </head>
     <body>
-      <%@include file="../../WEB-INF/header.jsp" %>
+        <%@include file="/WEB-INF/header.jsp" %>
         <div>
-            <form>
+            <form action="LogServlet" method="post">
                 <table>
                     <tr>
-                        <td>Email</td>
-                        <td><input type="email" name="email" />
+                        <td>Username</td>
+                        <td><input type="text" name="username" />
                     </tr>
                     <tr>
                         <td>Senha</td>
-                        <td><input type="password" name="pwd" />
+                        <td><input type="password" name="senha" />
                     </tr>
                 </table>
-                <input type="submit" name="ok" value="Entrar" />
+                <input type="submit" value="Login" />
             </form>
         </div>
 
 
-         <%@include file="../../WEB-INF/footer.jsp" %>   
+        <%@include file="/WEB-INF/footer.jsp" %>   
 
 
     </body>
