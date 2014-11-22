@@ -2,14 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-
-     
-
-=======
         <group>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/index.jsp</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/src/java/data/LoginUserData.java</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/src/java/transacoes/loginUser.java</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/src/java/loginFilter/authenticationFilter.java</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/src/java/loginServlet/logoutServlet.java</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/src/java/loginFilter/loginFilter.java</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/src/java/loginServlet/LogServlet.java</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/web/WEB-INF/header.jsp</file>
+            <file>file:/C:/Users/Mauri/Documents/NetBeansProjects/3Design/web/logIn.jsp</file>
         </group>
->>>>>>> RamoDoPaulo
     </open-files>
 </project-private>
