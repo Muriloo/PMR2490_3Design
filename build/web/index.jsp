@@ -15,7 +15,9 @@
         <link rel="stylesheet" type="text/css" href="index.css" media="all">
         <script type="text/javascript" src="view.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
         <title>HomePage</title>
+
     </head>
 
     <body>
