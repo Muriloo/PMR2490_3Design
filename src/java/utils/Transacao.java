@@ -1,11 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package utils;
 
 import java.sql.*;
-
+/**
+ *
+ * @author Mauri
+ */
 public class Transacao {
-
-  // connection data
   static final String driver = "com.mysql.jdbc.Driver";
+
   static final String url = "jdbc:mysql://localhost/3design?";
   static final String uid = "root";
   static final String pwd = "Pmr2490";
@@ -44,4 +51,6 @@ public class Transacao {
       return _conexao;
   } // obterConexao
 
+
 } // Transacao
+
