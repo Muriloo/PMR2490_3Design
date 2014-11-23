@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/projectDO.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/versionDO.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/utils/emailUtil.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/utils/sendEmail.java</file>
+            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/utils/fileHandler.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/pending-projects.jsp</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/projectData.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/transaction/pendingProject.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/blank.jsp</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/form_sample.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/index.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/approval-confirmation.jsp</file>
         </group>
