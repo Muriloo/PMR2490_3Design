@@ -16,28 +16,7 @@
     <%@include file="../WEB-INF/header.jsp" %>
         <%if (request.getParameter("upload") != null) {
             
-            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-            if (isMultipart)
-            {
-                List items = upload.parseRequest(request);
-                Iterator iterator = items.iterator();
-                while (iterator.hasNext()) 
-                {
-                    FileItem item = (FileItem) iterator.next();
-
-                    if (item.isFormField()) //your code for getting form fields
-                    {
-                        String name = item.getFieldName();
-                        String value = item.getString();
-                        System.out.println(name+value);
-                    }
-
-                    if (!item.isFormField()) 
-                    {
-                       //your code for getting multipart 
-                    }
-                }
-            }
+           
             System.out.print("fez a request");
             String name = request.getParameter("name");
             String description = request.getParameter("description");
@@ -93,7 +72,7 @@
         
 	<div id="form_container">
 	
-            <form action="./novoupload.jsp" method="post" enctype="multipart/form-data">
+            <form action="../UploadProjectServlet" method="post" enctype="multipart/form-data">
 		<div class="form_description">
                     <h2>Upload de novo projeto</h2>
                     <p>Escolha um arquivo em formato adequado e faça o upload do mesmo nesta página.</p>
