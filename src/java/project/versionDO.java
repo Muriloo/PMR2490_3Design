@@ -5,6 +5,8 @@
  */
 package project;
 
+import java.io.InputStream;
+
 /**
  *
  * @author Arthur
@@ -17,7 +19,15 @@ public class versionDO {
     private int _visibility;
     private int _status_id;
     private int _project_id;
-    // falta o arquivo do projeto!!
+    private InputStream _file;
+
+    public InputStream getFile() {
+        return _file;
+    }
+
+    public void setFile(InputStream _file) {
+        this._file = _file;
+    }
     
   public int getId() {
      return _id;
