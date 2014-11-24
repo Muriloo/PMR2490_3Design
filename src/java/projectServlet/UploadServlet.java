@@ -8,6 +8,7 @@ package projectServlet;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import javax.servlet.ServletException;
@@ -29,25 +30,49 @@ public class UploadServlet extends HttpServlet {
         System.out.print("chegou aqui: ");
         try {
             // get access to file that is uploaded from client
-            Part p1 = request.getPart("file");
-            InputStream is = p1.getInputStream();
-            
-            // read filename which is sent as a part
-            Part p2  = request.getPart("photoname");
-            Scanner s = new Scanner(p2.getInputStream());
-            String filename = s.nextLine();    // read filename from stream
+            System.out.print("chegou no try: ");
+                       
+            String name = request.getParameter("name");
+            String description = request.getParameter("description");
+            String comments = request.getParameter("comments");
+            Part file = request.getPart("file");
+            InputStream file_is = file.getInputStream();
+            //String images = request.getParameter("images");
+            String price_str = request.getParameter("price");
 
-            // get filename to use on the server
-            String outputfile = this.getServletContext().getRealPath(filename);  // get path on the server
-            FileOutputStream os = new FileOutputStream (outputfile);
-            System.out.print("upload to: "+outputfile);
-            // write bytes taken from uploaded file to target file
-            int ch = is.read();
-            while (ch != -1) {
-                 os.write(ch);
-                 ch = is.read();
+            float price = 0;
+            boolean result = false;
+            
+            System.out.print("comments:"+comments);
+            try {
+                if (!utils.MetodosUteis.isEmpty(price_str)){
+                    price = Float.valueOf(price_str).floatValue();                    
+                }
+                project.projectDO project = new project.projectDO(name, description, comments, price, "");
+                project.versionDO version = new project.versionDO();
+                if(file.getSize() > 0){
+                    version.setFile(file_is);
+                }
+                
+                transaction.UploadProject upProject = new transaction.UploadProject();
+                try {
+                    result = upProject.uploadProject(project, version);
+                } catch (Exception e){
+                    System.out.print("ERROR!");
+                }
+            } catch (NumberFormatException e){
+               System.out.print("ERROR!");
             }
-            os.close();
+            
+//            FileOutputStream imageOutFile = new FileOutputStream("C:\\Users\\Murilo\\Pictures\\teste.jpg");
+//            int ch = is.read();
+//            while (ch != -1) {
+//                 imageOutFile.write(ch);
+//                 ch = is.read();
+//            }
+//			
+//            imageOutFile.close();
+//                   
             out.println("<h3>File uploaded successfully!</h3>");
         }
         catch(Exception ex) {

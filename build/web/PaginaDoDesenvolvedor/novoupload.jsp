@@ -72,7 +72,7 @@
         
 	<div id="form_container">
 	
-            <form action="../UploadProjectServlet" method="post" enctype="multipart/form-data">
+            <form action="../upload" method="post" enctype="multipart/form-data">
 		<div class="form_description">
                     <h2>Upload de novo projeto</h2>
                     <p>Escolha um arquivo em formato adequado e faça o upload do mesmo nesta página.</p>

@@ -97,21 +97,21 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
         String now_str= sdf.format(now);
         
         ps1.setString(7, now_str);
-        
-        ResultSet rs = ps1.executeQuery();
-        int project_id = rs.getInt("id");
-        System.out.print("result :" +rs.next());
-        
-        String sql_version = "insert into version (version_name, version_visibility, version_status_id, version_file, "
-                + "version_project_id,updated_at) values (?,?,?,?,?,?)";
+        System.out.print(ps1.toString());
+        int res = ps1.executeUpdate();
+//        int project_id = rs.getInt("id");
+//        System.out.print("result :" +rs.next());
+//        
+//        String sql_version = "insert into version (version_name, version_visibility, version_status_id, version_file, "
+//                + "version_project_id,updated_at) values (?,?,?,?,?,?)";
         //save version
-        PreparedStatement ps2 = con.prepareStatement(sql_version);
-        ps2.setString(1, "1.0");
-        ps2.setInt(2, 0);
-        ps2.setInt(3, 2);//status pendente
-        ps2.setBlob(4, version.getFile());
-        ps2.setInt(5, project_id);//2 = pending
-        ps2.setString(6, now_str);
+//        PreparedStatement ps2 = con.prepareStatement(sql_version);
+//        ps2.setString(1, "1.0");
+//        ps2.setInt(2, 0);
+//        ps2.setInt(3, 2);//status pendente
+//        ps2.setBlob(4, version.getFile());
+//        ps2.setInt(5, project_id);//2 = pending
+//        ps2.setString(6, now_str);
     }
     
 }
