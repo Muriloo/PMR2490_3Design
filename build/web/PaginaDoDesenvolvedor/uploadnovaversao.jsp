@@ -39,14 +39,14 @@
 		</li>
                 <br><br>
                 <li class="buttons">
-                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/editarprojeto.jsp">
+                    <form method="post" action="/3Design/PaginaDoDesenvolvedor/editarprojeto.jsp">
 			    
 				<input id="editar" class="button_text" type="submit" name="editar" value="Editar descrição" >
                     </form>
 		</li>
                 <br><br>
                 <li class="buttons">
-                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/remocaoprojeto.jsp">
+                    <form method="post" action="/3Design/PaginaDoDesenvolvedor/remocaoprojeto.jsp">
 			    
 				<input id="excluir" class="button_text" type="submit" name="excluir" value="Excluir projeto" />
                     </form>

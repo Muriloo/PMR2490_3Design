@@ -36,7 +36,7 @@
 		</li>
                 <br><br>
                 <li class="buttons">
-                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/uploadnovaversao.jsp">
+                    <form method="post" action="/3Design/PaginaDoDesenvolvedor/uploadnovaversao.jsp">
 			    
 				<input id="cancelar" class="button_text" type="submit" name="cancelar" value="Cancelar" />
                     </form>
