@@ -1,0 +1,8 @@
+TODO ARTHUR:
+
+1)* corrigir caracteres especiais (projectUpload.html)
+2) permitir campos de texto expansivies
+3) determinar formatos aceitos para desenho
+4)* permitir subir mais de uma imagem
+5) trocar o campo de colocar preço...muito bizarro (sei que foi o padrao do form php)
+6) botao nao deveria ser um item da lista
