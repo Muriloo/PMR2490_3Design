@@ -3,12 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Adm/Documents/3Design/src/java/data/ContatoData.java</file>
             <file>file:/C:/Users/Adm/Documents/3Design/src/java/transacoes/EditarProjeto.java</file>
             <file>file:/C:/Users/Adm/Documents/3Design/src/java/data/ContatoDO.java</file>
             <file>file:/C:/Users/Adm/Documents/3Design/src/java/transacoes/Contato.java</file>
             <file>file:/C:/Users/Adm/Documents/3Design/web/home/signUp/signUp.jsp</file>
             <file>file:/C:/Users/Adm/Documents/3Design/web/PaginaDoDesenvolvedor/editarprojeto.jsp</file>
+=======
+            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/logIn.jsp</file>
+            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/src/java/transaction/UploadProject.java</file>
+            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/PaginaDoDesenvolvedor/novoupload.jsp</file>
+            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/src/java/project/projectData.java</file>
+            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/testUpload.jsp</file>
+            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/src/java/projectServlet/UploadServlet.java</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>

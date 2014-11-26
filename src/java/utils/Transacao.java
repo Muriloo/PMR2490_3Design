@@ -11,10 +11,15 @@ import java.sql.*;
  * @author Mauri
  */
 public class Transacao {
-    static final String driver = "com.mysql.jdbc.Driver";
+  static final String driver = "com.mysql.jdbc.Driver";
+
   static final String url = "jdbc:mysql://localhost/3design?";
   static final String uid = "root";
+<<<<<<< HEAD
   static final String pwd = "root";
+=======
+  static final String pwd = "Pmr2490";
+>>>>>>> master
   
   private Connection _conexao = null;
   private boolean _readOnly = false;
@@ -50,4 +55,6 @@ public class Transacao {
       return _conexao;
   } // obterConexao
 
-}
+
+} // Transacao
+
