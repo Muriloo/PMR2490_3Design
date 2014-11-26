@@ -73,7 +73,8 @@ public class UploadServlet extends HttpServlet {
 //			
 //            imageOutFile.close();
 //                   
-            out.println("<h3>File uploaded successfully!</h3>");
+           out.println("<h3>File uploaded successfully!</h3>");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         catch(Exception ex) {
            out.println("Exception -->" + ex.getMessage());

@@ -13,6 +13,7 @@ package project;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 import utils.Transacao;
 import java.text.SimpleDateFormat;
@@ -76,42 +77,43 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
   } // gets versions with "pending" status
 
     public void uploadProject(projectDO project, versionDO version, Transacao tr) throws Exception{
-        System.out.print("chegou ao upload");
+        
         Connection con = tr.obterConexao();
-        
-        String sql_project = "insert into project (customer_id, project_name, project_description, project_detail, "
-                + "project_status_id, project_price,updated_at) values (?,?,?,?,?,?,?)";
-        
-        //save project
-        PreparedStatement ps1 = con.prepareStatement(sql_project);
-        ps1.setInt(1, 1);
-        ps1.setString(2, project.getName());
-        ps1.setString(3, project.getDescription());
-        ps1.setString(4, project.getDetail());
-        ps1.setInt(5, 2);//2 = pending
-        ps1.setFloat(6, project.getPrice());
-        
+        int project_id;
+        int customer_id = 1;
+        //create query statement
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
         sdf.format(now);
         String now_str= sdf.format(now);
         
-        ps1.setString(7, now_str);
-        System.out.print(ps1.toString());
-        int res = ps1.executeUpdate();
-//        int project_id = rs.getInt("id");
-//        System.out.print("result :" +rs.next());
-//        
-//        String sql_version = "insert into version (version_name, version_visibility, version_status_id, version_file, "
-//                + "version_project_id,updated_at) values (?,?,?,?,?,?)";
-        //save version
-//        PreparedStatement ps2 = con.prepareStatement(sql_version);
-//        ps2.setString(1, "1.0");
-//        ps2.setInt(2, 0);
-//        ps2.setInt(3, 2);//status pendente
-//        ps2.setBlob(4, version.getFile());
-//        ps2.setInt(5, project_id);//2 = pending
-//        ps2.setString(6, now_str);
+        String query_str = "INSERT INTO project (customer_id, project_name, project_description, "
+                + "project_detail, project_status_id, project_price,updated_at) " +
+                 "VALUES ("+customer_id+",'"+project.getName()+"','"+project.getDescription()
+                + "','"+project.getDetail()+"',"+2+","+project.getPrice()+",'"+now_str+"')";
+        
+        Statement stmt = con.createStatement();
+        // Obtain the generated key that results from the query.
+        stmt.executeUpdate(query_str, Statement.RETURN_GENERATED_KEYS);
+        ResultSet rs = stmt.getGeneratedKeys();
+        if ( rs.next() ) {
+            // Retrieve the auto generated key(s).
+            project_id = rs.getInt(1);
+           
+            String sql_version = "insert into version (version_name, version_visibility, version_status_id, "
+                    + "version_file, version_project_id,updated_at) values (?,?,?,?,?,?)";
+
+            PreparedStatement ps2 = con.prepareStatement(sql_version);
+            ps2.setString(1, "1.0");
+            ps2.setInt(2, 0);
+            ps2.setInt(3, 2);//status pendente
+            ps2.setBlob(4, version.getFile());
+            ps2.setInt(5, project_id);
+            ps2.setString(6, now_str);
+
+            ps2.executeUpdate();
+        }
+        
     }
     
 }
