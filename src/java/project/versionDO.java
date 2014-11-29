@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package project;
+import java.io.*;
 
 /**
  *
@@ -17,9 +18,20 @@ public class versionDO {
     private int _visibility;
     private int _status_id;
     private int _project_id;
-    // falta o arquivo do projeto!!
+    private String _file;
+
     
-  public int getId() {
+    
+    public String getFile() {
+        return _file;
+    }
+
+    public void setFile(String _file) {
+        this._file = _file;
+    }
+      
+    
+    public int getId() {
      return _id;
   } // getId
 
