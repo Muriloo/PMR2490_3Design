@@ -67,7 +67,7 @@ Such 3D!<br>
 } %>   
 
 
-<!-------checa se tem algum item a ser adicionado------------------------------>
+<!-------checa se tem algum item a ser atualizado------------------------------>
 <%     if ( null != request.getParameter("atualizar")) {
     String itemId = request.getParameter("itemId");
     String quantity = request.getParameter("quantity");

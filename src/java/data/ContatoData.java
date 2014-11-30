@@ -111,4 +111,30 @@ public class ContatoData {
      }
      return contatos;
   } // pesquisarPorNome
+  
+  
+   public Vector buscarId(Vector info, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();    
+    Vector contatos = new Vector();
+    /*
+    for(int i = 0; i < info.size(); i++) {
+        ContatoDO item = (ContatoDO)info.elementAt(i);
+        String sql = "select * from contact where id=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, item.getProjectId());
+        ResultSet rs = ps.executeQuery();
+        System.out.println("query executada");
+        while (rs.next()) {
+           projectDO v = new projectDO();
+           v.setId (rs.getInt("id"));
+           v.setName (rs.getString("project_name"));
+           System.out.println(" got " + v.getName());
+           v.setPrice(rs.getInt("project_price"));
+           projetos.add(v);
+        }
+     }
+            */
+     return contatos;             
+  } // buscar
+  
 }

@@ -36,7 +36,7 @@ Such 3D!<br>
 <%@ page import="java.util.Vector" %>
 <%@ page import="transaction.pendingProject" %>
 <%@ page import="project.versionDO" %>
-<%@ page import="transaction.getUser" %>
+<%@ page import="transaction.UserTransactions" %>
 <%@ page import="data.ContatoDO" %>
 
 <!------------------------------------------------------------------->
@@ -60,7 +60,7 @@ Such 3D!<br>
 
         
         <%   if ( null != request.getParameter("pesquisar")) {  
-       transaction.getUser tn = new transaction.getUser();
+       transaction.UserTransactions tn = new transaction.UserTransactions();
        Vector users = tn.getAllUsers();
        session.setAttribute("vector",users);
        if ( (users == null) || (users.size() == 0)) {

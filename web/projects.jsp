@@ -62,10 +62,10 @@ Such 3D!<br>
 <%           for(int i = 0; i < projects.size(); i++) {
                 projectDO project = (projectDO)projects.elementAt(i);
 %>              <tr>
-                   <td><%= project.getName() %></td>
-                   <td><%= project.getPrice() %></td>
-                   <td><%if(customerId != null){%>
-                       <form action="./carrinho.jsp" method="get">  
+                    <td><a href="./project.jsp?projectId=<%=project.getId()%>"><%= project.getName()%></a></td>
+                    <td><%= project.getPrice() %></td>
+                    <td><%if(customerId != null){%>
+                       <form action="./carrinho.jsp" method="post">  
                         <input type="number" name="quantity" min="1" max="10000" value="1"  /> 
                         <input type="hidden" name="projectId" value="<%=project.getId()%>"  />             
                         <input type="submit" name="adicionar" value="+" />
