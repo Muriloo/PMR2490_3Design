@@ -9,6 +9,7 @@ import java.util.*;
 import utils.Transacao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import comment.*;
 /**
  *
  * @author Mauri
@@ -113,27 +114,24 @@ public class ContatoData {
   } // pesquisarPorNome
   
   
-   public Vector buscarId(Vector info, Transacao tr) throws Exception {
+   public Vector buscarId(Vector comments, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();    
     Vector contatos = new Vector();
-    /*
-    for(int i = 0; i < info.size(); i++) {
-        ContatoDO item = (ContatoDO)info.elementAt(i);
-        String sql = "select * from contact where id=?";
+    for(int i = 0; i < comments.size(); i++) {
+        CommentDO comment = (CommentDO)comments.elementAt(i);
+        String sql = "select * from customer where id=?";
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, item.getProjectId());
+        ps.setInt(1, comment.getCustomerId());
+        System.out.println("Tentando achar usuario");
         ResultSet rs = ps.executeQuery();
         System.out.println("query executada");
         while (rs.next()) {
-           projectDO v = new projectDO();
-           v.setId (rs.getInt("id"));
-           v.setName (rs.getString("project_name"));
-           System.out.println(" got " + v.getName());
-           v.setPrice(rs.getInt("project_price"));
-           projetos.add(v);
+           ContatoDO v = new ContatoDO();
+           v.setUsername (rs.getString("username"));
+           System.out.println(" got " + v.getUsername());
+           contatos.add(v);
         }
      }
-            */
      return contatos;             
   } // buscar
   

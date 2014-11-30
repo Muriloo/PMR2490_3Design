@@ -34,10 +34,13 @@ Such 3D!<br>
         
         
 <%@ page import="java.util.Vector" %>
+<%@ page import="utils.MetodosUteis" %>
 <%@ page import="transaction.ProjectTransactions" %>
 <%@ page import="project.projectDO" %>
 <%@ page import="transaction.CommentTransactions" %>
 <%@ page import="comment.CommentDO" %>
+<%@ page import="transaction.UserTransactions" %>
+<%@ page import="data.ContatoDO" %>
 
 
 <!------------Adicionado o comentário postado---------------------------------->
@@ -90,15 +93,19 @@ Such 3D!<br>
              transaction.CommentTransactions commentTransaction = new transaction.CommentTransactions();
              Vector comments = commentTransaction.getComments(projectIdStr);
              session.setAttribute("vector",comments);
+             transaction.UserTransactions userTransaction = new transaction.UserTransactions();
+             Vector users = userTransaction.getUsers(comments);
+             session.setAttribute("vector",users);
  %>       
  Projeto: <%=projectIdStr%><br>
          Agora ao que importa, os comentários!
          <hr style="border-color: #6ED4B8">
          <%for(int i = 0; i < comments.size() && i < show; i++){
-             CommentDO comment = (CommentDO)comments.elementAt(i);%>
-             Id do usuário:<%=comment.getCustomerId()%><br>
-             Commentário:<%=comment.getComment()%><br>
-             Data:<%=comment.getCreatedAt()%><br>
+             CommentDO comment = (CommentDO)comments.elementAt(i);
+             ContatoDO user = (ContatoDO)users.elementAt(i);%>
+             <a href="./user.jsp?username=<%= user.getUsername() %>" style="font-size: 11pt; color: #3EA498;"><%=user.getUsername()%></a>         <span style="font-size: 8pt;color: #C0C0C0"><%=MetodosUteis.dateToDate(comment.getCreatedAt())%></span><br>
+             <span style="font-size: 10pt; padding-left: 10px">    <%=comment.getComment()%></span><br>
+             
              <hr style="border-color: #6ED4B8">
 
          <%} // returned versions

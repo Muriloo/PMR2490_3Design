@@ -36,7 +36,7 @@ public class UserTransactions {
 
   
   
-  public Vector getUser(Vector info) {
+  public Vector getUsers(Vector comments) {
      
      Transacao tr = new Transacao();
       System.out.println("cria transação");
@@ -45,11 +45,11 @@ public class UserTransactions {
          System.out.println("entra no try");
 	     tr.beginReadOnly();
            ContatoData cdata = new ContatoData();
-           Vector v = cdata.buscarId(info, tr);
+           Vector v = cdata.buscarId(comments, tr);
 		 tr.commit();
                  return v;
      } catch(Exception e) {
-         System.out.println("erro ao pesquisar por projetos pendentes");
+         System.out.println("erro ao buscar users por id");
          e.printStackTrace();
      }
      return null;
