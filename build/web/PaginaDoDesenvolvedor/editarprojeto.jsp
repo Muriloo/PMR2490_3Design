@@ -7,54 +7,98 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-   
-<head>
-<link rel="stylesheet" type="text/css" href="index.css" media="all">
-</head>
-    
-<body>
-    
- <%@include file="../WEB-INF/header.jsp" %>    
-    
-    <div class="form_description">
-			<h2>Edição de projeto</h2>
-			<p>Edite aqui as informações básicas do seu projeto!.</p>
-		</div>						
-			<ul >
-			
-					<li id="li_1" >
-		<label class="description" for="element_1">Nome do projeto </label>
-		<div>
-			<input id="element_1" name="element_1" class="element text medium" type="text" maxlength="255" value=""/> 
-		</div> 
-                                        </li>	<br>	<li id="li_2" >
-		<label class="description" for="element_2">Versão </label>
-		<div>
-			<input id="element_2" name="element_2" class="element text small" type="text" maxlength="255" value=""/> 
-		</div> 
-		</li>	<br>	<li id="li_1" >
-		<label class="description" for="element_1">Descrição do produto </label>
-		<div>
-			<textarea id="element_1" name="element_1" class="element textarea large"></textarea> 
-		</div> 
-		</li> <br>
-		<li id="li_4" >
-		<label class="description" for="element_4">Preço </label>
-		<div>
-			<input id="element_4" name="element_4" class="element text small" type="text" maxlength="255" value=""/> 
-		</div> 
-		</li>
-			<br>
-					<li class="buttons">
-			    <input type="hidden" name="form_id" value="933363" />
-			    
-				<input id="saveForm" class="button_text" type="submit" name="submit" value="Enviar" />
-		</li>
-			</ul>
-		</form>	
-	</div>
 
-        <%@include file="../WEB-INF/footer.jsp" %>    
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css" media="all">
+         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+
+    <body>
+
+        <%@include file="../WEB-INF/header.jsp" %>   
+
+
+        <div class="form_description">
+            <h2>Edição de projeto</h2>
+            <p>Edite aqui as informaçõees básicas do seu projeto!.</p>
+        </div>						
+       
+            <%
+                if (request.getParameter("campo_controle") != null) {
+                    // processa signUp
+                    String nomeProjeto = request.getParameter("nomeProjeto");
+                    String descricao = request.getParameter("descricao");
+                    String preco = request.getParameter("preco");
+                    String id = request.getParameter("id");
+//                    int preco2;
+//                    preco2 = Integer.parseInt(preco.trim());
+//                    
+//                    System.out.print(preco2);
+                if (nomeProjeto == "" || descricao == "" || preco == "") {
+                        
+                        System.out.print(1);
+                        System.out.print(descricao);
+                        System.out.print(preco);
+            %> Preencha todos os campos<%
+                    } else {
+                        project.projectDO project = new project.projectDO();
+                        project.setId(Integer.parseInt(id));
+                        project.setPrice(Float.parseFloat(preco));
+                        project.setName(nomeProjeto);
+                        project.setDescription(descricao);
     
+                        System.out.print(2);
+                        System.out.print(descricao);
+                        System.out.print(preco);
+                        
+                        transaction.EditarProjeto edit = new transaction.EditarProjeto();
+                        try {
+                            boolean result = edit.editarProjeto(project);
+                            if (result==false) {
+                               
+                            %>
+                    Erro na hora de editar o projeto favor tentar novamente!;
+                            <%
+                            }
+                            else {                            %>
+                    Projeto editado com sucesso
+                            <%
+                            }
+                        }
+                            catch (Exception e){
+                            %>
+                    Erro na hora de editar o projeto favor tentar novamente!;
+                            <%
+                }
+                    }
+                }
+            %>
+            <form>
+                <table>
+                    <tr>
+                        <td>Nome do projeto</td>
+                        <td><input type="text" name="nomeProjeto" />
+                    </tr>
+                    <tr>
+                        <td>Descrição</td>
+                        <td><input type="text" name="descricao" />
+                    </tr>
+                    <tr>
+                        <td>Preço</td>
+                        <td><input type="text" name="preco" />
+                    </tr>                                  
+                </table>
+                <br>
+                     <input type="hidden" name="id" value="<%= request.getParameter("id")%>"/>
+                     <input type="submit" name="ok" value="Enviar" />
+                     <input type="submit" name="ok" value="Cancelar" />
+                     <input type="hidden" name="campo_controle" />
+                     <br>
+            </form>
+            <br>
+</div>
+
+<%@include file="../WEB-INF/footer.jsp" %>    
+
 </body>
 </html>

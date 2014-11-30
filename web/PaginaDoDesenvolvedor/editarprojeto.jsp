@@ -19,8 +19,8 @@
 
 
         <div class="form_description">
-            <h2>Edi??o de projeto</h2>
-            <p>Edite aqui as informa??es b?sicas do seu projeto!.</p>
+            <h2>Edição de projeto</h2>
+            <p>Edite aqui as informaçõees básicas do seu projeto!.</p>
         </div>						
        
             <%
@@ -29,26 +29,47 @@
                     String nomeProjeto = request.getParameter("nomeProjeto");
                     String descricao = request.getParameter("descricao");
                     String preco = request.getParameter("preco");
+                    String id = request.getParameter("id");
 //                    int preco2;
 //                    preco2 = Integer.parseInt(preco.trim());
 //                    
 //                    System.out.print(preco2);
-                if (nomeProjeto == "" || descricao == "") {
+                if (nomeProjeto == "" || descricao == "" || preco == "") {
                         
                         System.out.print(1);
-                    System.out.print(descricao);
-                    System.out.print(preco);
+                        System.out.print(descricao);
+                        System.out.print(preco);
             %> Preencha todos os campos<%
                     } else {
+                        project.projectDO project = new project.projectDO();
+                        project.setId(Integer.parseInt(id));
+                        project.setPrice(Float.parseFloat(preco));
+                        project.setName(nomeProjeto);
+                        project.setDescription(descricao);
+    
                         System.out.print(2);
-                    System.out.print(descricao);
-                    System.out.print(preco);
-                        transacoes.Contato tn = new transacoes.Contato();
-                        data.ContatoDO contato = new data.ContatoDO();
-
-//                            contato.setNomeProjeto(nomeProjeto);
-//                            contato.setDescricao(descricao);
-//                            contato.setPreco(preco);
+                        System.out.print(descricao);
+                        System.out.print(preco);
+                        
+                        transaction.EditarProjeto edit = new transaction.EditarProjeto();
+                        try {
+                            boolean result = edit.editarProjeto(project);
+                            if (result==false) {
+                               
+                            %>
+                    Erro na hora de editar o projeto favor tentar novamente!;
+                            <%
+                            }
+                            else {                            %>
+                    Projeto editado com sucesso
+                            <%
+                            }
+                        }
+                            catch (Exception e){
+                            %>
+                    Erro na hora de editar o projeto favor tentar novamente!;
+                            <%
+                }
                     }
                 }
             %>
@@ -59,19 +80,22 @@
                         <td><input type="text" name="nomeProjeto" />
                     </tr>
                     <tr>
-                        <td>Descri??o</td>
+                        <td>Descrição</td>
                         <td><input type="text" name="descricao" />
                     </tr>
                     <tr>
-                        <td>Pre?o</td>
+                        <td>Preço</td>
                         <td><input type="text" name="preco" />
-                    </tr>
+                    </tr>                                  
                 </table>
                 <br>
-                     <input type="submit" name="ok" value="Entrar" />
+                     <input type="hidden" name="id" value="<%= request.getParameter("id")%>"/>
+                     <input type="submit" name="ok" value="Enviar" />
+                     <input type="submit" name="ok" value="Cancelar" />
                      <input type="hidden" name="campo_controle" />
+                     <br>
             </form>
-
+            <br>
 </div>
 
 <%@include file="../WEB-INF/footer.jsp" %>    

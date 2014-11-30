@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 
 public class projectData {
    
-  public void approve(versionDO version, Transacao tr) throws Exception {
+    public void approve(versionDO version, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql1 = "update version set version_status_id=1 where version_status_id=2 and version_project_id=? and id=?;";
      String sql2 = "update version set version_visibility=0 where version_visibility=1 and version_project_id=?;";
@@ -44,7 +44,7 @@ public class projectData {
      result = ps3.executeUpdate();
   } // approve version whose status is "pending"(status_id=2), i.e. set status_id = 1
   
-public void reprove(versionDO version, Transacao tr) throws Exception {
+    public void reprove(versionDO version, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "update version set version_status_id=3 where version_status_id=2"
              + " and version_project_id=? and id=?;\n";
@@ -116,4 +116,14 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
         
     }
     
+    public void editProject(projectDO project, Transacao tr) throws Exception {
+        Connection con = tr.obterConexao();
+        String sql = "update project set project_name = ?, project_description = ?, project_price = ? where id = ?;";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, project.getName());
+        ps.setString(2, project.getDescription());
+        ps.setFloat(3, project.getPrice());
+        ps.setInt(4, project.getId());
+        int result = ps.executeUpdate();
+    }
 }

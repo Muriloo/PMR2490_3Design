@@ -21,6 +21,8 @@ public class projectDO {
     private String _images;
     private int _customerId;
 
+    public projectDO(){}
+    
     public projectDO(String name, String description, String detail, float price, String images){
         this.setName(name);
         this.setDescription(description);
