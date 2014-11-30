@@ -15,6 +15,7 @@ public class LoginUserDO {
     private int _id;
     private String _senha;
     private String _username;
+    private String _email;
 
     public int getId() {
         return _id;
@@ -40,5 +41,13 @@ public class LoginUserDO {
 
     public String getUsername() {
         return _username;
+    }
+    
+    public void setEmail(String email) {
+        _email = email;
+    }
+
+    public String getEmail() {
+        return _email;
     }
 }

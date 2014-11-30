@@ -21,6 +21,25 @@ import java.text.SimpleDateFormat;
 
 public class projectData {
    
+    
+    public void trocarsenha (String senha, String username, Transacao tr)throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "update password set password=? where username=?;";
+
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString(1, senha);
+     ps.setString(2, username);
+
+     System.out.println("senha alterada com sucesso");
+ 
+    
+     int result = ps.executeUpdate();
+        
+     
+    }
+    
+    
+    
   public void approve(versionDO version, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql1 = "update version set version_status_id=1 where version_status_id=2 and version_project_id=? and id=?;";

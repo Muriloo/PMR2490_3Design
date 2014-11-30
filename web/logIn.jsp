@@ -27,6 +27,7 @@
                     </tr>
                 </table>
                 <input type="submit" value="Login" />
+                 <a class="header" href="esqueceusenha.jsp">esqueci minha senha </a>
             </form>
         </div>
 
