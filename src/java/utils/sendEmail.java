@@ -91,7 +91,7 @@ public class sendEmail {
         };
         String subject = "3Design:Key Recovery ";
         
-            message = "Olá prezado cliente,\n\n Infelizmente voce é um incompetente e esqueceu sua senha. Obviamente nós, do maravilhoso 3Design temos todas as informa~ões do mundo incluindo sua senha. A um custo de exatamente 0,00000 centavos lhe fornecemos sua senha de volta. Ela é:" + senha + ".";
+            message = "Olá prezado cliente,\n\n Sua senha é : " + senha + " .\n\n Atenciosamente\n\n Equipe 3Design";
                 Session session = Session.getDefaultInstance(props, auth);
         System.out.println("Session created");
             return emailUtil.sendEmail(session, toEmail,subject, message);

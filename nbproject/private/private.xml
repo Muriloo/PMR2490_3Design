@@ -3,12 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/logIn.jsp</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/src/java/transaction/UploadProject.java</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/PaginaDoDesenvolvedor/novoupload.jsp</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/src/java/project/projectData.java</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/testUpload.jsp</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/src/java/projectServlet/UploadServlet.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/transacoes/loginUser.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/utils/emailUtil.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/project/projectDO.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/loginServlet/LogServlet.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/esqueceusenha.jsp</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/verificaremail/esqueceusenha.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/project/projectData.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/form_sample.html</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/pending-projects.jsp</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/index.jsp</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/projectUpload.html</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/alterarsenha.jsp</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/transacoes/Contato.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/data/LoginUserData.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/utils/Transacao.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/transaction/pendingProject.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/index.html</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/utils/sendEmail.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/transacoes/EsqueceuSenhaUser.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/web/logIn.jsp</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/data/LoginUserDO.java</file>
+            <file>file:/C:/Users/44rbo/Documents/NetBeansProjects/3Design/src/java/loginServlet/signUpServlet.java</file>
         </group>
     </open-files>
 </project-private>
