@@ -27,7 +27,10 @@
             <div id="nav">
                 Coisa 3D<br>
                 Mais uma coisa 3D<br>
-                Such 3D!<br>
+                Such 3D!<br> 
+                <a href="./pending-projects.jsp">Projetos Pendentes</a><br> 
+                <a href="./projects.jsp">Lista de Todos Projetos</a><br>               
+                <a href="./user-list.jsp">Listar usuários</a>
             </div>
 
             <div id="section">

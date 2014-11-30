@@ -12,6 +12,7 @@ import java.io.InputStream;
  * @author Arthur
  */
 public class projectDO {
+    
     private int _id;
     private String _name;
     private String _description;
@@ -21,6 +22,7 @@ public class projectDO {
     private String _images;
     private int _customerId;
 
+    
     public projectDO(String name, String description, String detail, float price, String images){
         this.setName(name);
         this.setDescription(description);
@@ -28,6 +30,10 @@ public class projectDO {
         this.setPrice(price);
         this.setImages(images);
     }
+    
+    public projectDO(){        
+    }
+    
     
     public int getCustomerId() {
         return _customerId;

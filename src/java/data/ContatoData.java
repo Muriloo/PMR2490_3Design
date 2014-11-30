@@ -52,6 +52,23 @@ public class ContatoData {
 //     int result = ps.executeUpdate();
 //  } // atualizar
 
+      public Vector buscarTodos(Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from customer";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector busca = new Vector();
+     while (rs.next()) {
+        ContatoDO v = new ContatoDO();
+        v.setEmail(rs.getString("email"));
+        v.setUsername(rs.getString("username"));
+        System.out.println(" got " + v.getUsername());           
+        busca.add(v);
+     }
+     return busca;
+  } // gets versions with "pending" status
+  
   public ContatoDO buscarEmail(String email, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "select * from customer where email=?";

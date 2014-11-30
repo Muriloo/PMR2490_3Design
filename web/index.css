@@ -19,7 +19,7 @@ a.header:hover,a.header:active {color:#ffffff;text-decoration:none;}
     line-height:30px;
     background-color:#eeeeee;
     font-family:verdana;
-    height:300px;
+    height:280px;
     width:200px;
     float:left;
     padding:10px;
@@ -36,8 +36,8 @@ a.nav:hover,a.nav:active {color:#ff4800;text-decoration:none;}
 
 #section {
     font-family:verdana;
-    width:970px;
-    min-height: 280px;
+    width:830px;
+    min-height: 260px;
     float:left;
     padding:10px;
     margin-left:10px;
