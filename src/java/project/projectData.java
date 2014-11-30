@@ -76,7 +76,7 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
      return pendingVersions;
   } // gets versions with "pending" status
 
-    public void uploadProject(projectDO project, versionDO version, Transacao tr) throws Exception{
+    public void uploadProject(projectDO project, versionDO version, ArrayList<ImageDO> images, Transacao tr) throws Exception{
         
         Connection con = tr.obterConexao();
         int project_id;
@@ -100,18 +100,32 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
             // Retrieve the auto generated key(s).
             project_id = rs.getInt(1);
            
-            String sql_version = "insert into version (version_name, version_visibility, version_status_id, "
-                    + "version_file, version_project_id,updated_at) values (?,?,?,?,?,?)";
-
-            PreparedStatement ps2 = con.prepareStatement(sql_version);
-            ps2.setString(1, "1.0");
-            ps2.setInt(2, 0);
-            ps2.setInt(3, 2);//status pendente
-            ps2.setBlob(4, version.getFile());
-            ps2.setInt(5, project_id);
-            ps2.setString(6, now_str);
-
-            ps2.executeUpdate();
+            String query_version = "insert into version (version_name, version_visibility, version_status_id, "
+                    + "version_file, version_project_id,updated_at) values ('1.0',0,2,'"+version.getFilepath()+"',"
+                    + project_id+ ",'"+now_str+"')";
+            
+            Statement stmt_version = con.createStatement();
+            // Obtain the generated key that results from the query.
+            stmt_version.executeUpdate(query_version, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs_version = stmt_version.getGeneratedKeys();
+            if ( rs_version.next() ) {
+                // Retrieve the auto generated key(s).
+                int version_id = rs_version.getInt(1);
+                String query_image;
+                for (ImageDO this_imageLink : images) {
+                    query_image = "insert into image (image_link, "
+                    + "image_version_id,updated_at) values ('"+this_imageLink.getImagelink()+"',"
+                    + version_id+ ",'"+now_str+"');";
+                    Statement stmt_image = con.createStatement();
+                    stmt_image.executeUpdate(query_image);
+                    
+                }
+                
+            
+                
+                
+            }
+            
         }
         
     }

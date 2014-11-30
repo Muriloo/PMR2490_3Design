@@ -21,14 +21,14 @@ if(customerId != null){
 %>
 <div style="height:90px;margin:0px;background-color: #6ED4B8">
     <div id="header" style="vertical-align: top;height:80px">
-        <a href="index.html">
+        <a href="../index.jsp">
             <img src="/3Design/images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
         </a>
         <div style="float:right;">
           <form action="logoutServlet" method="post">
                 <input type="submit" name="LogOut" id="LogIn" value="Log Out" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; position:relative; top: 20px; right:85px">
             </form>   
-            <a href="index.html">
+            <a href="../index.jsp">
                 <img src="/3Design/images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-20px">
             </a>
         </div>
@@ -48,7 +48,7 @@ if(customerId != null){
 %>
 <div style="height:90px;margin:0px;background-color: #6ED4B8">
     <div id="header" style="vertical-align: top;height:80px">
-        <a href="index.html">
+        <a href="../index.jsp">
             <img src="/3Design/images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
         </a>
         <div style="float:right;">
@@ -58,7 +58,7 @@ if(customerId != null){
             <form method="post" action="/3Design/logIn.jsp">
                 <input type="submit" name="LogIn" id="LogIn" value="Log In" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; position:relative; top: -20px; right:85px">
             </form>   
-            <a href="index.html">
+            <a href="../index.jsp">
                 <img src="/3Design/images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-62px">
             </a>
         </div>

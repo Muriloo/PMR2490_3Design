@@ -16,7 +16,7 @@ import java.io.File;
  */
 public class UploadProject {
     
-    public boolean uploadProject(projectDO project, versionDO version) throws Exception{
+    public boolean uploadProject(projectDO project, versionDO version, ArrayList<ImageDO> images) throws Exception{
         //validar regras de negocio
         System.out.print("validar regras, name:"+project.getName());
         System.out.print("validar regras, is currency:"+ utils.MetodosUteis.isCurrency(String.valueOf(project.getPrice())) );
@@ -24,7 +24,7 @@ public class UploadProject {
                 || MetodosUteis.isEmpty(project.getDescription()) || 
                 !(project.getPrice() > 0 && project.getPrice() < 1000000 && 
                     utils.MetodosUteis.isCurrency(String.valueOf(project.getPrice())) ) || 
-                !checkFileFormat(version.getFile(), "3D_format") ) {
+                !checkFileFormat(version.getFilepath(), "3D_format") ) {//TODO: check image format
               return false;
         }
         
@@ -34,7 +34,7 @@ public class UploadProject {
 
           tr.begin();
             projectData pdata = new projectData();
-            pdata.uploadProject(project, version, tr);
+            pdata.uploadProject(project, version, images, tr);
           tr.commit();
           return true;
 
@@ -46,8 +46,8 @@ public class UploadProject {
         return false;
         
     }
-    
-    private boolean checkFileFormat(InputStream is, String type){
+    //TODO : check file format
+    private boolean checkFileFormat(String is, String type){
         
 //        File f = new File(filepath);
 //        String mimetype= new MimetypesFileTypeMap().getContentType(f);
