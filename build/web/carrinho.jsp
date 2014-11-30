@@ -71,10 +71,9 @@ Such 3D!<br>
 <%     if ( null != request.getParameter("atualizar")) {
     String itemId = request.getParameter("itemId");
     String quantity = request.getParameter("quantity");
-    System.out.println(itemId);
     transaction.CartTransactions upd = new transaction.CartTransactions();
     cartDO itemUpd = new cartDO();
-    itemUpd.setProjectId(Integer.parseInt(itemId));
+    itemUpd.setId(Integer.parseInt(itemId));
     itemUpd.setQuantity(Integer.parseInt(quantity));
     itemUpd.setCustomerId(Integer.parseInt(customerId));
     
@@ -154,6 +153,7 @@ Seu carrinho está vazio. Volte para a <a href="index.jsp"> página inicial</a> 
                         <input type="number" name="quantity" min="1" max="10000" value="<%= item.getQuantity() %>"  /> 
                         <input type="hidden" name="itemId" value="<%=item.getId()%>"  />             
                         <input type="submit" name="atualizar" value=" " style="background:url(images/refresh.png) no-repeat;width: 25px;height: 25px;position:relative;" /></form>
+                    </td>
                     <td><%= project.getPrice() %></td>
                     <td><%= project.getPrice()*item.getQuantity() %></td>
                     <td><form action="./carrinho.jsp" method="get"> 

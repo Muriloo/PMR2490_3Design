@@ -82,7 +82,7 @@ public class CartTransactions {
       public boolean updateItem (cartDO item) throws Exception{
 
      // validacao das regras de negocio
-     if ( (item.getProjectId() == 0) || ( item.getQuantity() < 1) ) {
+     if ( (item.getId() == 0) || ( item.getQuantity() < 1) ) {
        return false;
      }
 
