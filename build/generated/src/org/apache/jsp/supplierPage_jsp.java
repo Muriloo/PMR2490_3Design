@@ -173,36 +173,37 @@ if(customerId != null){
       out.write('\n');
         return;
        }
+        else if ( null != request.getParameter("inserir")) {
+
+      out.write("        ");
+      if (true) {
+        _jspx_page_context.forward("./supplierInsert.jsp");
+        return;
+      }
+      out.write('\n');
+     return;
+       }
+       else if ( null == request.getParameter("excluir")){
 
       out.write("\n");
       out.write("\n");
       out.write("         <form action=\"./supplierPage.jsp\" method=\"post\">\n");
       out.write("              <input type=\"submit\" name=\"pesquisar\" value=\"Pesquisar\" />\n");
-      out.write("              <input type=\"submit\" name=\"incluir\" value=\"Incluir\" />\n");
+      out.write("              <input type=\"submit\" name=\"inserir\" value=\"Inserir\" />\n");
       out.write("              <input type=\"submit\" name=\"voltar\" value=\"Voltar\" />\n");
       out.write("         </form>\n");
+      out.write("      ");
+}//if excluir == null
       out.write("\n");
       out.write("<! ------------------------------------------------------------------->\n");
       out.write("\n");
       out.write("        \n");
       out.write("        ");
  
-       if (null != request.getParameter ("incluir")) {
-        
-      out.write("    ");
-      if (true) {
-        _jspx_page_context.forward("./supplier2.jsp");
-        return;
-      }
-      out.write("    ");
-
-            return;
-           
-       } else if ( null != request.getParameter("pesquisar")) {  
+       if ( null != request.getParameter("pesquisar")) {  
        transaction.supplier tn = new transaction.supplier();
        Vector suppliers = tn.getSuppliers();
-       session.setAttribute("vector",suppliers);
-       request.setAttribute("vector",suppliers);
+       session.setAttribute("suppliers",suppliers);
        if ( (suppliers == null) || (suppliers.size() == 0)) {
          
 
@@ -252,7 +253,7 @@ if(customerId != null){
       out.write("                       </form> \n");
       out.write("                   </td>               \n");
       out.write("                   <td>\n");
-      out.write("                       <form action=\"./supplier2.jsp\" method=\"post\">\n");
+      out.write("                       <form action=\"./supplierPage.jsp\" method=\"post\">\n");
       out.write("                <input type=\"hidden\" name=\"indice\" value=\"");
       out.print(i);
       out.write("\"  />               \n");
@@ -264,9 +265,67 @@ if(customerId != null){
       out.write("        </table>            \n");
      } // returned versions
      } // pesquisar
-       else if (null != request.getParameter ("incluir")){
+       else if (null != request.getParameter ("excluir")){
+            int i = Integer.parseInt(request.getParameter("indice"));
+            transaction.supplier tn = new transaction.supplier();
+            supplierDO supplier = new supplierDO();
+            Vector vector = new Vector();
+            vector = (Vector) session.getAttribute("suppliers");
+            supplier = (supplierDO)vector.elementAt(i);
+            session.setAttribute("remove",supplier);
+            
+        
+      out.write("\n");
+      out.write("         <h2>Você tem certeza que deseja excluir este fornecedor?</h2>\n");
+      out.write("             \n");
+      out.write("         <table BORDER=\"1\">\n");
+      out.write("             <tr>\n");
+      out.write("                <td>Nome</td>\n");
+      out.write("                <td>Avaliação</td>\n");
+      out.write("                <td>Capacidade</td>\n");
+      out.write("                <td>Comentarios</td>\n");
+      out.write("                <td>Descrição</td>                \n");
+      out.write("            </tr>\n");
+      out.write("            <tr>\n");
+      out.write("                   <td>");
+      out.print( supplier.getName() );
+      out.write("</td>\n");
+      out.write("                   <td>");
+      out.print( supplier.getEval() );
+      out.write("</td>\n");
+      out.write("                   <td>");
+      out.print( supplier.getCapacityId() );
+      out.write("</td>\n");
+      out.write("                   <td>");
+      out.print( supplier.getComment() );
+      out.write("</td>\n");
+      out.write("                   <td>");
+      out.print( supplier.getDescription() );
+      out.write("</td>\n");
+      out.write("                </tr>        \n");
+    
+
+      out.write("        </table>   \n");
+      out.write("          <form action=\"./supplier2.jsp\" method=\"POST\">        \n");
+      out.write("                            <input type=\"hidden\" name=\"indice\" value=\"");
+      out.print(i);
+      out.write("\"  />       \n");
+      out.write("                            <input type=\"submit\" name=\"ver\" value=\"Ver\" />\n");
+      out.write("                            <input type=\"submit\" name=\"excluir\" value=\"Excluir\" />\n");
+      out.write("                            <input type=\"submit\" name=\"voltarsup\" value=\"Voltar\" />\n");
+      out.write("          </form> \n");
+      out.write("\n");
+      out.write("            \n");
+      out.write("            ");
+
+    
            
-       }
+       
+    
+    
+
+
+       }//excluir
 
       out.write("\n");
       out.write("\n");

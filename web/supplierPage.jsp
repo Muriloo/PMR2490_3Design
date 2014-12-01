@@ -41,27 +41,27 @@ Such 3D!<br>
 %>        <jsp:forward page="./index.jsp" />
 <%        return;
        }
+        else if ( null != request.getParameter("inserir")) {
+%>        <jsp:forward page="./supplierInsert.jsp" />
+<%     return;
+       }
+       else if ( null == request.getParameter("excluir")){
 %>
 
          <form action="./supplierPage.jsp" method="post">
               <input type="submit" name="pesquisar" value="Pesquisar" />
-              <input type="submit" name="incluir" value="Incluir" />
+              <input type="submit" name="inserir" value="Inserir" />
               <input type="submit" name="voltar" value="Voltar" />
          </form>
-
+      <%}//if excluir == null%>
 <! ------------------------------------------------------------------->
 
         
         <% 
-       if (null != request.getParameter ("incluir")) {
-        %>    <jsp:forward page="./supplier2.jsp" />    <%
-            return;
-           
-       } else if ( null != request.getParameter("pesquisar")) {  
+       if ( null != request.getParameter("pesquisar")) {  
        transaction.supplier tn = new transaction.supplier();
        Vector suppliers = tn.getSuppliers();
-       session.setAttribute("vector",suppliers);
-       request.setAttribute("vector",suppliers);
+       session.setAttribute("suppliers",suppliers);
        if ( (suppliers == null) || (suppliers.size() == 0)) {
          
 %>
@@ -96,7 +96,7 @@ Such 3D!<br>
                        </form> 
                    </td>               
                    <td>
-                       <form action="./supplier2.jsp" method="post">
+                       <form action="./supplierPage.jsp" method="post">
                 <input type="hidden" name="indice" value="<%=i%>"  />               
                 <input type="submit" name="excluir" value="Excluir" />
                        </form></td>
@@ -105,9 +105,52 @@ Such 3D!<br>
 %>        </table>            
 <%     } // returned versions
      } // pesquisar
-       else if (null != request.getParameter ("incluir")){
+       else if (null != request.getParameter ("excluir")){
+            int i = Integer.parseInt(request.getParameter("indice"));
+            transaction.supplier tn = new transaction.supplier();
+            supplierDO supplier = new supplierDO();
+            Vector vector = new Vector();
+            vector = (Vector) session.getAttribute("suppliers");
+            supplier = (supplierDO)vector.elementAt(i);
+            session.setAttribute("remove",supplier);
+            
+        %>
+         <h2>Você tem certeza que deseja excluir este fornecedor?</h2>
+             
+         <table BORDER="1">
+             <tr>
+                <td>Nome</td>
+                <td>Avaliação</td>
+                <td>Capacidade</td>
+                <td>Comentarios</td>
+                <td>Descrição</td>                
+            </tr>
+            <tr>
+                   <td><%= supplier.getName() %></td>
+                   <td><%= supplier.getEval() %></td>
+                   <td><%= supplier.getCapacityId() %></td>
+                   <td><%= supplier.getComment() %></td>
+                   <td><%= supplier.getDescription() %></td>
+                </tr>        
+<%    
+%>        </table>   
+          <form action="./supplier2.jsp" method="POST">        
+                            <input type="hidden" name="indice" value="<%=i%>"  />       
+                            <input type="submit" name="ver" value="Ver" />
+                            <input type="submit" name="excluir" value="Excluir" />
+                            <input type="submit" name="voltarsup" value="Voltar" />
+          </form> 
+
+            
+            <%
+    
            
-       }
+       
+    
+    
+
+
+       }//excluir
 %>
 
 <!--------------------------Footer--------------------------------------------->
