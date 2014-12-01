@@ -15,7 +15,7 @@ public class Transacao {
 
   static final String url = "jdbc:mysql://localhost/3design?";
   static final String uid = "root";
-  static final String pwd = "Pmr2490";
+  static final String pwd = "1234";
   
   private Connection _conexao = null;
   private boolean _readOnly = false;
