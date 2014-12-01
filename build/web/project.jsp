@@ -72,14 +72,12 @@ Such 3D!<br>
 } %>  
 
 <!------------pega o projeto do BD--------------------------------------------->
-        <%  String projectIdStr = request.getParameter("projectId");
-       if (null != projectIdStr) { 
+        <%  String projectIdStr = request.getParameter("projectId");        
+        int show=10;
+        if (null != projectIdStr) { 
         String showStr = request.getParameter("show");
-        int show;
         if(null != showStr){
             show = Integer.parseInt(showStr);
-        }else{
-            show = 10;
         }
         int ok;
         try{//checa se o valor de projectId é um número  
@@ -111,6 +109,8 @@ Such 3D!<br>
          <%} // returned versions
          if(comments.size() == 0){
              %>Este produto ainda não foi comentado<%
+         }else if(comments.size() > show){%>
+             <a href="./project.jsp?projectId=<%=projectIdStr%>&show=<%=show+20%>" style="font-size: 14pt; color: #3EA498;">Mostrar mais comentários</a><%
          }
          if(customerId != null){%>
             <form action="./project.jsp?projectId=<%=projectIdStr%>&show=10" method="post">  
