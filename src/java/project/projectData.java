@@ -18,6 +18,8 @@ import java.util.*;
 import utils.Transacao;
 import java.text.SimpleDateFormat;
 
+import cart.*;
+
 
 public class projectData {
    
@@ -129,5 +131,49 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
         }
         
     }
+    
+     public Vector getAllProjects(Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from project";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector projetos = new Vector();
+     while (rs.next()) {
+        projectDO v = new projectDO();
+        v.setId (rs.getInt("id"));
+        v.setName (rs.getString("project_name"));
+        System.out.println(" got " + v.getName());
+        v.setStatusId(rs.getInt("project_status_id"));
+        v.setPrice(rs.getInt("project_price"));
+           
+        projetos.add(v);
+     }
+     return projetos;
+  } // gets versions with "pending" status
+    
+     
+     
+    public Vector getCartProjects(Vector items, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();    
+    Vector projetos = new Vector();
+    for(int i = 0; i < items.size(); i++) {
+        cartDO item = (cartDO)items.elementAt(i);
+        String sql = "select * from project where id=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, item.getProjectId());
+        ResultSet rs = ps.executeQuery();
+        System.out.println("query executada");
+        while (rs.next()) {
+           projectDO v = new projectDO();
+           v.setId (rs.getInt("id"));
+           v.setName (rs.getString("project_name"));
+           System.out.println(" got " + v.getName());
+           v.setPrice(rs.getInt("project_price"));
+           projetos.add(v);
+        }
+     }
+     return projetos;
+  } // gets versions with "pending" status
     
 }

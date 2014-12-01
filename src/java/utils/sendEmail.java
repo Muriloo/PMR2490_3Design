@@ -30,7 +30,7 @@ public class sendEmail {
         
         final String fromEmail = "3designpoli@gmail.com"; //requires valid gmail id
         final String password = "Pmr2490SI"; // correct password for gmail id
-        final String toEmail = "arthurgola@hotmail.com"; // can be any email id 
+        final String toEmail = emailAddress; // can be any email id 
         String message;
         String versionName = version.getName();
         System.out.println("SSLEmail Start");

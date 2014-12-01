@@ -13,6 +13,7 @@ import java.io.InputStream;
  */
 
 public class projectDO {
+    
     private int _id;
     private String _name;
     private String _description;
@@ -28,6 +29,10 @@ public class projectDO {
         this.setDetail(detail);
         this.setPrice(price);
     }
+    
+    public projectDO(){        
+    }
+    
     
     public int getCustomerId() {
         return _customerId;
