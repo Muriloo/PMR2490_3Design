@@ -61,8 +61,9 @@ Such 3D!<br>
        transaction.pendingProject tn = new transaction.pendingProject();
        Vector versions = tn.getPending();
        session.setAttribute("vector",versions);
+       request.setAttribute("vector",versions);
        if ( (versions == null) || (versions.size() == 0)) {
-         // avisar usuario que nao ha' contatos com este nome
+         
 %>
           Nenhuma versão pendente encontrada!
          
@@ -75,17 +76,26 @@ Such 3D!<br>
                 <td>Nome da Versão</td>
                 <td>Visibilidade</td>
                 <td>Status</td>
+                <td>Arquivo</td>
                 <td>Aprovar</td>
                 <td>Rejeitar</td>
-             </tr>
+            </tr>
 <%           for(int i = 0; i < versions.size(); i++) {
                 versionDO version = (versionDO)versions.elementAt(i);
+                String file = version.getFilepath();
 %>              <tr>
                    <td><%= version.getProjectId() %></td>
                    <td><%= version.getName() %></td>
                    <td><%= version.getVisibility() %></td>
                    <td><%= version.getStatusId() %></td>
-                   <td><form action="./approval-confirmation.jsp" method="get">
+                   <td>
+                       <form action="Files/<%=file%>" method="post">
+                <input type="submit" name="download" value="Download" />
+                       </form> 
+                   </td>
+
+                   
+                   <td><form action="./approval-confirmation.jsp" method="post">
              
          <input type="hidden" name="indice" value="<%=i%>"  />             
          <input type="submit" name="aprovar" value="Aprovar" />

@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package project;
+import java.io.*;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,17 +21,18 @@ public class versionDO {
     private int _visibility;
     private int _status_id;
     private int _project_id;
-    private InputStream _file;
-
-    public InputStream getFile() {
-        return _file;
+    private String _filepath;
+    
+    public String getFilepath() {
+        return _filepath;
     }
 
-    public void setFile(InputStream _file) {
-        this._file = _file;
+    public void setFilepath(String _filepath) {
+        System.out.println("Filepath:"+_filepath);
+        this._filepath = _filepath;
     }
     
-  public int getId() {
+    public int getId() {
      return _id;
   } // getId
 
