@@ -14,7 +14,7 @@
     
 <body>
     <%@include file="../WEB-INF/header.jsp" %>
-    <%if(customerId != null){
+    <%if(customerId == null){
     %>
         <h2>Faça login antes de subir um projeto.</h2>
     <%
@@ -42,8 +42,11 @@
                         <td><label class="description" for="element_2">Descri&ccedil;&atilde;o: </label></td>
                         <td>
                            <input id="description" name="description" class="element text large" type="text" maxlength="255" value=""> 
-                        </td><p class="guidelines" id="guide_2"><small>Insira uma breve descri&ccedil;&atilde;o sobre o projeto</small></p> 
-                    </tr>				
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td><p class="guidelines" id="guide_2"><small>Insira uma breve descri&ccedil;&atilde;o sobre o projeto</small></p></td>
+                    </tr>
                     <tr id="li_3">
                         <td><label class="comments" for="element_3">Coment&aacute;rios: </label></td>
                         <td>

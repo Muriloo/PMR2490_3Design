@@ -21,25 +21,15 @@ if(customerId != null){
 %>
 <div style="height:90px;margin:0px;background-color: #6ED4B8">
     <div id="header" style="vertical-align: top;height:80px">
-<<<<<<< HEAD
-        <a href="../index.jsp">
+        <a href="/3Design/index.jsp">
             <img src="/3Design/images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
-=======
-        <a href="index.jsp">
-            <img src="images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
->>>>>>> RamoAlex2
         </a>
         <div style="float:right;">
-          <form action="logoutServlet" method="post">
+          <form action="/3Design/logoutServlet" method="post">
                 <input type="submit" name="LogOut" id="LogIn" value="Log Out" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; position:relative; top: 20px; right:85px">
             </form>   
-<<<<<<< HEAD
-            <a href="../index.jsp">
-                <img src="/3Design/images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-20px">
-=======
-            <a href="carrinho.jsp">
+            <a href="/3Design/carrinho.jsp">
                 <img src="images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-20px">
->>>>>>> RamoAlex2
             </a>
         </div>
         <div style="display:inline;text-align: center">
@@ -58,41 +48,25 @@ if(customerId != null){
 %>
 <div style="height:90px;margin:0px;background-color: #6ED4B8">
     <div id="header" style="vertical-align: top;height:80px">
-<<<<<<< HEAD
-        <a href="../index.jsp">
+        <a href="/3Design/index.jsp">
             <img src="/3Design/images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
-=======
-        <a href="index.jsp">
-            <img src="images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
->>>>>>> RamoAlex2
         </a>
         <div style="float:right;">
-            <form method="post" action="./signUp.jsp">
+            <form method="post" action="/3Design/signUp.jsp">
                 <input type="submit" name="SignUp" id="SignUp" value="Sign Up" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; position:relative; top:20px; right:200px">
             </form>   
-            <form method="post" action="./logIn.jsp">
+            <form method="post" action="/3Design/logIn.jsp">
                 <input type="submit" name="LogIn" id="LogIn" value="Log In" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px; position:relative; top: -20px; right:85px">
             </form>   
-<<<<<<< HEAD
-            <a href="../index.jsp">
-                <img src="/3Design/images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-62px">
-=======
-            <a href="carrinho.jsp">
+            <a href="/3Design/carrinho.jsp">
                 <img src="images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:-62px">
->>>>>>> RamoAlex2
             </a>
         </div>
         <div style="display:inline;text-align: center">
             <br>
-<<<<<<< HEAD
             <form method="post" action="/3Design/search.jsp">
                 <input type="search" name="keyword" placeholder="Search" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" size="50">
                 <input type="submit" value="" style="background:url(/3Design/images/lupa.bmp) no-repeat;width: 30px;height: 30px;position:relative;left:-42px;top: 6px" />
-=======
-            <form>
-                <input type="search" name="search" placeholder="Search" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" size="50">
-                <input type="submit" value="" style="background:url(images/lupa.bmp) no-repeat;width: 30px;height: 30px;position:relative;left:-42px;top: -2px" />
->>>>>>> RamoAlex2
             </form>
         </div>
     </div>

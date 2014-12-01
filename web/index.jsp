@@ -30,7 +30,8 @@
                 Such 3D!<br> 
                 <a href="./pending-projects.jsp">Projetos Pendentes</a><br> 
                 <a href="./projects.jsp">Lista de Todos Projetos</a><br>               
-                <a href="./user-list.jsp">Listar usuários</a>
+                <a href="./user-list.jsp">Listar usuários</a><br>
+                <a href="./PaginaDoDesenvolvedor/uploadprojeto.jsp">Subir Projeto</a>
             </div>
 
             <div id="section">
