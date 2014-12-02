@@ -14,9 +14,14 @@ package project;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
+
 import java.util.*;
 import utils.Transacao;
+import java.text.SimpleDateFormat;
+
+import cart.*;
 
 
 public class projectData {
@@ -82,7 +87,7 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
         v.setVisibility(rs.getInt("version_visibility"));
         v.setProjectId(rs.getInt("version_project_id"));
         v.setStatusId(rs.getInt("version_status_id"));
-        v.setFile(rs.getString("version_file"));
+        v.setFilepath(rs.getString("version_file"));
            
         pendingVersions.add(v);
      }
@@ -90,5 +95,102 @@ public void reprove(versionDO version, Transacao tr) throws Exception {
   } // gets versions with "pending" status
    
 
+    public void uploadProject(projectDO project, versionDO version, ArrayList<ImageDO> images, Transacao tr) throws Exception{
+        
+        Connection con = tr.obterConexao();
+        int project_id;
+        int customer_id = 1;
+        //create query statement
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(now);
+        String now_str= sdf.format(now);
+        
+        String query_str = "INSERT INTO project (customer_id, project_name, project_description, "
+                + "project_detail, project_status_id, project_price,updated_at) " +
+                 "VALUES ("+customer_id+",'"+project.getName()+"','"+project.getDescription()
+                + "','"+project.getDetail()+"',"+2+","+project.getPrice()+",'"+now_str+"')";
+        
+        Statement stmt = con.createStatement();
+        // Obtain the generated key that results from the query.
+        stmt.executeUpdate(query_str, Statement.RETURN_GENERATED_KEYS);
+        ResultSet rs = stmt.getGeneratedKeys();
+        if ( rs.next() ) {
+            // Retrieve the auto generated key(s).
+            project_id = rs.getInt(1);
+           
+            String query_version = "insert into version (version_name, version_visibility, version_status_id, "
+                    + "version_file, version_project_id,updated_at) values ('1.0',0,2,'"+version.getFilepath()+"',"
+                    + project_id+ ",'"+now_str+"')";
+            
+            Statement stmt_version = con.createStatement();
+            // Obtain the generated key that results from the query.
+            stmt_version.executeUpdate(query_version, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs_version = stmt_version.getGeneratedKeys();
+            if ( rs_version.next() ) {
+                // Retrieve the auto generated key(s).
+                int version_id = rs_version.getInt(1);
+                String query_image;
+                for (ImageDO this_imageLink : images) {
+                    query_image = "insert into image (image_link, "
+                    + "image_version_id,updated_at) values ('"+this_imageLink.getImagelink()+"',"
+                    + version_id+ ",'"+now_str+"');";
+                    Statement stmt_image = con.createStatement();
+                    stmt_image.executeUpdate(query_image);
+                    
+                }
+                
+            
+                
+                
+            }
+            
+        }
+        
+    }
+    
+     public Vector getAllProjects(Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from project";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector projetos = new Vector();
+     while (rs.next()) {
+        projectDO v = new projectDO();
+        v.setId (rs.getInt("id"));
+        v.setName (rs.getString("project_name"));
+        System.out.println(" got " + v.getName());
+        v.setStatusId(rs.getInt("project_status_id"));
+        v.setPrice(rs.getInt("project_price"));
+           
+        projetos.add(v);
+     }
+     return projetos;
+  } // gets versions with "pending" status
+    
+     
+     
+    public Vector getCartProjects(Vector items, Transacao tr) throws Exception {
+    Connection con = tr.obterConexao();    
+    Vector projetos = new Vector();
+    for(int i = 0; i < items.size(); i++) {
+        cartDO item = (cartDO)items.elementAt(i);
+        String sql = "select * from project where id=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, item.getProjectId());
+        ResultSet rs = ps.executeQuery();
+        System.out.println("query executada");
+        while (rs.next()) {
+           projectDO v = new projectDO();
+           v.setId (rs.getInt("id"));
+           v.setName (rs.getString("project_name"));
+           System.out.println(" got " + v.getName());
+           v.setPrice(rs.getInt("project_price"));
+           projetos.add(v);
+        }
+     }
+     return projetos;
+  } // gets versions with "pending" status
     
 }

@@ -16,7 +16,7 @@ public class pendingProject {
       public boolean approve (versionDO ver) throws Exception{
 
      // validacao das regras de negocio
-     if ( (isEmpty(ver.getName())) || ( ver.getStatusId()!=2) ) {
+     if ( (MetodosUteis.isEmpty(ver.getName())) || ( ver.getStatusId()!=2) ) {
        return false;
      }
 
@@ -41,7 +41,7 @@ public class pendingProject {
  public boolean reprove (versionDO ver) throws Exception{
 
      // validacao das regras de negocio
-     if ( (isEmpty(ver.getName())) || ( ver.getStatusId()!=2) ) {
+     if ( (MetodosUteis.isEmpty(ver.getName())) || ( ver.getStatusId()!=2) ) {
        return false;
      }
 
@@ -82,13 +82,7 @@ public class pendingProject {
      return null;
   } // pesquisar
 
-  private boolean isEmpty(String s) {
-     if (null == s)
-       return true;
-     if (s.length() == 0)
-       return true;
-     return false;
-  }
+  
 
 
 }//pendingProject

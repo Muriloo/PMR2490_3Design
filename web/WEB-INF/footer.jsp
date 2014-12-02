@@ -13,7 +13,7 @@
                             <td style="vertical-align: top;width:800px">
                                 <h3>Modo de Pagamento</h3>
                                 <a href="https://pagseguro.uol.com.br/" target="_blank">
-                                    <img src="/3Design/images/pagseguro.bmp" alt="pagseguro" style="width:100px;height:30px">
+                                    <img src="images/pagseguro.bmp" alt="pagseguro" style="width:100px;height:30px">
                                 </a>
                             </td>
                             <td style="vertical-align: top">

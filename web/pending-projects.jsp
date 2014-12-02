@@ -82,14 +82,14 @@ Such 3D!<br>
             </tr>
 <%           for(int i = 0; i < versions.size(); i++) {
                 versionDO version = (versionDO)versions.elementAt(i);
-                String file = version.getFile();
+                String file = version.getFilepath();
 %>              <tr>
                    <td><%= version.getProjectId() %></td>
                    <td><%= version.getName() %></td>
                    <td><%= version.getVisibility() %></td>
                    <td><%= version.getStatusId() %></td>
                    <td>
-                       <form action="<%=file%>" method="post">
+                       <form action="Files/<%=file%>" method="post">
                 <input type="submit" name="download" value="Download" />
                        </form> 
                    </td>

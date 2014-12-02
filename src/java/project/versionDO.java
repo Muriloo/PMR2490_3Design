@@ -6,6 +6,9 @@
 package project;
 
 
+import java.io.InputStream;
+import java.util.ArrayList;
+
 /**
  *
  * @author Arthur
@@ -18,18 +21,16 @@ public class versionDO {
     private int _visibility;
     private int _status_id;
     private int _project_id;
-    private String _file;
-
+    private String _filepath;
     
-    
-    public String getFile() {
-        return _file;
+    public String getFilepath() {
+        return _filepath;
     }
 
-    public void setFile(String _file) {
-        this._file = _file;
+    public void setFilepath(String _filepath) {
+        System.out.println("Filepath:"+_filepath);
+        this._filepath = _filepath;
     }
-      
     
     public int getId() {
      return _id;
