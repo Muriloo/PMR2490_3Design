@@ -31,6 +31,16 @@ public class MetodosUteis {
         return false;
     }
     
+    public static String dateToDate(String s) {//muda a data de YY-MM-DD hh-mm-ss pra DD/MM/YY
+        String[] a = s.split("-");
+        System.out.print("erro currency: "+a.length);
+        String[] b = a[2].split(" ");
+        String date = b[0] + "/" +a[1] + "/" +a[0];
+        return date;
+    }
+    
+    
+    
 }
 
 

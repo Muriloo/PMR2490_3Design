@@ -9,6 +9,7 @@ import java.util.*;
 import utils.Transacao;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import comment.*;
 /**
  *
  * @author Mauri
@@ -52,6 +53,23 @@ public class ContatoData {
 //     int result = ps.executeUpdate();
 //  } // atualizar
 
+      public Vector buscarTodos(Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from customer";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector busca = new Vector();
+     while (rs.next()) {
+        ContatoDO v = new ContatoDO();
+        v.setEmail(rs.getString("email"));
+        v.setUsername(rs.getString("username"));
+        System.out.println(" got " + v.getUsername());           
+        busca.add(v);
+     }
+     return busca;
+  } // gets versions with "pending" status
+  
   public ContatoDO buscarEmail(String email, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "select * from customer where email=?";
@@ -94,4 +112,27 @@ public class ContatoData {
      }
      return contatos;
   } // pesquisarPorNome
+  
+  
+   public Vector buscarId(Vector comments, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();    
+    Vector contatos = new Vector();
+    for(int i = 0; i < comments.size(); i++) {
+        CommentDO comment = (CommentDO)comments.elementAt(i);
+        String sql = "select * from customer where id=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, comment.getCustomerId());
+        System.out.println("Tentando achar usuario");
+        ResultSet rs = ps.executeQuery();
+        System.out.println("query executada");
+        while (rs.next()) {
+           ContatoDO v = new ContatoDO();
+           v.setUsername (rs.getString("username"));
+           System.out.println(" got " + v.getUsername());
+           contatos.add(v);
+        }
+     }
+     return contatos;             
+  } // buscar
+  
 }
