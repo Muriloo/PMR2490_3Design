@@ -15,7 +15,7 @@
     <body>
         <%@include file="/WEB-INF/header.jsp" %>
         <div>
-            <form action="alterarsenha method="post">
+            <form action="alterarsenha" method="post">
             <table>
                     <tr>
                         <td>Confirmar nome de usuario: </td>
@@ -38,8 +38,9 @@
                         <td>
                     </tr>
                 </table>
+            
                 <input type="submit" value="Alterar senha" />
-            </table>
+                </form>
             </div>
         
         <%@include file="/WEB-INF/footer.jsp" %>   

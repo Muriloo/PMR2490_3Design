@@ -24,7 +24,7 @@ public class projectData {
     
     public void trocarsenha (String senha, String username, Transacao tr)throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "update password set password=? where username=?;";
+     String sql = "update customer set password=? where username=?;";
 
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, senha);
@@ -32,9 +32,10 @@ public class projectData {
 
      System.out.println("senha alterada com sucesso");
  
+     
     
      int result = ps.executeUpdate();
-        
+     System.out.println(result);   
      
     }
     

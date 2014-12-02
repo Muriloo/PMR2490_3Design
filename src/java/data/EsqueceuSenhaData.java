@@ -25,10 +25,21 @@ public class EsqueceuSenhaData {
      ResultSet rs = ps.executeQuery();
      rs.next();
      LoginUserDO contato = new LoginUserDO();
+     
+    System.out.println(rs);
+     if (rs.first() == false)
+     {
+     contato.setEmail("fail");
+     }else{
+     
      contato.setUsername(rs.getString("username"));
      contato.setSenha(rs.getString("password"));
      contato.setId(rs.getInt("id"));
      contato.setEmail(rs.getString("email"));
+     if (contato.getEmail().isEmpty()){
+         contato.setEmail("fail"); 
+     }
+     }
      return contato;
   } // buscar
 }

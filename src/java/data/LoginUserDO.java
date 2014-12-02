@@ -16,7 +16,26 @@ public class LoginUserDO {
     private String _senha;
     private String _username;
     private String _email;
+    private String _novasenha1;
+    private String _novasenha2;
 
+    public String getNovasenha1() {
+        return _novasenha1;
+    }
+
+    public String getNovasenha2() {
+        return _novasenha2;
+    }
+
+    public void setNovasenha1(String _novasenha1) {
+        this._novasenha1 = _novasenha1;
+    }
+
+    public void setNovasenha2(String _novasenha2) {
+        this._novasenha2 = _novasenha2;
+    }
+
+    
     public int getId() {
         return _id;
     } // getId

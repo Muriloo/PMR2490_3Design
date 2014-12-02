@@ -40,59 +40,50 @@ public class alterarsenha extends HttpServlet {
             String senhaatual = request.getParameter("senhaatual");
             String novasenha1 = request.getParameter("novasenha1");
             String novasenha2 = request.getParameter("novasenha2");
-            if (!username.isEmpty() && !senhaatual.isEmpty() && !novasenha1.isEmpty() && !novasenha2.isEmpty() ) {
+            if (!username.isEmpty() && !senhaatual.isEmpty() && !novasenha1.isEmpty() && !novasenha2.isEmpty()) {
                 transacoes.loginUser tn = new transacoes.loginUser();
                 data.LoginUserDO login = new data.LoginUserDO();
                 data.LoginUserDO userSenha = new data.LoginUserDO();
+                transacoes.AlterarSenha altSenha = new transacoes.AlterarSenha();
                 login.setUsername(username);
                 login.setSenha(senhaatual);
+                login.setNovasenha1(novasenha1);
+                login.setNovasenha2(novasenha2);
                 userSenha = tn.buscarUsernameSenha(username);
-                String customerId = Integer.toString(userSenha.getId());
+//                String customerId = Integer.toString(userSenha.getId());
                 if (username.equals(userSenha.getUsername()) && senhaatual.equals(userSenha.getSenha())) {
-                    if(novasenha1.equals(novasenha2)){
-                        
-                    Transacao tr = new Transacao();
-                         try {
+                    if (novasenha1.equals(novasenha2)) {
 
-       tr.begin();
-         projectData pdata = new projectData();
-         pdata.trocarsenha(novasenha1, username, tr);
-       tr.commit();
-       
-     } catch(Exception e) {
-         tr.rollback();
-         e.printStackTrace();
-     }
+                        if (altSenha.alterar(login)) {
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher("/alterarsenha.jsp");
+                            PrintWriter out = response.getWriter();
+                            out.println("<font color=red>Senha alterada com sucesso.</font>");
+                        } else {
+                            RequestDispatcher rd = getServletContext().getRequestDispatcher("/alterarsenha.jsp");
+                            PrintWriter out = response.getWriter();
+                            out.println("<font color=red>Erro. Verifique as informações digitadas.</font>");
+                        }
+
+                    } else {
+                        RequestDispatcher rd = getServletContext().getRequestDispatcher("/alterarsenha.jsp");
+                        PrintWriter out = response.getWriter();
+                        out.println("<font color=red>suas senhas estão diferentes.</font>");
+                        rd.include(request, response);
                     }
-                    
-                    else{
-                         RequestDispatcher rd = getServletContext().getRequestDispatcher("/logIn.jsp");
-                    PrintWriter out = response.getWriter();
-                    out.println("<font color=red>suas senhas estão diferentes.</font>");
-                    rd.include(request, response);
-                    }
-                
-                    HttpSession session = request.getSession();
-                    session.setAttribute("customerId", customerId);
-                    //setting session to expiry in 30 mins
-                    session.setMaxInactiveInterval(30 * 60);
-                    Cookie userName = new Cookie("customerId", customerId);
-                    userName.setMaxAge(30 * 60);
-                    response.addCookie(userName);
-                    response.sendRedirect("index.jsp");
+//                    response.sendRedirect("index.jsp");
                 } else if (username.equals(userSenha.getUsername()) && !senhaatual.equals(userSenha.getSenha())) {
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/logIn.jsp");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/alterarsenha.jsp");
                     PrintWriter out = response.getWriter();
                     out.println("<font color=red>Senha ou usuário incorretos.</font>");
                     rd.include(request, response);
-               } 
-            } else{
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/logIn.jsp");
+                }
+            } else {
+                RequestDispatcher rd = getServletContext().getRequestDispatcher("/alterarsenha.jsp");
                 PrintWriter out = response.getWriter();
                 out.println("<font color=red>Preencha usuario e senha.</font>");
                 rd.include(request, response);
-                    }
-            
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

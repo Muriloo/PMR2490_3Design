@@ -58,7 +58,8 @@ public class esqueceusenha extends HttpServlet {
                     response.addCookie(userName);
                     response.sendRedirect("index.jsp");
                 } else {
-                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/logIn.jsp");
+//                    response.sendRedirect("esqueceusenha.jsp");
+                    RequestDispatcher rd = getServletContext().getRequestDispatcher("/esqueceusenha.jsp");
                     PrintWriter out = response.getWriter();
                     out.println("<font color=red>e-mail incorreto.</font>");
                     rd.include(request, response);

@@ -93,7 +93,7 @@ public class sendEmail {
         
             message = "Olá prezado cliente,\n\n Sua senha é : " + senha + " .\n\n Atenciosamente\n\n Equipe 3Design";
                 Session session = Session.getDefaultInstance(props, auth);
-        System.out.println("Session created");
+        System.out.println("Email Sent Correctly");
             return emailUtil.sendEmail(session, toEmail,subject, message);
     }
     
