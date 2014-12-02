@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package project;
+import java.io.*;
+
+import java.io.InputStream;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,9 +21,18 @@ public class versionDO {
     private int _visibility;
     private int _status_id;
     private int _project_id;
-    // falta o arquivo do projeto!!
+    private String _filepath;
     
-  public int getId() {
+    public String getFilepath() {
+        return _filepath;
+    }
+
+    public void setFilepath(String _filepath) {
+        System.out.println("Filepath:"+_filepath);
+        this._filepath = _filepath;
+    }
+    
+    public int getId() {
      return _id;
   } // getId
 

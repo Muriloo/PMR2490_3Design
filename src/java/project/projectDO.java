@@ -4,19 +4,44 @@
  * and open the template in the editor.
  */
 package project;
+import java.util.ArrayList;
+import java.io.InputStream;
 
 /**
  *
  * @author Arthur
  */
+
 public class projectDO {
+    
     private int _id;
     private String _name;
     private String _description;
     private String _detail;
     private int _status_id;
-    private double _price;
+    private float _price;
     
+    private int _customerId;
+
+    public projectDO(String name, String description, String detail, float price){
+        this.setName(name);
+        this.setDescription(description);
+        this.setDetail(detail);
+        this.setPrice(price);
+    }
+    
+    public projectDO(){        
+    }
+    
+    
+    public int getCustomerId() {
+        return _customerId;
+    }
+
+    public void setCustomerId(int _customerId) {
+        this._customerId = _customerId;
+    }
+       
   public int getId() {
      return _id;
   } // getId
@@ -57,11 +82,11 @@ public String getDetail() {
     _status_id = status_id;
   } // setStatusId
   
-public double getPrice() {
+public float getPrice() {
      return _price;
   } // getPrice
 
-  public void setPrice(double price) {
+  public void setPrice(float price) {
     _price = price;
   } // setPrice
 } // projectDO
