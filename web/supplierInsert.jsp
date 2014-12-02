@@ -61,17 +61,17 @@ Such 3D!<br>
     transaction.supplier tn = new transaction.supplier();
     supplierDO supplier = new supplierDO();
     
-    Vector contacts = supplier.getContactInfo();
-    Vector contacts2 = new Vector();
+   
+    Vector contacts = new Vector();
     
-    Vector banks2 = new Vector();
-    Vector banks = supplier.getBankInfo();
+    Vector banks = new Vector();
     
-    Vector addresses2 = new Vector();
-    Vector addresses = supplier.getAddress();
+    
+    Vector addresses = new Vector();
+    
             
-    Object[] materials = supplier.getMaterials();
-    ArrayList<String> materials2 = new ArrayList<String> ();
+    
+    ArrayList<String> materials = new ArrayList<String> ();
     
     if(null != request.getParameter("indice")){
         // editar fornecedor específico
@@ -87,6 +87,9 @@ Such 3D!<br>
     }
     }else if(null != request.getParameter("editar2")){
     supplier = (supplierDO) session.getAttribute("remove");
+    contacts = supplier.getContactInfo();
+    addresses = supplier.getAddress();
+    banks = supplier.getBankInfo();
     System.out.println("supplier editar2");
     }else {
     /* inserir novo fornecedor: pegar os parâmetros-------------------------*/
@@ -112,27 +115,27 @@ Such 3D!<br>
                contact.setPosition(request.getParameter("contactPosition"+p));
                contact.setEmail(request.getParameter("contactEmail"+p));
                contact.setPhone(request.getParameter("contactPhone"+p));
-               contacts2.add(contact);
+               contacts.add(contact);
                p++;
            }
-           if (contacts2==null) System.out.println("contacts nulo");
+           if (contacts==null) System.out.println("contacts nulo");
            else{
-           supplier.setContactInfo(contacts2);
+           supplier.setContactInfo(contacts);
            System.out.println("contacts ok medio");}
     //bancos
            p=0;
-           while(null != request.getParameter("bankName"+p) && request.getParameter("bankName"+p).length() != 0){
+           while(null != request.getParameter("bankNumber"+p) && request.getParameter("bankNumber"+p).length() != 0){
                BankInfoDO bank = new BankInfoDO();
                bank.setBankNumber(request.getParameter("bankNumber"+p));
                bank.setAgency(request.getParameter("bankAgency"+p));
                bank.setAccount(request.getParameter("bankAccount"+p));
                bank.setCnpjCpf(request.getParameter("bankCnpjCpf"+p));
-               banks2.add(bank);
+               banks.add(bank);
                p++;
            }
-           if (banks2==null) System.out.println("banks nulo");
+           if (banks==null) System.out.println("banks nulo");
            else
-           supplier.setBankInfo(banks2);
+           supplier.setBankInfo(banks);
     //endereços
            p=0;
            while(null != request.getParameter("addressCountry"+p) && request.getParameter("addressCountry"+p).length() != 0){
@@ -143,20 +146,20 @@ Such 3D!<br>
                address.setStreet(request.getParameter("addressStreet"+p));
                address.setComplement(request.getParameter("addressComplement"+p));
                address.setPostalcode(request.getParameter("addressPostalcode"+p));
-               addresses2.add(address);
+               addresses.add(address);
                p++;
            }
-           if (addresses2==null) System.out.println("addresses nulo");
-           else supplier.setAddress(addresses2);
+           if (addresses==null) System.out.println("addresses nulo");
+           else supplier.setAddress(addresses);
     //materiais
            System.out.println("antes de materiais");
             p=0;
             while(null != request.getParameter("material"+p) && request.getParameter("material"+p).length() != 0){
-                materials2.add(p,request.getParameter("material"+p));
+                materials.add(p,request.getParameter("material"+p));
                 p++;
             }
-            if (materials2==null) System.out.println("materials nulo");
-            else supplier.setMaterials(materials2.toArray());
+            if (materials==null) System.out.println("materials nulo");
+            else supplier.setMaterials(materials.toArray());
            
            supplier sp = new supplier();
            System.out.println("vai inserir");
@@ -277,9 +280,10 @@ Tabela de Dados Bancários
                 
             </tr>
 <%          // bancos
-System.out.println("antes de bancos");
+
 
         if (banks != null){
+            System.out.println("bancos nao nulo:" +banks.size());
             for(int k = 0; k < banks.size(); k++) {
                 BankInfoDO bank = (BankInfoDO) banks.elementAt(k);
 %>              <tr>
@@ -400,11 +404,12 @@ Tabela de Materiais
 <%         
  System.out.println("antes de materiais");
         if(materials != null){
-            for(int v = 0; v < materials.length; v++) {
+            Object[] materials2 = materials.toArray();
+            for(int v = 0; v < materials2.length; v++) {
                 
 %>              <tr>
                     <td>
-                        <INPUT TYPE="text" NAME="material<%=v%>" value="<%=(String) materials[v] %>" >
+                        <INPUT TYPE="text" NAME="material<%=v%>" value="<%=(String) materials2[v] %>" >
                     </td>
                     
                 </tr>        
@@ -412,7 +417,7 @@ Tabela de Materiais
             } // for v - materiais
 %>
                 <td>
-                        <INPUT TYPE="text" NAME="material<%=materials.length%>" >
+                        <INPUT TYPE="text" NAME="material<%=materials2.length%>" >
                 </td>
                    
 <%
@@ -428,9 +433,8 @@ Tabela de Materiais
         </table>     
 <! --------------------------fecha materiais---------------------------------->
 
-
                 <input type="submit" name="voltarSI" value="Voltar" />
-                <input type="submit" name="enviar" value="Enviar" />
+                <input type="submit" name="editar" value="Enviar" />
 </form>     
 
 <%

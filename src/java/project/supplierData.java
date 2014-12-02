@@ -15,7 +15,7 @@ import java.util.Vector;
 import java.util.ArrayList;
 import java.util.Arrays;
 import utils.Transacao;
-
+import java.sql.Statement;
 /**
  *
  * @author Arthur
@@ -29,28 +29,15 @@ public class supplierData {
      sdf.format(dia);
      String day= sdf.format(dia);
      String sql = "insert into supplier (supplier_name, supplier_evaluation, supplier_capacity_id, supplier_comment, supplier_description, created_at, updated_at)"
-             + " values (?, ?, ?, ?, ?, ?, ?);";
-     PreparedStatement ps = con.prepareStatement(sql);
-     ps.setString(1, supplier.getName());
-     ps.setDouble(2, supplier.getEval());
-     ps.setInt(3, supplier.getCapacityId());
-     ps.setString(4, supplier.getComment());
-     ps.setString(5, supplier.getDescription());
-     ps.setString (6, day);
-     ps.setString (7, day);
-     //address
-     int result = ps.executeUpdate();
-     con.commit();
-     Connection con2 = tr.obterConexao();
-     String sqlId = "select * from supplier where supplier_name=?";
-     PreparedStatement psId = con2.prepareStatement(sqlId);
-     System.out.println("----------------------------------------supplier name:"+supplier.getName());
-     psId.setString(1, supplier.getName());
-     ResultSet rsId = psId.executeQuery();
-     //System.out.println("----------------------------------------supplier id nulo");
-     con2.commit();
-     supplier.setId(rsId.getInt("id"));
-     Connection con3 = tr.obterConexao();
+             + " values ('"+supplier.getName()+"', "+supplier.getEval()+", "+supplier.getCapacityId()+", '"+supplier.getComment()+"', '"+supplier.getDescription()+"', '"+day+"', '"+day+"');";
+     System.out.println(sql);
+     Statement stmt = con.createStatement();
+     stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+     ResultSet rs = stmt.getGeneratedKeys();
+     if ( rs.next() ){
+         supplier.setId(rs.getInt(1));
+         int result;
+         //address
      Vector addresses = supplier.getAddress();
      if (null != addresses){
          System.out.println("----------------------------------------addresses != null");
@@ -58,7 +45,8 @@ public class supplierData {
              String sqlA = "insert into supplier_address (supplier_address_id, supplier_address_country, supplier_address_state, supplier_address_city,"
              + " supplier_address_street, supplier_address_complement, supplier_address_postalcode, created_at, updated_at) values(?,?,?,?,?,?,?,?,?)";
              supplierAddressDO address = (supplierAddressDO) addresses.elementAt(i);
-             PreparedStatement psA = con3.prepareStatement(sqlA);
+             address.setSupplier(supplier.getId());
+             PreparedStatement psA = con.prepareStatement(sqlA);
              System.out.println("supplierID:"+supplier.getId());
              psA.setInt(1,supplier.getId());
              psA.setString(2,address.getCountry());
@@ -80,7 +68,8 @@ public class supplierData {
              String sqlC = "insert into contact (contact_supplier_id, contact_name, contact_position, contact_email,"
              + " contact_phone, created_at, updated_at) values(?,?,?,?,?,?,?)";
              contactInfoDO contact = (contactInfoDO) contacts.elementAt(i);
-             PreparedStatement psC = con3.prepareStatement(sqlC);
+             contact.setSupplierId(supplier.getId());
+             PreparedStatement psC = con.prepareStatement(sqlC);
              psC.setInt(1,supplier.getId());
              psC.setString(2,contact.getName());
              psC.setString(3,contact.getPosition());
@@ -93,12 +82,15 @@ public class supplierData {
      }//contacts
      //banks
      Vector banks = supplier.getBankInfo();
+      
      if (null != banks){
+         System.out.println("----------------------------------------banks != null");
          for (int i=0;i<banks.size();i++){
              String sqlB = "insert into bank_info (bank_info_supplier_id, bank_info_number, bank_info_agency, bank_info_account,"
-             + " bank_info_cnpj_cpf, created_at, updated_at) values(?,?,?,?,?,?,?)";
+             + " bank_info_cpf_cnpj, created_at, updated_at) values(?,?,?,?,?,?,?)";
              BankInfoDO bank = (BankInfoDO) banks.elementAt(i);
-             PreparedStatement psB = con3.prepareStatement(sqlB);
+             bank.setSupplierId(supplier.getId());
+             PreparedStatement psB = con.prepareStatement(sqlB);
              psB.setInt(1,supplier.getId());
              psB.setString(2,bank.getBankNumber());
              psB.setString(3,bank.getAgency());
@@ -107,10 +99,14 @@ public class supplierData {
              psB.setString (6, day);
              psB.setString (7, day);
              result = psB.executeUpdate();
+             System.out.println("----------------------------------------query banks");
          }
      }//banks
      
      System.out.println("executou a query de inserção");
+     
+     }
+     
      
  } // include supplier
     
@@ -200,7 +196,7 @@ public class supplierData {
         ResultSet rs3 = ps3.executeQuery();
         while (rs3.next()){
             BankInfoDO bi = new BankInfoDO();
-            bi.setCnpjCpf(rs3.getString("bank_info_cnpj_cpf"));
+            bi.setCnpjCpf(rs3.getString("bank_info_cpf_cnpj"));
             bi.setAccount(rs3.getString("bank_info_account"));
             bi.setAgency(rs3.getString("bank_info_agency"));
             bi.setBankNumber(rs3.getString("bank_info_number"));
