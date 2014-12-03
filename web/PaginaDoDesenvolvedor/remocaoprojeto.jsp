@@ -14,10 +14,15 @@
     </head>
 
     <body>
-<!--------------------Header--------------------------------------------------->
+        <!--------------------Header--------------------------------------------------->
         <%@include file="../WEB-INF/header.jsp" %>    
-<!-------------Fim do Header--------------------------------------------------->
-        <% boolean is_printable = true;
+        <!-------------Fim do Header--------------------------------------------------->
+        <% if (customerId == null) {
+        %> Por favor fazer Login. 
+        <%
+        } else {
+
+            boolean is_printable = true;
             if (request.getParameter("campo_controle") != null) {
                 String id = request.getParameter("id");
 
@@ -53,24 +58,24 @@
 
                 <p>Você deseja realmente excluir este projeto?</p>
             </div>	
-            <ul >
+            
                 <form>        
                     <input type="hidden" name="id" value="<%= request.getParameter("id")%>"/>
                     <input type="submit" name="ok" value="Confirmar" />
                     <input type="hidden" name="campo_controle" />
                 </form>
                 <br><br>
-                
+
                 <br><br>
                 <a href="http://localhost:8080/3Design/project.jsp?projectId=<%= request.getParameter("id")%>"> Voltar </a>
-            </ul>
+            
         </div>
         <%} else {%>
         <h2>Nenhum projeto selecionado!</h2>
         <a href="./../index.jsp">Voltar</a>
         <%}%>
-        
-            <%@include file="../WEB-INF/footer.jsp" %>    
+        <%}%>
+        <%@include file="../WEB-INF/footer.jsp" %>    
 
 
     </body>
