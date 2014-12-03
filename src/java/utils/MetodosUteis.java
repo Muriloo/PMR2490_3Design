@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package utils;
+import java.io.DataInputStream;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.File;
 
 /**
  *
@@ -11,6 +15,8 @@ package utils;
  */
 public class MetodosUteis {
     
+    private static final int magicNumbers_jpg = 0xffd8ffe0;
+    private static final int magicNumbers_png = 0x89504E47;
     
     public static boolean isEmpty(String s) {
      if (null == s)
@@ -22,7 +28,7 @@ public class MetodosUteis {
     
     public static boolean isCurrency(String s) {
         String[] a = s.split("\\.");
-        System.out.print("erro currency: "+a.length);
+        System.out.print("casas currency: "+a.length);
         if (a.length == 2){
             if(a[1].length() <= 2){
                 return true;
@@ -37,6 +43,30 @@ public class MetodosUteis {
         String[] b = a[2].split(" ");
         String date = b[0] + "/" +a[1] + "/" +a[0];
         return date;
+    }
+    
+    public static Boolean isFormat(File filename, String extension) throws Exception {
+        
+        int magicNumbers = magicNumbers_jpg;
+        if (extension == "jpg"){
+            magicNumbers = magicNumbers_jpg;
+        } else if (extension == "png"){
+            magicNumbers = magicNumbers_png;
+        }
+        System.out.print("checking file format:" + magicNumbers_jpg);
+        
+        DataInputStream ins = new DataInputStream(new BufferedInputStream(new FileInputStream(filename)));
+        try {
+            if (ins.readInt() == magicNumbers) {
+                //System.out.print("true;");
+                return true;
+            } else {
+                //System.out.print("false----");
+                return false;
+            }
+        } finally {
+            ins.close();
+        }
     }
     
     

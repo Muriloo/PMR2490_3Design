@@ -7,6 +7,7 @@ package projectServlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 
 import project.ImageDO;
 
@@ -33,8 +35,8 @@ public class UploadServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private static final String DATA_DIRECTORY = "Files";
-    private static final int MAX_MEMORY_SIZE = 1024 * 1024 *100;
-    private static final int MAX_REQUEST_SIZE = 1024 * 1024*100;
+    private static final int MAX_MEMORY_SIZE = 1024 * 1024 *20;
+    private static final int MAX_REQUEST_SIZE = 1024 * 1024*20;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -85,7 +87,7 @@ public class UploadServlet extends HttpServlet {
                 field_name = item.getFieldName();
                 if (!item.isFormField() ) {
                     String fileName = new File(item.getName()).getName();
-                    //if (field_name.equals("image")){
+                    
                     String fullFileName =  field_name+"_" +System.currentTimeMillis()+
                             "_"+fileName;
                     
@@ -94,19 +96,28 @@ public class UploadServlet extends HttpServlet {
                     
                     System.out.print("filePath loop: "+filePath);
                     if( field_name.equals("projectFile") ){
+                        if (fileName == "" || fileName.isEmpty()){
+                            //RequestDispatcher rd = getServletContext().getRequestDispatcher("/PaginaDoDesenvolvedor/uploadprojeto.jsp");
+                            PrintWriter out3 = response.getWriter();
+                            
+                            //rd.include(request, response);
+                            
+                            response.sendRedirect("./PaginaDoDesenvolvedor/uploadprojeto.jsp?error=nofile");
+                            //out3.println("<font color=red>Favor escolher um arquivo.</font>");
+                            return;
+                        }
                         map.put(field_name, fullFileName);
                         System.out.print("projectFile: "+fullFileName);
+                        // saves the file to upload directory
+                        item.write(uploadedFile);
                     }
-                    else if (field_name.equals("image")){
+                    else if (field_name.equals("image") && (fileName != "" && !fileName.isEmpty())){
                         ImageDO image = new ImageDO();
                         image.setImagelink(fullFileName);
                         imagesDO.add(image);
+                        // saves the file to upload directory
+                        item.write(uploadedFile);
                     }
-                    //--System.out.print("Path: "+filePath);
-                    //--System.out.print("fullFileName: "+fullFileName);
-                   
-                    // saves the file to upload directory
-                    item.write(uploadedFile);
                 }
                 else{
                     System.out.print("var "+item.getFieldName()+": "+item.getString());
@@ -128,15 +139,32 @@ public class UploadServlet extends HttpServlet {
                 try {
                     result = upProject.uploadProject(project, version, imagesDO);
                 } catch (Exception e){
-                    System.out.print("ERROR!");
+                    System.out.print("ERROR! Upload");
+                    response.sendRedirect("./PaginaDoDesenvolvedor/uploadprojeto.jsp?error=erroruploading");
+                    //RequestDispatcher rd = getServletContext().getRequestDispatcher("/done.jsp");
+                    //PrintWriter out = response.getWriter();
+                    //out.println("<font color=red>Erro ao subir pr0ojeto.</font>");
+                    //rd.include(request, response);
+                    
+                    return;
                 }
             } catch (NumberFormatException e){
-               System.out.print("ERROR!");
+               System.out.print("ERROR! Number Format");
             }
             
             // displays done.jsp page after upload finished
-            getServletContext().getRequestDispatcher("/done.jsp").forward(
-                    request, response);
+             
+             PrintWriter out2 = response.getWriter();
+           RequestDispatcher rd;
+            if (result) {
+                response.sendRedirect("./done.jsp");
+                out2.println("<h3>Seu arquivo projeto foi enviado com sucesso para aprovação dos moderadores!</h3>");
+            } else {
+                //rd = getServletContext().getRequestDispatcher("/PaginaDoDesenvolvedor/uploadprojeto.jsp");
+                //out2.println("<font color=red>Favor preencher os campos corretamente.</font>");
+                response.sendRedirect("./PaginaDoDesenvolvedor/uploadprojeto.jsp?error=wrongfields");
+            }
+            //rd.include(request, response);
 
         } catch (FileUploadException ex) {
             throw new ServletException(ex);

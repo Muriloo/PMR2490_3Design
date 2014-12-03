@@ -112,6 +112,7 @@ public class projectData {
                 + "','"+project.getDetail()+"',"+2+","+project.getPrice()+",'"+now_str+"')";
         
         Statement stmt = con.createStatement();
+        System.out.print(query_str);
         // Obtain the generated key that results from the query.
         stmt.executeUpdate(query_str, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = stmt.getGeneratedKeys();
@@ -122,12 +123,12 @@ public class projectData {
             String query_version = "insert into version (version_name, version_visibility, version_status_id, "
                     + "version_file, version_project_id,updated_at) values ('1.0',0,2,'"+version.getFilepath()+"',"
                     + project_id+ ",'"+now_str+"')";
-            
+             System.out.print(query_version);
             Statement stmt_version = con.createStatement();
             // Obtain the generated key that results from the query.
             stmt_version.executeUpdate(query_version, Statement.RETURN_GENERATED_KEYS);
             ResultSet rs_version = stmt_version.getGeneratedKeys();
-            if ( rs_version.next() ) {
+            if ( rs_version.next() && images.size() > 0) {
                 // Retrieve the auto generated key(s).
                 int version_id = rs_version.getInt(1);
                 String query_image;
@@ -135,6 +136,7 @@ public class projectData {
                     query_image = "insert into image (image_link, "
                     + "image_version_id,updated_at) values ('"+this_imageLink.getImagelink()+"',"
                     + version_id+ ",'"+now_str+"');";
+                     System.out.print(query_image);
                     Statement stmt_image = con.createStatement();
                     stmt_image.executeUpdate(query_image);
                     
