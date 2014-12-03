@@ -57,7 +57,7 @@ Such 3D!<br>
    <input type="submit" value="Projetos Pendentes" style="position:relative;float: right" />
 </form>
 
-<form action="suppliersPage.jsp" method="post">
+<form action="supplierPage.jsp" method="post">
                
    <input type="submit" value="Consulta de Fornecedores" style="position:relative;float: left" />
    

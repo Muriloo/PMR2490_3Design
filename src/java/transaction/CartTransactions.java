@@ -102,7 +102,26 @@ public class CartTransactions {
      }
      return false;
   } // approve project
-  
+ 
+
+      public boolean removeAllItem (int customerId) throws Exception{
+
+     // efetuando a transacao
+     Transacao tr = new Transacao();
+     try {
+       tr.begin();
+         cartData cdata = new cartData();
+         cdata.removeAllItem(customerId, tr);
+       tr.commit();
+       return true;
+       
+     } catch(Exception e) {
+         tr.rollback();
+         //System.out.println("erro ao remover " + item.getId());
+         e.printStackTrace();
+     }
+     return false;
+  } // approve project
 
 
 }//pendingProject

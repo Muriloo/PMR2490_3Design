@@ -124,7 +124,22 @@ public void removeItem(cartDO item, Transacao tr) throws Exception {//remove ite
         }
                 //*/
   } // adiciona ao carrinho se nao tiver item igual, se tiver aumenta a quantidade
-    
+public void removeAllItem(int customerId, Transacao tr) throws Exception {//remove item do carrinho
+    Connection con = tr.obterConexao();        
+    //deleta item do carrinho
+    Date now = new Date();
+    SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+    String now_str= sdf.format(now);
+
+    String del_query = "update item_cart set deleted=1 , updated_at=? where customer_id=?;";
+    PreparedStatement del_s = con.prepareStatement(del_query);
+    del_s.setString(1, now_str);
+    del_s.setInt(2, customerId);
+
+    del_s.executeUpdate();
+        
+  } //remove item do carrinho
+        
 } 
     
 
