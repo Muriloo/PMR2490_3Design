@@ -7,6 +7,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/query.jsp</file>
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/form_sample.html</file>
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/WEB-INF/header.jsp</file>
@@ -21,12 +22,19 @@
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/projectUpload.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/supplierForm.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/contactInfoDO.java</file>
+=======
+            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/supplierPage.jsp</file>
+>>>>>>> RamoDoArthur
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/transaction/supplier.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/supplierData.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/pending-projects.jsp</file>
+            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/projectData.java</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/transaction/pendingProject.java</file>
+            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/projectUpload.html</file>
+            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/form_sample.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/index.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/approval-confirmation.jsp</file>
+<<<<<<< HEAD
 >>>>>>> RamoDoArthur
 =======
             <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/DeletarUsuario.java</file>
@@ -45,6 +53,9 @@
             <file>file:/C:/Users/Eliza/PMR2490_3Design/3Design/web/WEB-INF/header.jsp</file>
             <file>file:/C:/Users/Eliza/PMR2490_3Design/3Design/web/projects.jsp</file>
 >>>>>>> ramoMarcel
+=======
+            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/supplierInsert.jsp</file>
+>>>>>>> RamoDoArthur
         </group>
     </open-files>
 </project-private>

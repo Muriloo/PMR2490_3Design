@@ -32,7 +32,7 @@ Such 3D!<br>
         
 <%@ page import="java.util.Vector" %>
 <%@ page import="transaction.supplier" %>
-<%@ page import="project.supplierDO" %>
+<%@ page import="project.*" %>
 
 <!------------------------------------------------------------------->
 <!--   sempre mostrar o formulario de busca, ateh acao ser "voltar" -->
@@ -41,10 +41,19 @@ Such 3D!<br>
 %>        <jsp:forward page="./supplierPage.jsp" />
 <%        return;
        }
+     if ( null != request.getParameter("voltarsup")) {
+%>        <jsp:forward page="./supplierPage.jsp" />
+<%        return;
+       }
+     if ( null != request.getParameter("inserir")) {
+%>        <jsp:forward page="./supplierInsert.jsp" />
+<%        
+   return;
+       }
 %>
 
          <form action="./supplier2.jsp" method="post">
-              <input type="submit" name="incluir" value="Incluir" />
+              <input type="submit" name="inserir" value="Inserir" />
               <input type="submit" name="voltarS" value="Voltar" />
          </form>
 
@@ -54,25 +63,16 @@ Such 3D!<br>
         <% 
        if (null != request.getParameter ("excluir")) {
         System.out.println("vai excluir");
-    String a = request.getParameter("indice");
-    System.out.println("excluir "+a);
-    transaction.supplier tn = new transaction.supplier();
-    supplierDO supplier = new supplierDO();
-    Vector vector = new Vector();
-    vector = (Vector) session.getAttribute("vector");
-    int i = Integer.parseInt(request.getParameter("indice"));
-    System.out.println("INDICE="+i);
-    supplier = (supplierDO)vector.elementAt(i);
-    if (supplier == null){
-        System.out.println("fornecedor nulo");
-    }
-    if (tn.delete(supplier)){
+        transaction.supplier tn = new transaction.supplier();
+        supplierDO supplier = (supplierDO) session.getAttribute("supplier");
+        if (supplier == null){
+            System.out.println("fornecedor nulo");
+        }
+        if (tn.delete(supplier)){
 %>        
 
 <h2>Fornecedor Excluido!</h2>
-<form action="./supplierPage.jsp" method="post">
-                <input type="submit" name="voltarS" value="Voltar" />
-</form>       
+    
 
 <%
     }//se rejeitada com sucesso
@@ -91,20 +91,23 @@ Such 3D!<br>
        else if (null != request.getParameter ("ver")) {
         System.out.println("ver fornecedor");
     String a = request.getParameter("indice");
-    System.out.println("contatos "+a);
+    System.out.println("fornecedor "+a);
     transaction.supplier tn = new transaction.supplier();
     supplierDO supplier = new supplierDO();
     Vector vector = new Vector();
-    vector = (Vector) session.getAttribute("vector");
+    vector = (Vector) session.getAttribute("suppliers");
     int i = Integer.parseInt(request.getParameter("indice"));
     System.out.println("INDICE="+i);
     supplier = (supplierDO)vector.elementAt(i);
+    session.setAttribute("supplier",supplier);
+    System.out.println("supplier");
     if (supplier == null){
         System.out.println("fornecedor nulo");
     }
     
 %>        
 
+<! --------------------------abre geral-------------------------------------->
 <h2>Ver Fornecedor</h2>
 <table BORDER="1">
              <tr>
@@ -113,7 +116,7 @@ Such 3D!<br>
                 <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
-                <td>Excluir</td>
+                
             </tr>
 <%        
            
@@ -123,57 +126,138 @@ Such 3D!<br>
                    <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>
-                   <td>
-                       <form action="./supplier2.jsp" method="post">
-                <input type="hidden" name="indice" value="<%=i%>"  />               
-                <input type="submit" name="excluir" value="Excluir" />
-                       </form></td>
+                   
                 </tr>        
-<%           } // for i      
-%>        </table> 
-
+        </table> 
+                
+<! --------------------------fecha geral-------------------------------------->
+<! --------------------------abre contatos------------------------------------>
 Tabela de Contatos
 <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Avaliação</td>
-                <td>Capacidade</td>
-                <td>Comentarios</td>
-                <td>Descrição</td>
-                <td>Contatos</td>
-                <td>Dados Bancários</td>
+                <td>Cargo</td>
+                <td>Email</td>
+                <td>Telefone</td>
                 <td>Excluir</td>
             </tr>
 <%        
-       //RESOLVER PEPINO-> COMO PEGAR OS CONTATOS E DADOS BANCÁRIOS DO supplierDO
-           for(int i = 0; i < supplier.contact.size(); i++) {
-                supplierDO supplier = (supplierDO)suppliers.elementAt(i);
+
+            Vector contacts = new Vector();
+            contacts = supplier.getContactInfo();
+            
+            for(int j = 0; j < contacts.size(); j++) {
+                contactInfoDO contact = (contactInfoDO) contacts.elementAt(j);
 %>              <tr>
-                   <td><%= supplier.getName() %></td>
-                   <td><%= supplier.getEval() %></td>
-                   <td><%= supplier.getCapacityId() %></td>
-                   <td><%= supplier.getComment() %></td>
-                   <td><%= supplier.getDescription() %></td>
-                   <td>
-                       <form action="./supplier2.jsp" method="POST">        
-                <input type="hidden" name="indice" value="<%=i%>"  />       
-                <input type="submit" name="contacts" value="Contatos" />
-                       </form> 
-                   </td>               
-                   <td>
-                       <form action="./supplier2.jsp" method="POST">
-                <input type="hidden" name="indice" value="<%=i%>"  />             
-                <input type="submit" name="bank" value="Dados Bancarios" />
-                       </form>
-                   </td>
+                   <td><%= contact.getName() %></td>
+                   <td><%= contact.getPosition() %></td>
+                   <td><%= contact.getEmail() %></td>
+                   <td><%= contact.getPhone() %></td>
                    <td>
                        <form action="./supplier2.jsp" method="post">
-                <input type="hidden" name="indice" value="<%=i%>"  />               
-                <input type="submit" name="excluir" value="Excluir" />
+                <input type="hidden" name="indice" value="<%=j%>"  />               
+                <input type="submit" name="excluirContato" value="Excluir" />
                        </form></td>
                 </tr>        
-<%           } // for i      
+<%           } // for j - contatos      
 %>        </table>            
+                
+<! --------------------------fecha contatos----------------------------------->
+<! --------------------------abre bancos-------------------------------------->
+Tabela de Dados Bancários
+<table BORDER="1">
+             <tr>
+                 <td>N&uacutemero do Banco</td>
+                 <td>Ag&ecircncia</td>
+                <td>Conta</td>
+                <td>CNPJ/CPF</td>
+                <td>Excluir</td>
+            </tr>
+<%        
+       
+            Vector banks = new Vector();
+            banks = supplier.getBankInfo();
+            for(int k = 0; k < banks.size(); k++) {
+                BankInfoDO bank = (BankInfoDO) banks.elementAt(k);
+%>              <tr>
+                   <td><%= bank.getBankNumber() %></td>
+                   <td><%= bank.getAgency() %></td>
+                   <td><%= bank.getAccount() %></td>
+                   <td><%= bank.getCnpjCpf() %></td>
+                   <td>
+                       <form action="./supplier2.jsp" method="post">
+                <input type="hidden" name="indice" value="<%=k%>"  />               
+                <input type="submit" name="excluirBanco" value="Excluir" />
+                       </form></td>
+                </tr>        
+<%           } // for k - bancos      
+%>        </table> 
+                
+
+<! --------------------------fecha bancos------------------------------------->
+<! --------------------------abre endereços----------------------------------->
+Tabela de Endere&ccedilos
+<table BORDER="1">
+             <tr>
+                <td>Pa&iacutes</td>
+                <td>Estado</td>
+                <td>Cidade</td>
+                <td>Logradouro</td>
+                <td>Complemento</td>
+                <td>CEP</td>
+                <td>Excluir</td>
+            </tr>
+<%        
+       
+            Vector addresses = new Vector();
+            addresses = supplier.getAddress();
+            for(int u = 0; u < addresses.size(); u++) {
+                supplierAddressDO address = (supplierAddressDO) addresses.elementAt(u);
+%>              <tr>
+                   <td><%= address.getCountry() %></td>
+                   <td><%= address.getState() %></td>
+                   <td><%= address.getCity() %></td>
+                   <td><%= address.getStreet() %></td>
+                   <td><%= address.getComplement() %></td>
+                   <td><%= address.getPostalcode() %></td>
+                   <td>
+                       <form action="./supplier2.jsp" method="post">
+                <input type="hidden" name="indice" value="<%=u%>"  />               
+                <input type="submit" name="excluirEndereço" value="Excluir" />
+                       </form></td>
+                </tr>        
+<%           } // for u - endereços      
+%>        </table>            
+                
+<! --------------------------fecha endereços---------------------------------->
+<! --------------------------abre materiais----------------------------------->
+Tabela de Materiais
+<table BORDER="1">
+             <tr>
+                <td>Nome do Material</td>
+                <td>Excluir</td>
+             </tr>
+<%        
+            Object[] materials = supplier.getMaterials();
+            for(int v = 0; v < materials.length; v++) {
+                
+%>              <tr>
+                   <td><%=(String) materials[v] %></td>
+                   <td>
+                       <form action="./supplier2.jsp" method="post">
+                <input type="hidden" name="indiceM" value="<%=v%>"  />               
+                <input type="submit" name="excluirMaterial" value="Excluir" />
+                       </form></td>
+                </tr>        
+<%           } // for v - materiais     
+%>        </table>            
+
+                <form action="./supplierInsert.jsp" method="post">
+                    <input type="hidden" name="editar2" value="Editar"
+                    <input type="submit" name="excluir" value="Excluir" />
+                    <input type="submit" name="editar" value="Editar" />
+                </form>
+<! --------------------------fecha meteriais---------------------------------->
 
 <form action="./supplierPage.jsp" method="post">
                 <input type="submit" name="voltarS" value="Voltar" />
@@ -187,7 +271,7 @@ Tabela de Contatos
        transaction.supplier tn = new transaction.supplier();
        Vector suppliers = tn.getSuppliers();
        session.setAttribute("vector",suppliers);
-       request.setAttribute("vector",suppliers);
+       
        if ( (suppliers == null) || (suppliers.size() == 0)) {
          
 %>
