@@ -23,6 +23,8 @@ public class projectInfoDO {
     private String _version_name;
     private String _version_file;
     private int _customerId;
+    private String _username;
+    
 
     public projectInfoDO(){        
     }
@@ -99,4 +101,13 @@ public float getPrice() {
   public void setVersionFile(String version_file) {
     _version_file = version_file;
   } // setVersionName
+  
+  public String getUsername() {
+     return _username;
+  } // getVersionName
+
+  public void setUsername(String username) {
+    _username = username;
+  } // setVersionName
+
 }

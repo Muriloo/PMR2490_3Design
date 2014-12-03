@@ -106,7 +106,50 @@ Such 3D!<br>
     <h4>Arquivo <%=projectinfo.getVersionFile()%></h4>
     <h4>Descrição do projeto</h4> <%=projectinfo.getDescription()%>
     <h4>Detalhes do projeto</h4> <%=projectinfo.getDetail()%>
-     
+
+    <br>
+    <br>
+    
+    <%if(customerId == null){
+    }
+    else if(Integer.parseInt(customerId) == projectinfo.getCustomerId()){ 
+        %>
+<div style="width:400px;">
+<div style="float: left; width: 130px"> 
+<form id="thisone">
+    <a href="./PaginaDoDesenvolvedor/editarprojeto.jsp?id="<%=projectIdStr%>>Editar Projeto</a>
+</form>
+</div>
+<div style="float: right; width: 225px"> 
+    <form id="thistoo">
+    <a href="./PaginaDoDesenvolvedor/remocaoprojeto.jsp?id="<%=projectIdStr%>>Remover Projeto</a>
+    </form>
+</div>
+</div>
+    <%
+        }
+    else if(Integer.parseInt(user_permission_id) == 2){ %>
+    <div> 
+<form>
+    <a href="./PaginaDoModerador/remocaoprojeto.jsp?id="<%=projectIdStr%>>Remover Projeto</a>
+</form>
+    </div>
+<%
+    }
+    %>
+
+    <br>
+    <br>    
+    
+    <h3>Adicionar ao carrinho</h3>
+    <%if(customerId != null){%>
+       <form action="./carrinho.jsp" method="post">  
+        <input type="number" name="quantity" min="1" max="10000" value="1"  /> 
+        <input type="hidden" name="projectId" value="<%=projectIdStr%>"  />             
+        <input type="submit" name="adicionar" value="+" />
+
+        </form><%}else{%>Necessário Logar!<%}%>
+
          
     <h4>Comentários</h4>
         <hr style="border-color: #6ED4B8">
@@ -142,18 +185,6 @@ Such 3D!<br>
          }
 }
 %>
-
-<tr>
-                    <td>Adicionar ao carrinho</td>
-                    <td><%if(customerId != null){%>
-                       <form action="./carrinho.jsp" method="post">  
-                        <input type="number" name="quantity" min="1" max="10000" value="1"  /> 
-                        <input type="hidden" name="projectId" value="<%=projectIdStr%>"  />             
-                        <input type="submit" name="adicionar" value="+" />
-
-                        </form><%}else{%>Necessário Logar!<%}%>
-                    </td>
-</tr>
 
 <!--------------------------Footer--------------------------------------------->
 
