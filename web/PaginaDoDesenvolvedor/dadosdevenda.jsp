@@ -53,25 +53,21 @@
                     <!----------------- busca projetos no customer ------------>                  
                         <table BORDER="1">
                             <tr>
-                                <td><b>Thumbnail</b></td>
                                 <td><b>Nome do Projeto</b></td>
                                 <td><b>Quantidade Vendida</b></td>
                                 <td><b>Preço Total</b></td>
                                 <td><b>Status</b></td>
-                                <td><b>Visualisar</b></td>
                             </tr>
 <%                    
                         for(int i = 0; i < venda.size(); i++){     //imprime order
                             dadosdevendaDO resultados = (dadosdevendaDO)venda.elementAt(i);                  
 %>
                             <tr>
-                                <td>Imagem</td>
-                                <td><%=resultados.getProject_name()%></td>
+                                <td><a href="../project.jsp?projectId=<%=resultados.getId()%>"><%=resultados.getProject_name()%></a></td>
                                 <td><%=resultados.getSold_quantity()%></td>
                                 <td><%=resultados.getSold_total()%></td>
                                 <td><%=bv.VerifStatus(resultados.getProject_status_id())%></td>
-                                <td><a href="./user/<%= resultados.getProject_name() %>.jsp">Ver</a></td>
-                                    
+                                   
                             </tr>
 <%
                             } // imprime order

@@ -72,7 +72,7 @@
                         projectDO resultados = (projectDO)venda.elementAt(j);
 
 %>                      <tr>
-                            <td><a href="./project.jsp?projectId=<%=resultados.getId()%>"><%= resultados.getName()%></a></td>
+                            <td><a href="../project.jsp?projectId=<%=resultados.getId()%>"><%= resultados.getName()%></a></td>
                             <td><%= resultados.getDescription() %></td>
                             <td><%= resultados.getDetail()%></td>
                             <td><%= resultados.getPrice() %></td>
