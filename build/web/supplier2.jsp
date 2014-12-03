@@ -109,6 +109,16 @@ Such 3D!<br>
 
 <! --------------------------abre geral-------------------------------------->
 <h2>Ver Fornecedor</h2>
+<%
+        if(request.getParameter("ok") != null) {
+            %>
+          Fornecedor inserido com sucesso!
+            
+            <%
+        }
+
+%>
+
 <table BORDER="1">
              <tr>
                 <td>Nome</td>
@@ -139,7 +149,8 @@ Tabela de Contatos
                 <td>Cargo</td>
                 <td>Email</td>
                 <td>Telefone</td>
-                <td>Excluir</td>
+                
+           
             </tr>
 <%        
 
@@ -153,11 +164,7 @@ Tabela de Contatos
                    <td><%= contact.getPosition() %></td>
                    <td><%= contact.getEmail() %></td>
                    <td><%= contact.getPhone() %></td>
-                   <td>
-                       <form action="./supplier2.jsp" method="post">
-                <input type="hidden" name="indice" value="<%=j%>"  />               
-                <input type="submit" name="excluirContato" value="Excluir" />
-                       </form></td>
+               
                 </tr>        
 <%           } // for j - contatos      
 %>        </table>            
@@ -171,7 +178,7 @@ Tabela de Dados Bancários
                  <td>Ag&ecircncia</td>
                 <td>Conta</td>
                 <td>CNPJ/CPF</td>
-                <td>Excluir</td>
+               
             </tr>
 <%        
        
@@ -185,10 +192,7 @@ Tabela de Dados Bancários
                    <td><%= bank.getAccount() %></td>
                    <td><%= bank.getCnpjCpf() %></td>
                    <td>
-                       <form action="./supplier2.jsp" method="post">
-                <input type="hidden" name="indice" value="<%=k%>"  />               
-                <input type="submit" name="excluirBanco" value="Excluir" />
-                       </form></td>
+                  
                 </tr>        
 <%           } // for k - bancos      
 %>        </table> 
@@ -205,7 +209,7 @@ Tabela de Endere&ccedilos
                 <td>Logradouro</td>
                 <td>Complemento</td>
                 <td>CEP</td>
-                <td>Excluir</td>
+       
             </tr>
 <%        
        
@@ -220,11 +224,8 @@ Tabela de Endere&ccedilos
                    <td><%= address.getStreet() %></td>
                    <td><%= address.getComplement() %></td>
                    <td><%= address.getPostalcode() %></td>
-                   <td>
-                       <form action="./supplier2.jsp" method="post">
-                <input type="hidden" name="indice" value="<%=u%>"  />               
-                <input type="submit" name="excluirEndereço" value="Excluir" />
-                       </form></td>
+         
+                 
                 </tr>        
 <%           } // for u - endereços      
 %>        </table>            
@@ -235,7 +236,7 @@ Tabela de Materiais
 <table BORDER="1">
              <tr>
                 <td>Nome do Material</td>
-                <td>Excluir</td>
+            
              </tr>
 <%        
             Object[] materials = supplier.getMaterials();
@@ -243,25 +244,19 @@ Tabela de Materiais
                 
 %>              <tr>
                    <td><%=(String) materials[v] %></td>
-                   <td>
-                       <form action="./supplier2.jsp" method="post">
-                <input type="hidden" name="indiceM" value="<%=v%>"  />               
-                <input type="submit" name="excluirMaterial" value="Excluir" />
-                       </form></td>
+                   
                 </tr>        
 <%           } // for v - materiais     
 %>        </table>            
 
-                <form action="./supplierInsert.jsp" method="post">
-                    <input type="hidden" name="editar2" value="Editar"
+                <form action="./supplier2.jsp" method="post">
+                    <!input type="hidden" name="editar2" value="Editar" />
                     <input type="submit" name="excluir" value="Excluir" />
-                    <input type="submit" name="editar" value="Editar" />
+                    
                 </form>
-<! --------------------------fecha meteriais---------------------------------->
+<! --------------------------fecha materiais---------------------------------->
 
-<form action="./supplierPage.jsp" method="post">
-                <input type="submit" name="voltarS" value="Voltar" />
-</form>     
+
 
 <%
 

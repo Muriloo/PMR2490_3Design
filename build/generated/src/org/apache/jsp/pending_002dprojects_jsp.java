@@ -4,10 +4,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.util.Vector;
-import transaction.supplier;
-import project.supplierDO;
+import transaction.pendingProject;
+import project.versionDO;
 
-public final class supplierPage_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class pending_002dprojects_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -50,6 +50,9 @@ public final class supplierPage_jsp extends org.apache.jasper.runtime.HttpJspBas
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
       out.write("\r\n");
@@ -151,7 +154,7 @@ if(customerId != null){
       out.write("</div>\r\n");
       out.write("\r\n");
       out.write("<div id=\"section\">\r\n");
-      out.write("<h2>Gerenciamento de Fornecedores</h2>\r\n");
+      out.write("<h2>Gerenciamento de Versões Pendentes</h2>\r\n");
       out.write("        \r\n");
       out.write("<!-------------Fim do Header--------------------------------------------------->\r\n");
       out.write("        \r\n");
@@ -174,43 +177,31 @@ if(customerId != null){
       out.write('\n');
         return;
        }
-        else if ( null != request.getParameter("inserir")) {
-
-      out.write("        ");
-      if (true) {
-        _jspx_page_context.forward("./supplierInsert.jsp");
-        return;
-      }
-      out.write('\r');
-      out.write('\n');
-     return;
-       }
-       else if ( null == request.getParameter("excluir")){
 
       out.write("\r\n");
       out.write("\r\n");
-      out.write("         <form action=\"./supplierPage.jsp\" method=\"post\">\r\n");
-      out.write("              <input type=\"submit\" name=\"pesquisar\" value=\"Pesquisar\" />\r\n");
-      out.write("              <input type=\"submit\" name=\"inserir\" value=\"Inserir\" />\r\n");
-      out.write("              <input type=\"submit\" name=\"voltar\" value=\"Voltar\" />\r\n");
+      out.write("         <form action=\"./pending-projects.jsp\" method=\"post\">\r\n");
+      out.write("             \r\n");
+      out.write("             \r\n");
+      out.write("          \r\n");
+      out.write("         <input type=\"submit\" name=\"pesquisar\" value=\"Pesquisar\" />\r\n");
+      out.write("         <input type=\"submit\" name=\"voltar\" value=\"Voltar\" />\r\n");
       out.write("         </form>\r\n");
-      out.write("      ");
-}//if excluir == null
       out.write("\r\n");
       out.write("<! ------------------------------------------------------------------->\r\n");
       out.write("\r\n");
       out.write("        \r\n");
       out.write("        ");
- 
-       if ( null != request.getParameter("pesquisar")) {  
-       transaction.supplier tn = new transaction.supplier();
-       Vector suppliers = tn.getSuppliers();
-       session.setAttribute("suppliers",suppliers);
-       if ( (suppliers == null) || (suppliers.size() == 0)) {
+   if ( null != request.getParameter("pesquisar")) {  
+       transaction.pendingProject tn = new transaction.pendingProject();
+       Vector versions = tn.getPending();
+       session.setAttribute("vector",versions);
+       request.setAttribute("vector",versions);
+       if ( (versions == null) || (versions.size() == 0)) {
          
 
       out.write("\r\n");
-      out.write("          Nenhum fornecedor encontrado!\r\n");
+      out.write("          Nenhuma versão pendente encontrada!\r\n");
       out.write("         \r\n");
      } else {
 
@@ -218,102 +209,62 @@ if(customerId != null){
       out.write("          \r\n");
       out.write("          <table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
-      out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Capacidade</td>\r\n");
-      out.write("                <td>Comentarios</td>\r\n");
-      out.write("                <td>Descrição</td>\r\n");
-      out.write("                <td>Ver</td>\r\n");
-      out.write("                \r\n");
+      out.write("                <td>ID do Projeto</td>\r\n");
+      out.write("                <td>Nome da Versão</td>\r\n");
+      out.write("                <td>Visibilidade</td>\r\n");
+      out.write("                <td>Status</td>\r\n");
+      out.write("                <td>Arquivo</td>\r\n");
+      out.write("                <td>Aprovar</td>\r\n");
+      out.write("                <td>Rejeitar</td>\r\n");
       out.write("            </tr>\r\n");
-        
-           for(int i = 0; i < suppliers.size(); i++) {
-                supplierDO supplier = (supplierDO)suppliers.elementAt(i);
+           for(int i = 0; i < versions.size(); i++) {
+                versionDO version = (versionDO)versions.elementAt(i);
+                String file = version.getFilepath();
 
       out.write("              <tr>\r\n");
       out.write("                   <td>");
-      out.print( supplier.getName() );
+      out.print( version.getProjectId() );
       out.write("</td>\r\n");
       out.write("                   <td>");
-      out.print( supplier.getCapacityId() );
+      out.print( version.getName() );
       out.write("</td>\r\n");
       out.write("                   <td>");
-      out.print( supplier.getComment() );
+      out.print( version.getVisibility() );
       out.write("</td>\r\n");
       out.write("                   <td>");
-      out.print( supplier.getDescription() );
+      out.print( version.getStatusId() );
       out.write("</td>\r\n");
       out.write("                   <td>\r\n");
-      out.write("                       <form action=\"./supplier2.jsp\" method=\"POST\">        \r\n");
-      out.write("                <input type=\"hidden\" name=\"indice\" value=\"");
-      out.print(i);
-      out.write("\"  />       \r\n");
-      out.write("                <input type=\"submit\" name=\"ver\" value=\"Ver\" />\r\n");
+      out.write("                       <form action=\"Files/");
+      out.print(file);
+      out.write("\" method=\"post\">\r\n");
+      out.write("                <input type=\"submit\" name=\"download\" value=\"Download\" />\r\n");
       out.write("                       </form> \r\n");
-      out.write("                   </td>               \r\n");
+      out.write("                   </td>\r\n");
+      out.write("\r\n");
       out.write("                   \r\n");
+      out.write("                   <td><form action=\"./approval-confirmation.jsp\" method=\"post\">\r\n");
+      out.write("             \r\n");
+      out.write("         <input type=\"hidden\" name=\"indice\" value=\"");
+      out.print(i);
+      out.write("\"  />             \r\n");
+      out.write("         <input type=\"submit\" name=\"aprovar\" value=\"Aprovar\" />\r\n");
+      out.write("      \r\n");
+      out.write("         </form></td>\r\n");
+      out.write("                <td><form action=\"./approval-confirmation.jsp\" method=\"post\">\r\n");
+      out.write("             \r\n");
+      out.write("         <input type=\"hidden\" name=\"indice\" value=\"");
+      out.print(i);
+      out.write("\"  />               \r\n");
+      out.write("         <input type=\"submit\" name=\"rejeitar\" value=\"Rejeitar\" />\r\n");
+      out.write("      \r\n");
+      out.write("         </form></td>\r\n");
       out.write("                </tr>        \r\n");
            } // for i      
 
       out.write("        </table>            \r\n");
      } // returned versions
      } // pesquisar
-       else if (null != request.getParameter ("excluir")){
-            int i = Integer.parseInt(request.getParameter("indice"));
-            transaction.supplier tn = new transaction.supplier();
-            supplierDO supplier = new supplierDO();
-            Vector vector = new Vector();
-            vector = (Vector) session.getAttribute("suppliers");
-            supplier = (supplierDO)vector.elementAt(i);
-            session.setAttribute("supplier",supplier);
-            
-        
-      out.write("\r\n");
-      out.write("         <h2>Você tem certeza que deseja excluir este fornecedor?</h2>\r\n");
-      out.write("             \r\n");
-      out.write("         <table BORDER=\"1\">\r\n");
-      out.write("             <tr>\r\n");
-      out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Capacidade</td>\r\n");
-      out.write("                <td>Comentarios</td>\r\n");
-      out.write("                <td>Descrição</td>                \r\n");
-      out.write("            </tr>\r\n");
-      out.write("            <tr>\r\n");
-      out.write("                   <td>");
-      out.print( supplier.getName() );
-      out.write("</td>\r\n");
-      out.write("                   <td>");
-      out.print( supplier.getCapacityId() );
-      out.write("</td>\r\n");
-      out.write("                   <td>");
-      out.print( supplier.getComment() );
-      out.write("</td>\r\n");
-      out.write("                   <td>");
-      out.print( supplier.getDescription() );
-      out.write("</td>\r\n");
-      out.write("                </tr>        \r\n");
-    
-
-      out.write("        </table>   \r\n");
-      out.write("          <form action=\"./supplier2.jsp\" method=\"POST\">        \r\n");
-      out.write("                            <input type=\"hidden\" name=\"indice\" value=\"");
-      out.print(i);
-      out.write("\"  />       \r\n");
-      out.write("                            <input type=\"submit\" name=\"ver\" value=\"Ver\" />\r\n");
-      out.write("                            <input type=\"submit\" name=\"excluir\" value=\"Excluir\" />\r\n");
-      out.write("                            <input type=\"submit\" name=\"voltarsup\" value=\"Voltar\" />\r\n");
-      out.write("          </form> \r\n");
-      out.write("\r\n");
-      out.write("            \r\n");
-      out.write("            ");
-
-    
-           
-       
-    
-    
-
-
-       }//excluir
 
       out.write("\r\n");
       out.write("\r\n");
@@ -353,7 +304,6 @@ if(customerId != null){
       out.write("</body>\r\n");
       out.write("\r\n");
       out.write("</html>\r\n");
-      out.write("\r\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

@@ -5,11 +5,13 @@
  */
 package project;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Arthur
  */
-public class BankInfoDO {
+public class BankInfoDO  implements Serializable{
     private int _id=-1;
     private int _supplier_id;
     private String _bank_number;

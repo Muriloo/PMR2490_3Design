@@ -64,11 +64,14 @@ public class supplierData {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
         sdf.format(dia);
         String day= sdf.format(dia);
-        if (address.getSupplier()==-1){
+        
+        if (address.getId()==-1){
+            System.out.println("----------------------------------------------------address.getId()==-1");
                  String sql = "insert into supplier_address (supplier_address_id, supplier_address_country, supplier_address_state, supplier_address_city,"
                  + " supplier_address_street, supplier_address_complement, supplier_address_postalcode, created_at, updated_at) "
                          + "values('"+address.getSupplier()+"','"+address.getCountry()+"','"+address.getState()+"','"+address.getCity()+"','"+address.getStreet()+"',"
                          + "'"+address.getComplement()+"','"+address.getPostalcode()+"','"+day+"','"+day+"')";
+                 System.out.println(sql);
                  Statement stmt = con.createStatement();
                  stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
                  ResultSet rs = stmt.getGeneratedKeys();
@@ -76,6 +79,7 @@ public class supplierData {
                         address.setId(rs.getInt(1));
                     }
         }else{
+            System.out.println("----------------------------------------------------address.getId()!=-1");
                  
                  String sqlA = "update supplier_address set supplier_address_country=?, supplier_address_state=?, supplier_address_city=?,"
                  + " supplier_address_street=?, supplier_address_complement=?, supplier_address_postalcode=?, updated_at=? where supplier_address_id=?";
@@ -100,7 +104,7 @@ public class supplierData {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
         sdf.format(dia);
         String day= sdf.format(dia);
-        if (contact.getSupplierId()==-1){
+        if (contact.getId()==-1){
                 String sql = "insert into contact (contact_supplier_id, contact_name, contact_position, contact_email,"
                  + " contact_phone, created_at, updated_at) values('"+contact.getSupplierId()+"','"+contact.getName()+"','"+contact.getPosition()+""
                         + "','"+contact.getEmail()+"','"+contact.getPhone()+"','"+day+"','"+day+"')";
@@ -132,7 +136,7 @@ public class supplierData {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
         sdf.format(dia);
         String day= sdf.format(dia);
-        if (bank.getSupplierId()==-1){
+        if (bank.getId()==-1){
                 String sql = "insert into bank_info (bank_info_supplier_id, bank_info_number, bank_info_agency, bank_info_account,"
                  + " bank_info_cpf_cnpj, created_at, updated_at) values('"+bank.getSupplierId()+"','"+bank.getBankNumber()+"','"+bank.getAgency()+"','"+bank.getAccount()+"','"+bank.getCnpjCpf()+"','"+day+"','"+day+"')";
                 Statement stmt = con.createStatement();
@@ -164,10 +168,9 @@ public class supplierData {
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
         sdf.format(dia);
         String day= sdf.format(dia);
-        
-        String sql = "update supplier set supplier_name=?, supplier_evaluation=?, "
-                + "supplier_capacity_id=?, supplier_comment=?, supplier_description=?, created_at=?, updated_at=? where id=?";
-        System.out.println("fez sql");
+        System.out.println("--------------------------------------supplierName"+supplier.getName());
+        String sql = "update supplier set supplier_name=?, supplier_evaluation=?,supplier_capacity_id=?, supplier_comment=?, supplier_description=?, updated_at=? where id=?";
+        System.out.println("fez sql:"+sql);
         PreparedStatement ps =con.prepareStatement(sql);
         System.out.println("prepara statement");
         ps.setString(1, supplier.getName());
@@ -176,8 +179,7 @@ public class supplierData {
         ps.setString(4, supplier.getComment());
         ps.setString(5, supplier.getDescription());
         ps.setString(6, day);
-        ps.setString(7, day);
-        ps.setInt(8, supplier.getId());
+        ps.setInt(7, supplier.getId());
         System.out.println("antes da query");
         ps.executeUpdate();
        

@@ -4,14 +4,14 @@
  * and open the template in the editor.
  */
 package project;
-
+import java.io.Serializable;
 /**
  *
  * @author Arthur
  */
-public class supplierAddressDO {
+public class supplierAddressDO implements Serializable{
     
-    private int _id;
+    private int _id=-1;
     private int _supplier;
     private String _country;
     private String _state;

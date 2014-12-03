@@ -5,16 +5,26 @@
  */
 package project;
 import java.util.Vector;
+import java.io.Serializable;
 /**
  *
  * @author Arthur
  */
-public class supplierDO {
+public class supplierDO implements Serializable{
     
-    private int _id;
+    private int _id =-1;
     private String _name;
     private double _evaluation; //decimal (2,1)
     private int _capacity_id;
+    private String _capacity;
+
+    public String getCapacity() {
+        return _capacity;
+    }
+
+    public void setCapacity(String _capacity) {
+        this._capacity = _capacity;
+    }
     private String _comment;
     private String _description;
     private Vector _bank_info;

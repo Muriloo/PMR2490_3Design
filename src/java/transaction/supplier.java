@@ -81,39 +81,50 @@ public class supplier {
        tr.begin();  
          supplierData sdata = new supplierData();
          Vector addresses = supplier.getAddress();
+         Vector addresses2 = new Vector();
          Vector contacts = supplier.getContactInfo();
+         Vector contacts2 = new Vector();
          Vector banks = supplier.getBankInfo();
+         Vector banks2 = new Vector();
          // verificação geral
          int Aid=sdata.include(supplier, tr);
-         supplier.setId(Aid);
+         
+         if(Integer.parseInt(supplier.getCapacity())!=1 && Integer.parseInt(supplier.getCapacity())!=2 && Integer.parseInt(supplier.getCapacity())!=3){
+             supplier.setId(-1);
+             return supplier;  
+         }
+         
          if (addresses != null){
-             System.out.println(addresses.size());
+             System.out.println("tamanho do endereço:"+addresses.size());
              for (int i=0;i<addresses.size();i++){
-                System.out.println("dentro do for iteração i="+i); 
                  supplierAddressDO address = (supplierAddressDO) addresses.elementAt(i);
+                 System.out.println("------------------------------------nome do endereço"+address.getCountry()+"/"+address.getId());
+                 address.setSupplier(supplier.getId());
                  Aid = sdata.insertAddress(address, tr);
                  address.setId(Aid);
-                 addresses.add(i,address);
+                 addresses2.add(i,address);
              }
-             supplier.setAddress(addresses);
+             supplier.setAddress(addresses2);
          }
          if (contacts != null){
              for (int i=0;i<contacts.size();i++){
                  contactInfoDO contact = (contactInfoDO) contacts.elementAt(i);
+                 contact.setSupplierId(supplier.getId());
                  Aid = sdata.insertContact(contact, tr);
                  contact.setId(Aid);
-                 contacts.add(i,contact);
+                 contacts2.add(i,contact);
              }
-             supplier.setContactInfo(contacts);
+             supplier.setContactInfo(contacts2);
          }
          if (banks != null){
              for (int i=0;i<banks.size();i++){
                  BankInfoDO bank = (BankInfoDO) banks.elementAt(i);
+                 bank.setSupplierId(supplier.getId());
                  Aid = sdata.insertBank(bank, tr);
                  bank.setId(Aid);
-                 banks.add(i,bank);
+                 banks2.add(i,bank);
              }
-             supplier.setBankInfo(banks);
+             supplier.setBankInfo(banks2);
          }
           
        tr.commit();

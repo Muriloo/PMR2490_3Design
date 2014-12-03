@@ -73,19 +73,17 @@ Such 3D!<br>
           <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Avaliação</td>
                 <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
                 <td>Ver</td>
-                <td>Excluir</td>
+                
             </tr>
 <%        
            for(int i = 0; i < suppliers.size(); i++) {
                 supplierDO supplier = (supplierDO)suppliers.elementAt(i);
 %>              <tr>
                    <td><%= supplier.getName() %></td>
-                   <td><%= supplier.getEval() %></td>
                    <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>
@@ -95,11 +93,7 @@ Such 3D!<br>
                 <input type="submit" name="ver" value="Ver" />
                        </form> 
                    </td>               
-                   <td>
-                       <form action="./supplierPage.jsp" method="post">
-                <input type="hidden" name="indice" value="<%=i%>"  />               
-                <input type="submit" name="excluir" value="Excluir" />
-                       </form></td>
+                   
                 </tr>        
 <%           } // for i      
 %>        </table>            
@@ -112,7 +106,7 @@ Such 3D!<br>
             Vector vector = new Vector();
             vector = (Vector) session.getAttribute("suppliers");
             supplier = (supplierDO)vector.elementAt(i);
-            session.setAttribute("remove",supplier);
+            session.setAttribute("supplier",supplier);
             
         %>
          <h2>Você tem certeza que deseja excluir este fornecedor?</h2>
@@ -120,14 +114,12 @@ Such 3D!<br>
          <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Avaliação</td>
                 <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>                
             </tr>
             <tr>
                    <td><%= supplier.getName() %></td>
-                   <td><%= supplier.getEval() %></td>
                    <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>

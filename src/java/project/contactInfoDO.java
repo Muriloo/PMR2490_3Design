@@ -5,12 +5,14 @@
  */
 package project;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Arthur
  */
-public class contactInfoDO {
-    private int _id;
+public class contactInfoDO  implements Serializable{
+    private int _id=-1;
     private int _supplier_id;
     private String _name;
     private String _position;

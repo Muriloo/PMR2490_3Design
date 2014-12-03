@@ -199,12 +199,13 @@ if(customerId != null){
     Vector contacts = new Vector();
     Vector banks = new Vector();
     Vector addresses = new Vector();
-    ArrayList<String> materials = new ArrayList<String> ();
+    ArrayList<String> materials = new ArrayList<String>();
     boolean erro = false;
     if(null != request.getParameter("indice")){
         // editar fornecedor específico
         
     Vector vector = new Vector();
+    
     vector = (Vector) session.getAttribute("suppliers");
     int i = Integer.parseInt(request.getParameter("indice"));
     System.out.println("INDICE="+i);
@@ -213,7 +214,7 @@ if(customerId != null){
     if (supplier == null){
         System.out.println("fornecedor nulo");
     }
-    }else if(null != request.getParameter("editar2")){
+    }else if(null != request.getParameter("editar2") && session.getAttribute("supplier")!=null){
     supplier = (supplierDO) session.getAttribute("supplier");
     contacts = supplier.getContactInfo();
     addresses = supplier.getAddress();
@@ -222,6 +223,7 @@ if(customerId != null){
     }else {
     /* inserir novo fornecedor: pegar os parâmetros-------------------------*/
     //gerais
+        if(session.getAttribute("supplier")==null) System.out.println("supplier nulo");
            if(request.getParameter("id") != null && request.getParameter("id").length() !=0)
                supplier.setId(Integer.parseInt(request.getParameter("id")));
                if(request.getParameter("name") != null) supplier.setName(request.getParameter("name"));
@@ -232,23 +234,14 @@ if(customerId != null){
                    erro = true;
                }
                System.out.println("supplier name: "+ supplier.getName());
-               if(request.getParameter("eval") != null){
-                   double eval = Double.parseDouble(request.getParameter("eval"));
-                   if(eval>10) eval = 10;
-                   else if (eval<0) eval =0;
-                   
-                   eval = eval*10;
-                   int eval2 = (int) eval;
-                   eval = eval2/10;
-                   supplier.setEval( eval );
-               }
                
-               if(request.getParameter("capacity") != null && (Integer.parseInt(request.getParameter("capacity")) == 1 || Integer.parseInt(request.getParameter("capacity")) == 2 || Integer.parseInt(request.getParameter("capacity")) == 3))
+               
+               if(request.getParameter("capacity") != null && (request.getParameter("capacity") == Integer.toString(1) || request.getParameter("capacity") == "2" || request.getParameter("capacity") == "3"))
                     supplier.setCapacityId(Integer.parseInt(request.getParameter("capacity")) );
                else{
                    erro = true;
                     
-      out.write(" Capacidade Inválida!");
+      out.write(" Capacidade Inv&aacutelida!");
 
                }
                if (request.getParameter("comment") != null)
@@ -283,7 +276,11 @@ if(customerId != null){
            if (contacts==null) System.out.println("contacts nulo");
            else{
            supplier.setContactInfo(contacts);
-           System.out.println("contacts ok medio");}
+           System.out.println("contacts ok medio");
+           }
+           System.out.println("contacts.length="+contacts.size());
+           
+           
     //bancos
            p=0;
            while(null != request.getParameter("bankNumber"+p) && request.getParameter("bankNumber"+p).length() != 0){
@@ -342,7 +339,7 @@ if(customerId != null){
             }
             if (materials==null) System.out.println("materials nulo");
             else supplier.setMaterials(materials.toArray());
-           
+           session.setAttribute("supplier", supplier);
            supplier sp = new supplier();
            System.out.println("vai inserir");
            if(erro){
@@ -358,7 +355,11 @@ if(customerId != null){
                 if(supplier2.getId() != -1){// fornecedor inserido
                 System.out.println("inserido");
                 supplier = supplier2;
-                
+                Vector supplierV = new Vector();
+                supplierV.add(0,supplier);
+                session.setAttribute("suppliers", supplierV);
+                   
+                response.sendRedirect("./supplier2.jsp?indice=0&ver=1&ok=1");  
                 
       out.write("\r\n");
       out.write("           Fornecedor inserido com sucesso!\r\n");
@@ -402,7 +403,6 @@ if(customerId != null){
       out.write("<table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
       out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Avaliação</td>\r\n");
       out.write("                <td>Capacidade</td>\r\n");
       out.write("                <td>Comentarios</td>\r\n");
       out.write("                <td>Descrição</td>\r\n");
@@ -413,11 +413,6 @@ if(customerId != null){
       out.write("                    <td>\r\n");
       out.write("                        <INPUT TYPE=\"text\" NAME=\"name\" value=\"");
       out.print( supplier.getName());
-      out.write("\">\r\n");
-      out.write("                    </td>\r\n");
-      out.write("                    <td>\r\n");
-      out.write("                       <INPUT TYPE=\"text\" NAME=\"eval\" value=\"");
-      out.print( supplier.getEval() );
       out.write("\">\r\n");
       out.write("                    </td>\r\n");
       out.write("                    <td>\r\n");
@@ -796,7 +791,7 @@ System.out.println("antes do if dos contatos!=null");
       out.print( supplier.getId());
       out.write("\" />\r\n");
       out.write("                <input type=\"submit\" name=\"voltarSI\" value=\"Voltar\" />\r\n");
-      out.write("                <input type=\"submit\" name=\"editar\" value=\"Enviar\" />\r\n");
+      out.write("                <!input type=\"submit\" name=\"editar\" value=\"Enviar\" />\r\n");
       out.write("</form>     \r\n");
       out.write("\r\n");
 
@@ -815,7 +810,6 @@ System.out.println("antes do if dos contatos!=null");
       out.write("<table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
       out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Avaliação</td>\r\n");
       out.write("                <td>Capacidade</td>\r\n");
       out.write("                <td>Comentarios</td>\r\n");
       out.write("                <td>Descrição</td>\r\n");
@@ -825,9 +819,6 @@ System.out.println("antes do if dos contatos!=null");
       out.write("              <tr>\r\n");
       out.write("                    <td>\r\n");
       out.write("                        <INPUT TYPE=\"text\" NAME=\"name\" >\r\n");
-      out.write("                    </td>\r\n");
-      out.write("                    <td>\r\n");
-      out.write("                       <INPUT TYPE=\"text\" NAME=\"eval\" >\r\n");
       out.write("                    </td>\r\n");
       out.write("                    <td>\r\n");
       out.write("                       <INPUT TYPE=\"text\" NAME=\"capacity\" >\r\n");
@@ -920,7 +911,7 @@ System.out.println("antes do if dos contatos!=null");
       out.write("<! --------------------------fecha materiais---------------------------------->\r\n");
       out.write("\r\n");
       out.write("                <input type=\"hidden\" name=\"inserir\" value=\"Inserir\" />\r\n");
-      out.write("                <input type=\"submit\" name=\"voltarSI\" value=\"Voltar\" />\r\n");
+      out.write("                <!input type=\"submit\" name=\"voltarSI\" value=\"Voltar\" />\r\n");
       out.write("                <input type=\"submit\" name=\"editar\" value=\"Enviar\" />\r\n");
       out.write("</form>     \r\n");
       out.write("\r\n");

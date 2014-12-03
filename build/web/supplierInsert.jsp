@@ -87,6 +87,7 @@ Such 3D!<br>
     }else {
     /* inserir novo fornecedor: pegar os parâmetros-------------------------*/
     //gerais
+        if(session.getAttribute("supplier")==null) System.out.println("supplier nulo");
            if(request.getParameter("id") != null && request.getParameter("id").length() !=0)
                supplier.setId(Integer.parseInt(request.getParameter("id")));
                if(request.getParameter("name") != null) supplier.setName(request.getParameter("name"));
@@ -95,22 +96,13 @@ Such 3D!<br>
                    erro = true;
                }
                System.out.println("supplier name: "+ supplier.getName());
-               if(request.getParameter("eval") != null){
-                   double eval = Double.parseDouble(request.getParameter("eval"));
-                   if(eval>10) eval = 10;
-                   else if (eval<0) eval =0;
-                   
-                   eval = eval*10;
-                   int eval2 = (int) eval;
-                   eval = eval2/10;
-                   supplier.setEval( eval );
-               }
                
-               if(request.getParameter("capacity") != null && (Integer.parseInt(request.getParameter("capacity")) == 1 || Integer.parseInt(request.getParameter("capacity")) == 2 || Integer.parseInt(request.getParameter("capacity")) == 3))
-                    supplier.setCapacityId(Integer.parseInt(request.getParameter("capacity")) );
+               
+               if(request.getParameter("capacity") != null)
+                    supplier.setCapacity(request.getParameter("capacity") );
                else{
                    erro = true;
-                    %> Capacidade Inválida!<%
+                    %> Capacidade Inv&aacutelida!<%
                }
                if (request.getParameter("comment") != null)
                     supplier.setComment(request.getParameter("comment"));
@@ -144,7 +136,11 @@ Such 3D!<br>
            if (contacts==null) System.out.println("contacts nulo");
            else{
            supplier.setContactInfo(contacts);
-           System.out.println("contacts ok medio");}
+           System.out.println("contacts ok medio");
+           }
+           System.out.println("contacts.length="+contacts.size());
+           
+           
     //bancos
            p=0;
            while(null != request.getParameter("bankNumber"+p) && request.getParameter("bankNumber"+p).length() != 0){
@@ -217,7 +213,7 @@ Such 3D!<br>
                 if(supplier2.getId() != -1){// fornecedor inserido
                 System.out.println("inserido");
                 supplier = supplier2;
-                
+                response.sendRedirect("./supplier2.jsp?indice=0&ver=1&ok=1");  
                 %>
            Fornecedor inserido com sucesso!
                 <%
@@ -252,7 +248,6 @@ Such 3D!<br>
 <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Avaliação</td>
                 <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
@@ -262,9 +257,6 @@ Such 3D!<br>
             <tr>
                     <td>
                         <INPUT TYPE="text" NAME="name" value="<%= supplier.getName()%>">
-                    </td>
-                    <td>
-                       <INPUT TYPE="text" NAME="eval" value="<%= supplier.getEval() %>">
                     </td>
                     <td>
                        <INPUT TYPE="text" NAME="capacity" value="<%= supplier.getCapacityId() %>">
@@ -512,7 +504,7 @@ Tabela de Materiais
 <! --------------------------fecha materiais---------------------------------->
                 <input type="hidden" name="id" value="<%= supplier.getId()%>" />
                 <input type="submit" name="voltarSI" value="Voltar" />
-                <input type="submit" name="editar" value="Enviar" />
+                <!input type="submit" name="editar" value="Enviar" />
 </form>     
 
 <%
@@ -530,7 +522,6 @@ Tabela de Materiais
 <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Avaliação</td>
                 <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
@@ -540,9 +531,6 @@ Tabela de Materiais
               <tr>
                     <td>
                         <INPUT TYPE="text" NAME="name" >
-                    </td>
-                    <td>
-                       <INPUT TYPE="text" NAME="eval" >
                     </td>
                     <td>
                        <INPUT TYPE="text" NAME="capacity" >
@@ -635,7 +623,7 @@ Tabela de Materiais
 <! --------------------------fecha materiais---------------------------------->
 
                 <input type="hidden" name="inserir" value="Inserir" />
-                <input type="submit" name="voltarSI" value="Voltar" />
+                <!input type="submit" name="voltarSI" value="Voltar" />
                 <input type="submit" name="editar" value="Enviar" />
 </form>     
 
