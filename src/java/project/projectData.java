@@ -94,7 +94,6 @@ public class projectData {
      }
      return pendingVersions;
   } // gets versions with "pending" status
-   
 
     public void uploadProject(projectDO project, versionDO version, ArrayList<ImageDO> images, Transacao tr) throws Exception{
         
@@ -150,7 +149,7 @@ public class projectData {
         
     }
     
-     public Vector getAllProjects(Transacao tr) throws Exception {
+    public Vector getAllProjects(Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "select * from project";
      PreparedStatement ps = con.prepareStatement(sql);
@@ -168,9 +167,7 @@ public class projectData {
         projetos.add(v);
      }
      return projetos;
-  } // gets versions with "pending" status
-    
-     
+  } // gets versions with "pending" status     
      
     public Vector getCartProjects(Vector items, Transacao tr) throws Exception {
     Connection con = tr.obterConexao();    
@@ -193,7 +190,32 @@ public class projectData {
      }
      return projetos;
   } // gets versions with "pending" status
-    
+
+    public Vector getProjectInfo(Transacao tr, String id) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from project as p inner join version as v on p.id = ? and p.id = v.version_project_id and p.deleted = 0 and v.version_visibility=1 and v.deleted = 0";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setString (1, id);
+     ResultSet rs = ps.executeQuery();
+     System.out.println("query executada");
+     Vector projetos = new Vector();
+     while (rs.next()) {
+         
+        projectInfoDO v = new projectInfoDO();
+
+        v.setId (rs.getInt("id"));
+        v.setName (rs.getString("project_name"));
+        v.setStatusId(rs.getInt("project_status_id"));
+        v.setPrice(rs.getInt("project_price"));
+        v.setDescription(rs.getString("project_description"));
+        v.setDetail(rs.getString("project_detail"));
+        v.setVersionName(rs.getString("version_name"));
+        v.setVersionFile(rs.getString("version_file"));
+        
+        projetos.add(v);
+     }
+     return projetos;   
+    }
 
     public void editProject(projectDO project, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();

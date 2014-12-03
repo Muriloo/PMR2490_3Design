@@ -12,7 +12,7 @@ import java.io.InputStream;
  * @author Arthur
  */
 
-public class projectDO {
+public class projectInfoDO {
     
     private int _id;
     private String _name;
@@ -20,18 +20,11 @@ public class projectDO {
     private String _detail;
     private int _status_id;
     private float _price;
-    
+    private String _version_name;
+    private String _version_file;
     private int _customerId;
 
-    public projectDO(String name, String description, String detail, float price,int id){
-        this.setId(id);
-        this.setName(name);
-        this.setDescription(description);
-        this.setDetail(detail);
-        this.setPrice(price);
-    }
-    
-    public projectDO(){        
+    public projectInfoDO(){        
     }
     
     
@@ -90,4 +83,20 @@ public float getPrice() {
   public void setPrice(float price) {
     _price = price;
   } // setPrice
-} // projectDO
+  
+  public String getVersionName() {
+     return _version_name;
+  } // getVersionName
+
+  public void setVersionName(String version_name) {
+    _version_name = version_name;
+  } // setVersionName
+  
+  public String getVersionFile() {
+     return _version_file;
+  } // getVersionName
+
+  public void setVersionFile(String version_file) {
+    _version_file = version_file;
+  } // setVersionName
+}

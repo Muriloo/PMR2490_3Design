@@ -53,7 +53,20 @@ public class ProjectTransactions {
      return null;
   } // pesquisar
 
-  
+public Vector getProjectInfo(String id) {
+     Transacao tr = new Transacao();
+     try {
+        tr.beginReadOnly();
+           projectData pdata = new projectData();
+           Vector v = pdata.getProjectInfo(tr, id);
+		 tr.commit();
+                 return v;
+     } catch(Exception e) {
+         System.out.println("erro ao pesquisar por todos os projetos");
+         e.printStackTrace();
+     }
+     return null;
+  } // pesquisar
 
 
 }//pendingProject

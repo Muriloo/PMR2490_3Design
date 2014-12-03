@@ -1,10 +1,8 @@
 <%-- 
-    Document   : pending-projects
+    Document   : Projects
     Created on : 18/11/2014, 15:48:09
-    Author     : Arthur
+    Author     : Marcel
 --%>
-
-
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,7 +26,6 @@ Such 3D!<br>
 </div>
 
 <div id="section">
-<h2>Projeto</h2>
         
 <!-------------Fim do Header--------------------------------------------------->
         
@@ -36,7 +33,7 @@ Such 3D!<br>
 <%@ page import="java.util.Vector" %>
 <%@ page import="utils.MetodosUteis" %>
 <%@ page import="transaction.ProjectTransactions" %>
-<%@ page import="project.projectDO" %>
+<%@ page import="project.projectInfoDO" %>
 <%@ page import="transaction.CommentTransactions" %>
 <%@ page import="comment.CommentDO" %>
 <%@ page import="transaction.UserTransactions" %>
@@ -91,13 +88,28 @@ Such 3D!<br>
              transaction.CommentTransactions commentTransaction = new transaction.CommentTransactions();
              Vector comments = commentTransaction.getComments(projectIdStr);
              session.setAttribute("vector",comments);
+             
+             transaction.ProjectTransactions Project = new transaction.ProjectTransactions();
+             Vector projectInfo = Project.getProjectInfo(projectIdStr);
+             session.setAttribute("vector",projectInfo);
+             
              transaction.UserTransactions userTransaction = new transaction.UserTransactions();
              Vector users = userTransaction.getUsers(comments);
              session.setAttribute("vector",users);
  %>       
- Projeto: <%=projectIdStr%><br>
-         Agora ao que importa, os comentários!
-         <hr style="border-color: #6ED4B8">
+<br>
+
+<%
+    projectInfoDO projectinfo = (projectInfoDO)projectInfo.elementAt(0);%> 
+    <h1> <%=projectinfo.getVersionName()%></h1> 
+    <h4>Preço <%=projectinfo.getPrice()%></h4>
+    <h4>Arquivo <%=projectinfo.getVersionFile()%></h4>
+    <h4>Descrição do projeto</h4> <%=projectinfo.getDescription()%>
+    <h4>Detalhes do projeto</h4> <%=projectinfo.getDetail()%>
+     
+         
+    <h4>Comentários</h4>
+        <hr style="border-color: #6ED4B8">
          <%for(int i = 0; i < comments.size() && i < show; i++){
              CommentDO comment = (CommentDO)comments.elementAt(i);
              ContatoDO user = (ContatoDO)users.elementAt(i);%>
@@ -130,6 +142,18 @@ Such 3D!<br>
          }
 }
 %>
+
+<tr>
+                    <td>Adicionar ao carrinho</td>
+                    <td><%if(customerId != null){%>
+                       <form action="./carrinho.jsp" method="post">  
+                        <input type="number" name="quantity" min="1" max="10000" value="1"  /> 
+                        <input type="hidden" name="projectId" value="<%=projectIdStr%>"  />             
+                        <input type="submit" name="adicionar" value="+" />
+
+                        </form><%}else{%>Necessário Logar!<%}%>
+                    </td>
+</tr>
 
 <!--------------------------Footer--------------------------------------------->
 
