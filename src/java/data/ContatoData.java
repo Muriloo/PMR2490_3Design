@@ -134,5 +134,17 @@ public class ContatoData {
      }
      return contatos;             
   } // buscar
-  
+   
+  public ContatoDO buscarUsernameInt(int customerId, Transacao tr) throws Exception {
+     Connection con = tr.obterConexao();
+     String sql = "select * from customer where id=?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1, customerId);
+     ResultSet rs = ps.executeQuery();
+     rs.next();
+     ContatoDO contato = new ContatoDO();
+     contato.setUsername(rs.getString("username"));
+     System.out.println("got " +  contato);
+     return contato;
+  } // pesquisa o username
 }

@@ -51,10 +51,10 @@ public class buscavenda {
          System.out.println("entra no try");
 	     tr.beginReadOnly();
            ContatoData cData = new ContatoData();
-           data.ContatoDO nome = cData.buscarNome(CustId, tr);
+           //data.ContatoDO nome = cData.buscarNome(CustId, tr);
 		 tr.commit();
                  System.out.println("buscavenda getCustName - comita");
-                 return nome;
+                 //return nome;
      } catch(Exception e) {
          System.out.println("erro ao pesquisar projeto do customer ");
          e.printStackTrace();
@@ -71,7 +71,7 @@ public class buscavenda {
          System.out.println("entra no try");
 	     tr.beginReadOnly();
            ContatoData cData = new ContatoData();
-           data.ContatoDO nome = cData.buscarUsername(CustId, tr);
+           data.ContatoDO nome = cData.buscarUsernameInt(CustId, tr);
 		 tr.commit();
                  System.out.println("buscavenda get CustUsername - comita");
                  return nome;
@@ -121,5 +121,21 @@ public class buscavenda {
      }
      return null;
   } // pesquisa vendas
-     
+    
+    public String VerifStatus(int statusId){
+        if(statusId == 1){ //
+            return "Aprovado";
+        }else{
+            if(statusId == 2){
+                return "Aguardando";
+            }else{
+                if(statusId == 3){
+                    return "Reprovado";
+                }else{
+                    return "Erro";
+                }
+            }
+        }
+    }// verifica status     
+ 
 }

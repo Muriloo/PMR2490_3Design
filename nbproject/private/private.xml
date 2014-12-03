@@ -3,29 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/query.jsp</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/form_sample.html</file>
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/WEB-INF/header.jsp</file>
-=======
-            <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/carrinho.jsp</file>
->>>>>>> RamoAlex2
-=======
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/supplierDO.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/projectData.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/BankInfoDO.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/supplierAddressDO.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/projectUpload.html</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/supplierForm.html</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/contactInfoDO.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/transaction/supplier.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/project/supplierData.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/pending-projects.jsp</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/src/java/transaction/pendingProject.java</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/index.html</file>
-            <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/approval-confirmation.jsp</file>
->>>>>>> RamoDoArthur
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/project/projectData.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/data/ContatoData.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/transaction/UploadProject.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/order/orderitemData.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/web/PaginaDoDesenvolvedor/verdesenvolvedor.jsp</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/data/ContatoDO.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/web/WEB-INF/header.jsp</file>
         </group>
     </open-files>
 </project-private>

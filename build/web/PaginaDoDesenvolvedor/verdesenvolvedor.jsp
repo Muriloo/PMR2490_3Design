@@ -30,7 +30,7 @@
                 <%@ page import="java.util.Vector" %>
                 <%@ page import="order.orderitemDO" %>
                 <%@ page import="transaction.buscavenda" %>
-                <%@ page import="order.projectDO" %>
+                <%@ page import="project.projectDO" %>
                 <%@ page import="data.ContatoData" %>
                 <%@ page import="data.ContatoDO" %>
         
@@ -40,7 +40,7 @@
                 
         <%  if (entra) {  
                 System.out.println("------entra no ver ----");
-                //int CustId = Integer.parseInt(request.getParameter("iddesenvolvedor"));
+                //      -------------- alterar CustId ----------------
                 int CustId = 1;
                 transaction.buscavenda bv = new transaction.buscavenda();
                 Vector venda = bv.getCustProject(CustId);
@@ -50,7 +50,7 @@
                     %>
                    
                     <h2>Projetos do Desenvolvedor</h2>
-                    Nenhum projeto encontrado :/
+                    Nenhum projeto encontrado.
 <%          } else {
          
             ContatoDO nome = bv.getCustUsername(CustId);
@@ -62,27 +62,23 @@
             <h2>Projetos do Desenvolvedor</h2>
             <table BORDER="1">
                     <tr>
-                    <td>ID do Projeto</td>
-                    <td>Nome do Projeto</td>
-                    <td>Descrição do Projeto</td>
-                    <td>Detalhes</td>
-                    <td>Pre&ccedil;o</td>
-                    <td>Status</td>
+                    <td><b>Nome do Projeto</b></td>
+                    <td><b>Descrição do Projeto</b></td>
+                    <td><b>Detalhes</b></td>
+                    <td><b>Pre&ccedil;o</b></td>
                     </tr>
                     
-<%                  for(int i = 0; i < venda.size(); i++) {
-                    projectDO projetos = (projectDO)venda.elementAt(i);
-                    //orderitemDO projetos = (orderitemDO)venda.elementAt(i);
-%>                  <tr>
-                    <td><%=projetos.getId() %></td> <!-- mudar:  getProject_id para getId -->
-                    <td><%=projetos.getName() %></td>
-                    <td><%=projetos.getDescription() %></td>
-                    <td><%=projetos.getDetail()%></td>
-                    <td><%=projetos.getPrice() %></td>
-                    <td><%=projetos.getStatus_id() %></td>
-                    </tr>        
+<%                  for(int j = 0; j < venda.size(); j++) {
+                        projectDO resultados = (projectDO)venda.elementAt(j);
+
+%>                      <tr>
+                            <td><a href="./project.jsp?projectId=<%=resultados.getId()%>"><%= resultados.getName()%></a></td>
+                            <td><%= resultados.getDescription() %></td>
+                            <td><%= resultados.getDetail()%></td>
+                            <td><%= resultados.getPrice() %></td>
+                        </tr>        
 <%                  } // for i      
-%>                  </table>            
+%>              </table>            
 <%     } // returned
      } // pesquisar
 %>

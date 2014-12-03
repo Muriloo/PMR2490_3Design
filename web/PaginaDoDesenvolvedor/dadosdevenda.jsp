@@ -45,8 +45,7 @@
                                
                 if(venda == null || venda.size() == 0){
                     %>
-                    N&atilde; o h&aacute projetos dispon
-                    &iacute;veis para visualiza&ccedil; &atilde; o
+                    N&atilde;o h&aacute projetos dispon&iacute;veis para visualiza&ccedil;&atilde;o
                     <%
                 }
                 else{
@@ -54,14 +53,12 @@
                     <!----------------- busca projetos no customer ------------>                  
                         <table BORDER="1">
                             <tr>
-                                <td></td>
-                                <td>Thumbnail</td>
-                                <td>Nome do Projeto</td>
-                                <td>Quantidade Vendida</td>
-                                <td>Preço Total</td>
-                                <td>Status</td>
-                                <td>Visibilidade</td>
-                                <td>Visualisar</td>
+                                <td><b>Thumbnail</b></td>
+                                <td><b>Nome do Projeto</b></td>
+                                <td><b>Quantidade Vendida</b></td>
+                                <td><b>Preço Total</b></td>
+                                <td><b>Status</b></td>
+                                <td><b>Visualisar</b></td>
                             </tr>
 <%                    
                         for(int i = 0; i < venda.size(); i++){     //imprime order
@@ -70,26 +67,10 @@
                             <tr>
                                 <td>Imagem</td>
                                 <td><%=resultados.getProject_name()%></td>
-                                <td><%=resultados.getSoldQuantity()%></td>
-                                <td><%=resultados.getSoldTotal()%></td>
-<%
-                                String status;
-                                if( resultados.getProject_status_id() == 1 ){
-                                    status = "aprovado";
-                                }
-                                if( resultados.getProject_status_id() == 2 ){
-                                    status = "Aguardando";
-                                }
-                                if( resultados.getProject_status_id() == 3){
-                                    status = "Reprovado";
-                                }
-                                if( resultados.getProject_status_id() != 1 && resultados.getProject_status_id() != 2 && resultados.getProject_status_id() != 3){
-                                    status = "Erro"                                            
-                                }
-%>
-                                <td> status </td>
-                                <td>Visibilidade(?)</td>
-                                <td> Colocar o link aqui</td>
+                                <td><%=resultados.getSold_quantity()%></td>
+                                <td><%=resultados.getSold_total()%></td>
+                                <td><%=bv.VerifStatus(resultados.getProject_status_id())%></td>
+                                <td><a href="./user/<%= resultados.getProject_name() %>.jsp">Ver</a></td>
                                     
                             </tr>
 <%
