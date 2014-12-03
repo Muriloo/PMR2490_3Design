@@ -34,11 +34,15 @@
                 
                 <% 
                 if (user_permission_id != null) {
-                    if(user_permission_id.equals("2")) { 
-                     response.sendRedirect("./paginadomoderador.jsp");%>Pagina do Moderador</a><br>
-                    <%    }
+                    if(user_permission_id.equals("2")) { %>
+                    <a href="./paginadomoderador.jsp">Pagina do Moderador</a><br>               
+                    <a href="./projects.jsp">Lista de Todos Projetos</a><br>               
+                    <a href="./user-list.jsp">Listar usuários</a><br>
+                    <a href="./PaginaDoDesenvolvedor/uploadprojeto.jsp">Subir Projeto</a>
+                     
+                     <%    }
                     else { %>             
-                    <a href="./pending-projects.jsp">Projetos Pendentes</a><br> 
+                     
                     <a href="./projects.jsp">Lista de Todos Projetos</a><br>               
                     <a href="./user-list.jsp">Listar usuários</a><br>
                     <a href="./PaginaDoDesenvolvedor/uploadprojeto.jsp">Subir Projeto</a>
