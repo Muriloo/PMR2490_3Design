@@ -11,6 +11,7 @@
 
 <html>
     <head>
+        
         <link rel="stylesheet" type="text/css" href="view.css" media="all">
         <link rel="stylesheet" type="text/css" href="index.css" media="all">
         <script type="text/javascript" src="view.js"></script>
@@ -23,17 +24,28 @@
     <body>
         <!conteudo HTML para gerar o formulário. gerado automaticamente no site http://www.phpform.org>
         <%@include file="WEB-INF/header.jsp" %>
+        
+    
         <div id="page">
             <div id="nav">
                 Coisa 3D<br>
                 Mais uma coisa 3D<br>
                 Such 3D!<br> 
-                <a href="./pending-projects.jsp">Projetos Pendentes</a><br> 
-                <a href="./projects.jsp">Lista de Todos Projetos</a><br>               
-                <a href="./user-list.jsp">Listar usuários</a><br>
-                <a href="./PaginaDoDesenvolvedor/uploadprojeto.jsp">Subir Projeto</a>
+                
+                <% 
+                if (user_permission_id != null) {
+                    if(user_permission_id.equals("2")) { 
+                     response.sendRedirect("./paginadomoderador.jsp");%>Pagina do Moderador</a><br>
+                    <%    }
+                    else { %>             
+                    <a href="./pending-projects.jsp">Projetos Pendentes</a><br> 
+                    <a href="./projects.jsp">Lista de Todos Projetos</a><br>               
+                    <a href="./user-list.jsp">Listar usuários</a><br>
+                    <a href="./PaginaDoDesenvolvedor/uploadprojeto.jsp">Subir Projeto</a>
+                     <% } 
+                }%>   
             </div>
-
+               
             <div id="section">
                 <h2>Olha qu&atilde;o 3D est&aacute; isso!</h2>
                 <p>
@@ -45,8 +57,10 @@
                     e se voce ler direito, da pra ver que as letras est&atilde;o 3D tamb&eacute;m.
                     Se voce for ainda mais inteligente vai perceber que a ultima frase &eacute; zuera
                 </p>
-            </div>
+            </div>                
         </div>
+            
          <%@include file="WEB-INF/footer.jsp" %>
     </body>
+    
 </html>
