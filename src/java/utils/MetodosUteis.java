@@ -16,7 +16,7 @@ import java.io.File;
 public class MetodosUteis {
     
     private static final int magicNumbers_jpg = 0xffd8ffe0;
-    private static final int magicNumbers_png = 0x89504E47;
+    //private static final int magicNumbers_png = 0x89504E47;
     
     public static boolean isEmpty(String s) {
      if (null == s)
@@ -50,18 +50,17 @@ public class MetodosUteis {
         int magicNumbers = magicNumbers_jpg;
         if (extension == "jpg"){
             magicNumbers = magicNumbers_jpg;
-        } else if (extension == "png"){
-            magicNumbers = magicNumbers_png;
-        }
-        System.out.print("checking file format:" + magicNumbers_jpg);
+        } 
+        System.out.print("checking file format:" + magicNumbers);
+        
         
         DataInputStream ins = new DataInputStream(new BufferedInputStream(new FileInputStream(filename)));
         try {
             if (ins.readInt() == magicNumbers) {
-                //System.out.print("true;");
+                System.out.print("true;");
                 return true;
             } else {
-                //System.out.print("false----");
+                System.out.print("false----");
                 return false;
             }
         } finally {

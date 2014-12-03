@@ -32,6 +32,9 @@ public class UploadProject {
               return false;
         }
         
+        //generating thumbnails
+        
+        
                
          // efetuando a transacao
         Transacao tr = new Transacao();
