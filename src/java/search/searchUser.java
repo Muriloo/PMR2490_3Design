@@ -12,26 +12,22 @@ import java.util.*;
  *
  * @author Marcel
  */
-public class searchProject {
+public class searchUser {
     
   public Vector getResults(String keyword) {
      
     Transacao tr = new Transacao();
-    System.out.println("cria transação");
     try {
-         
-        System.out.println("entra no try");
         tr.beginReadOnly();
-        searchProjectData pdata = new searchProjectData();
-        Vector v = pdata.searchProject(tr, keyword);
+        searchUserData pdata = new searchUserData();
+        Vector v = pdata.searchUser(tr, keyword);
         tr.commit();
         return v;
      } catch(Exception e) {
-         System.out.println("erro ao pesquisar por projetos pendentes");
-         e.printStackTrace();
+        e.printStackTrace();
      }
      return null;
   } // pesquisar
 
 
-}//searchProject
+}//searchSupplier
