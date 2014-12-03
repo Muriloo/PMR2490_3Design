@@ -43,7 +43,7 @@
         <%
                 }
             }
-            if (is_printable) {
+            if (is_printable && request.getParameter("id") != null) {
         %>
         <div id="form_container">
 
@@ -60,11 +60,16 @@
                     <input type="hidden" name="campo_controle" />
                 </form>
                 <br><br>
-                <%}%>
+                
                 <br><br>
                 <a href="http://localhost:8080/3Design/project.jsp?projectId=<%= request.getParameter("id")%>"> Voltar </a>
             </ul>
-
+        </div>
+        <%} else {%>
+        <h2>Nenhum projeto selecionado!</h2>
+        <a href="./../index.jsp">Voltar</a>
+        <%}%>
+        
             <%@include file="../WEB-INF/footer.jsp" %>    
 
 
