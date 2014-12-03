@@ -64,7 +64,7 @@ Such 3D!<br>
        if (null != request.getParameter ("excluir")) {
         System.out.println("vai excluir");
         transaction.supplier tn = new transaction.supplier();
-        supplierDO supplier = (supplierDO) session.getAttribute("remove");
+        supplierDO supplier = (supplierDO) session.getAttribute("supplier");
         if (supplier == null){
             System.out.println("fornecedor nulo");
         }
@@ -99,7 +99,7 @@ Such 3D!<br>
     int i = Integer.parseInt(request.getParameter("indice"));
     System.out.println("INDICE="+i);
     supplier = (supplierDO)vector.elementAt(i);
-    session.setAttribute("remove",supplier);
+    session.setAttribute("supplier",supplier);
     System.out.println("supplier");
     if (supplier == null){
         System.out.println("fornecedor nulo");

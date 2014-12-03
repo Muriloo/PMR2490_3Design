@@ -10,7 +10,7 @@ package project;
  * @author Arthur
  */
 public class BankInfoDO {
-    private int _id;
+    private int _id=-1;
     private int _supplier_id;
     private String _bank_number;
     private String _agency;

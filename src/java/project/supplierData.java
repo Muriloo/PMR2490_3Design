@@ -21,8 +21,128 @@ import java.sql.Statement;
  * @author Arthur
  */
 public class supplierData {
+    
+    public int insertAddress(supplierAddressDO address, Transacao tr) throws Exception{
+        Connection con = tr.obterConexao();
+        Date dia = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(dia);
+        String day= sdf.format(dia);
+        if (address.getSupplier()==-1){
+                 String sql = "insert into supplier_address (supplier_address_id, supplier_address_country, supplier_address_state, supplier_address_city,"
+                 + " supplier_address_street, supplier_address_complement, supplier_address_postalcode, created_at, updated_at) "
+                         + "values('"+address.getSupplier()+"','"+address.getCountry()+"','"+address.getState()+"','"+address.getCity()+"','"+address.getStreet()+"',"
+                         + "'"+address.getComplement()+"','"+address.getPostalcode()+"','"+day+"','"+day+"')";
+                 Statement stmt = con.createStatement();
+                 stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+                 ResultSet rs = stmt.getGeneratedKeys();
+                    if ( rs.next() ){
+                        address.setId(rs.getInt(1));
+                    }
+        }else{
+                 
+                 String sqlA = "update supplier_address set supplier_address_country=?, supplier_address_state=?, supplier_address_city=?,"
+                 + " supplier_address_street=?, supplier_address_complement=?, supplier_address_postalcode=?, updated_at=? where supplier_address_id=?";
+                 PreparedStatement psA = con.prepareStatement(sqlA);
+                 psA.setString(1,address.getCountry());
+                 psA.setString(2,address.getState());
+                 psA.setString(3,address.getCity());
+                 psA.setString(4,address.getStreet());
+                 psA.setString(5,address.getComplement());
+                 psA.setString(6,address.getPostalcode());
+                 psA.setString(7, day);
+                 psA.setInt (8, address.getSupplier());
+                 psA.executeUpdate();
+             }
+        
+        return address.getId();
+    }
+        
+    public int insertContact(contactInfoDO contact, Transacao tr) throws Exception{
+        Connection con = tr.obterConexao();
+        Date dia = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(dia);
+        String day= sdf.format(dia);
+        if (contact.getSupplierId()==-1){
+                String sql = "insert into contact (contact_supplier_id, contact_name, contact_position, contact_email,"
+                 + " contact_phone, created_at, updated_at) values('"+contact.getSupplierId()+"','"+contact.getName()+"','"+contact.getPosition()+""
+                        + "','"+contact.getEmail()+"','"+contact.getPhone()+"','"+day+"','"+day+"')";
+                 
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+                ResultSet rs = stmt.getGeneratedKeys();
+                if ( rs.next() ){
+                    contact.setId(rs.getInt(1));
+                }
+        }else{ 
+                String sqlC = "update contact set contact_name=?, contact_position=?, contact_email=?,"
+                + " contact_phone=?, updated_at=? where contact_supplier_id=?";
+                PreparedStatement psC = con.prepareStatement(sqlC);
+                psC.setString(1,contact.getName());
+                psC.setString(2,contact.getPosition());
+                psC.setString(3,contact.getEmail());
+                psC.setString(4,contact.getPhone());
+                psC.setString (5, day);
+                psC.setInt(6,contact.getSupplierId());
+                psC.executeUpdate();
+        }
+        return contact.getId();
+    }
+    
+    public int insertBank(BankInfoDO bank, Transacao tr) throws Exception{
+        Connection con = tr.obterConexao();
+        Date dia = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(dia);
+        String day= sdf.format(dia);
+        if (bank.getSupplierId()==-1){
+                String sql = "insert into bank_info (bank_info_supplier_id, bank_info_number, bank_info_agency, bank_info_account,"
+                 + " bank_info_cpf_cnpj, created_at, updated_at) values('"+bank.getSupplierId()+"','"+bank.getBankNumber()+"','"+bank.getAgency()+"','"+bank.getAccount()+"','"+bank.getCnpjCpf()+"','"+day+"','"+day+"')";
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
+                ResultSet rs = stmt.getGeneratedKeys();
+                if ( rs.next() ){
+                    bank.setId(rs.getInt(1));
+                }
+        }else{
+             String sqlB = "update bank_info set bank_info_number=?, bank_info_agency=?, bank_info_account=?,"
+             + " bank_info_cpf_cnpj=?, updated_at=? where bank_info_supplier_id=?";
+             PreparedStatement psB = con.prepareStatement(sqlB);
+             psB.setString(1,bank.getBankNumber());
+             psB.setString(2,bank.getAgency());
+             psB.setString(3,bank.getAccount());
+             psB.setString(4,bank.getCnpjCpf());
+             psB.setString (5, day);
+             psB.setInt(6,bank.getSupplierId());
+             psB.executeUpdate();
+        }
+        
+        return bank.getId();
+    }
+    public void update(supplierDO supplier, Transacao tr) throws Exception{
+        Connection con = tr.obterConexao();
+        Date dia = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(dia);
+        String day= sdf.format(dia);
+        String sql = "update supplier set supplier_name=?, supplier_evaluation=?, "
+                + "supplier_capacity_id=?, supplier_comment=?, supplier_description=?, created_at=?, updated_at=? where id=?";
+        PreparedStatement ps =con.prepareStatement(sql);
+        ps.setString(1, supplier.getName());
+        ps.setDouble(2, supplier.getEval());
+        ps.setInt(3, supplier.getCapacityId());
+        ps.setString(4, supplier.getComment());
+        ps.setString(5, supplier.getDescription());
+        ps.setString(6, day);
+        ps.setString(7, day);
+        ps.setInt(8, supplier.getId());
+        ps.executeUpdate();
+       
+     System.out.println("executou a query de update");
+    }
 
-    public void include(supplierDO supplier, Transacao tr) throws Exception {
+    public int include(supplierDO supplier, Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      Date dia = new Date();
      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
@@ -36,78 +156,9 @@ public class supplierData {
      ResultSet rs = stmt.getGeneratedKeys();
      if ( rs.next() ){
          supplier.setId(rs.getInt(1));
-         int result;
-         //address
-     Vector addresses = supplier.getAddress();
-     if (null != addresses){
-         System.out.println("----------------------------------------addresses != null");
-         for (int i=0;i<addresses.size();i++){
-             String sqlA = "insert into supplier_address (supplier_address_id, supplier_address_country, supplier_address_state, supplier_address_city,"
-             + " supplier_address_street, supplier_address_complement, supplier_address_postalcode, created_at, updated_at) values(?,?,?,?,?,?,?,?,?)";
-             supplierAddressDO address = (supplierAddressDO) addresses.elementAt(i);
-             address.setSupplier(supplier.getId());
-             PreparedStatement psA = con.prepareStatement(sqlA);
-             System.out.println("supplierID:"+supplier.getId());
-             psA.setInt(1,supplier.getId());
-             psA.setString(2,address.getCountry());
-             psA.setString(3,address.getState());
-             psA.setString(4,address.getCity());
-             psA.setString(5,address.getStreet());
-             psA.setString(6,address.getComplement());
-             psA.setString(7,address.getPostalcode());
-             psA.setString (8, day);
-             psA.setString (9, day);
-             result = psA.executeUpdate();
-         }
-     }//address
-     //contacts
-     Vector contacts = supplier.getContactInfo();
-     if (null != contacts){
-         System.out.println("----------------------------------------contacts != null");
-         for (int i=0;i<contacts.size();i++){
-             String sqlC = "insert into contact (contact_supplier_id, contact_name, contact_position, contact_email,"
-             + " contact_phone, created_at, updated_at) values(?,?,?,?,?,?,?)";
-             contactInfoDO contact = (contactInfoDO) contacts.elementAt(i);
-             contact.setSupplierId(supplier.getId());
-             PreparedStatement psC = con.prepareStatement(sqlC);
-             psC.setInt(1,supplier.getId());
-             psC.setString(2,contact.getName());
-             psC.setString(3,contact.getPosition());
-             psC.setString(4,contact.getEmail());
-             psC.setString(5,contact.getPhone());
-             psC.setString (6, day);
-             psC.setString (7, day);
-             result = psC.executeUpdate();
-         }
-     }//contacts
-     //banks
-     Vector banks = supplier.getBankInfo();
-      
-     if (null != banks){
-         System.out.println("----------------------------------------banks != null");
-         for (int i=0;i<banks.size();i++){
-             String sqlB = "insert into bank_info (bank_info_supplier_id, bank_info_number, bank_info_agency, bank_info_account,"
-             + " bank_info_cpf_cnpj, created_at, updated_at) values(?,?,?,?,?,?,?)";
-             BankInfoDO bank = (BankInfoDO) banks.elementAt(i);
-             bank.setSupplierId(supplier.getId());
-             PreparedStatement psB = con.prepareStatement(sqlB);
-             psB.setInt(1,supplier.getId());
-             psB.setString(2,bank.getBankNumber());
-             psB.setString(3,bank.getAgency());
-             psB.setString(4,bank.getAccount());
-             psB.setString(5,bank.getCnpjCpf());
-             psB.setString (6, day);
-             psB.setString (7, day);
-             result = psB.executeUpdate();
-             System.out.println("----------------------------------------query banks");
-         }
-     }//banks
-     
-     System.out.println("executou a query de inserção");
-     
      }
-     
-     
+     System.out.println("executou a query de inserção");
+     return supplier.getId();
  } // include supplier
     
     
