@@ -219,7 +219,6 @@ if(customerId != null){
       out.write("          <table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
       out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Capacidade</td>\r\n");
       out.write("                <td>Comentarios</td>\r\n");
       out.write("                <td>Descrição</td>\r\n");
       out.write("                <td>Ver</td>\r\n");
@@ -232,9 +231,6 @@ if(customerId != null){
       out.write("              <tr>\r\n");
       out.write("                   <td>");
       out.print( supplier.getName() );
-      out.write("</td>\r\n");
-      out.write("                   <td>");
-      out.print( supplier.getCapacityId() );
       out.write("</td>\r\n");
       out.write("                   <td>");
       out.print( supplier.getComment() );
@@ -250,6 +246,7 @@ if(customerId != null){
       out.write("                <input type=\"submit\" name=\"ver\" value=\"Ver\" />\r\n");
       out.write("                       </form> \r\n");
       out.write("                   </td>               \r\n");
+      out.write("                  \r\n");
       out.write("                   \r\n");
       out.write("                </tr>        \r\n");
            } // for i      
@@ -273,16 +270,12 @@ if(customerId != null){
       out.write("         <table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
       out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Capacidade</td>\r\n");
       out.write("                <td>Comentarios</td>\r\n");
       out.write("                <td>Descrição</td>                \r\n");
       out.write("            </tr>\r\n");
       out.write("            <tr>\r\n");
       out.write("                   <td>");
       out.print( supplier.getName() );
-      out.write("</td>\r\n");
-      out.write("                   <td>");
-      out.print( supplier.getCapacityId() );
       out.write("</td>\r\n");
       out.write("                   <td>");
       out.print( supplier.getComment() );

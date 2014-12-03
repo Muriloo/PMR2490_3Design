@@ -89,10 +89,6 @@ public class supplier {
          // verificação geral
          int Aid=sdata.include(supplier, tr);
          
-         if(Integer.parseInt(supplier.getCapacity())!=1 && Integer.parseInt(supplier.getCapacity())!=2 && Integer.parseInt(supplier.getCapacity())!=3){
-             supplier.setId(-1);
-             return supplier;  
-         }
          
          if (addresses != null){
              System.out.println("tamanho do endereço:"+addresses.size());

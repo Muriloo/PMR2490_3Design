@@ -98,12 +98,7 @@ Such 3D!<br>
                System.out.println("supplier name: "+ supplier.getName());
                
                
-               if(request.getParameter("capacity") != null)
-                    supplier.setCapacity(request.getParameter("capacity") );
-               else{
-                   erro = true;
-                    %> Capacidade Inv&aacutelida!<%
-               }
+               
                if (request.getParameter("comment") != null)
                     supplier.setComment(request.getParameter("comment"));
                else supplier.setComment("");
@@ -248,7 +243,6 @@ Such 3D!<br>
 <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
                 
@@ -257,9 +251,6 @@ Such 3D!<br>
             <tr>
                     <td>
                         <INPUT TYPE="text" NAME="name" value="<%= supplier.getName()%>">
-                    </td>
-                    <td>
-                       <INPUT TYPE="text" NAME="capacity" value="<%= supplier.getCapacityId() %>">
                     </td>
                     <td>
                         <INPUT TYPE="text" NAME="comment" value="<%= supplier.getComment() %>">
@@ -522,7 +513,6 @@ Tabela de Materiais
 <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
                 
@@ -531,9 +521,6 @@ Tabela de Materiais
               <tr>
                     <td>
                         <INPUT TYPE="text" NAME="name" >
-                    </td>
-                    <td>
-                       <INPUT TYPE="text" NAME="capacity" >
                     </td>
                     <td>
                         <INPUT TYPE="text" NAME="comment" >

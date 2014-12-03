@@ -236,14 +236,7 @@ if(customerId != null){
                System.out.println("supplier name: "+ supplier.getName());
                
                
-               if(request.getParameter("capacity") != null && (request.getParameter("capacity") == Integer.toString(1) || request.getParameter("capacity") == "2" || request.getParameter("capacity") == "3"))
-                    supplier.setCapacityId(Integer.parseInt(request.getParameter("capacity")) );
-               else{
-                   erro = true;
-                    
-      out.write(" Capacidade Inv&aacutelida!");
-
-               }
+               
                if (request.getParameter("comment") != null)
                     supplier.setComment(request.getParameter("comment"));
                else supplier.setComment("");
@@ -355,10 +348,6 @@ if(customerId != null){
                 if(supplier2.getId() != -1){// fornecedor inserido
                 System.out.println("inserido");
                 supplier = supplier2;
-                Vector supplierV = new Vector();
-                supplierV.add(0,supplier);
-                session.setAttribute("suppliers", supplierV);
-                   
                 response.sendRedirect("./supplier2.jsp?indice=0&ver=1&ok=1");  
                 
       out.write("\r\n");
@@ -403,7 +392,6 @@ if(customerId != null){
       out.write("<table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
       out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Capacidade</td>\r\n");
       out.write("                <td>Comentarios</td>\r\n");
       out.write("                <td>Descrição</td>\r\n");
       out.write("                \r\n");
@@ -413,11 +401,6 @@ if(customerId != null){
       out.write("                    <td>\r\n");
       out.write("                        <INPUT TYPE=\"text\" NAME=\"name\" value=\"");
       out.print( supplier.getName());
-      out.write("\">\r\n");
-      out.write("                    </td>\r\n");
-      out.write("                    <td>\r\n");
-      out.write("                       <INPUT TYPE=\"text\" NAME=\"capacity\" value=\"");
-      out.print( supplier.getCapacityId() );
       out.write("\">\r\n");
       out.write("                    </td>\r\n");
       out.write("                    <td>\r\n");
@@ -810,7 +793,6 @@ System.out.println("antes do if dos contatos!=null");
       out.write("<table BORDER=\"1\">\r\n");
       out.write("             <tr>\r\n");
       out.write("                <td>Nome</td>\r\n");
-      out.write("                <td>Capacidade</td>\r\n");
       out.write("                <td>Comentarios</td>\r\n");
       out.write("                <td>Descrição</td>\r\n");
       out.write("                \r\n");
@@ -819,9 +801,6 @@ System.out.println("antes do if dos contatos!=null");
       out.write("              <tr>\r\n");
       out.write("                    <td>\r\n");
       out.write("                        <INPUT TYPE=\"text\" NAME=\"name\" >\r\n");
-      out.write("                    </td>\r\n");
-      out.write("                    <td>\r\n");
-      out.write("                       <INPUT TYPE=\"text\" NAME=\"capacity\" >\r\n");
       out.write("                    </td>\r\n");
       out.write("                    <td>\r\n");
       out.write("                        <INPUT TYPE=\"text\" NAME=\"comment\" >\r\n");

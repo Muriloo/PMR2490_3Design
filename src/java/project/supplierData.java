@@ -169,17 +169,15 @@ public class supplierData {
         sdf.format(dia);
         String day= sdf.format(dia);
         System.out.println("--------------------------------------supplierName"+supplier.getName());
-        String sql = "update supplier set supplier_name=?, supplier_evaluation=?,supplier_capacity_id=?, supplier_comment=?, supplier_description=?, updated_at=? where id=?";
+        String sql = "update supplier set supplier_name=?, supplier_comment=?, supplier_description=?, updated_at=? where id=?";
         System.out.println("fez sql:"+sql);
         PreparedStatement ps =con.prepareStatement(sql);
         System.out.println("prepara statement");
         ps.setString(1, supplier.getName());
-        ps.setDouble(2, supplier.getEval());
-        ps.setInt(3, supplier.getCapacityId());
-        ps.setString(4, supplier.getComment());
-        ps.setString(5, supplier.getDescription());
-        ps.setString(6, day);
-        ps.setInt(7, supplier.getId());
+        ps.setString(2, supplier.getComment());
+        ps.setString(3, supplier.getDescription());
+        ps.setString(4, day);
+        ps.setInt(5, supplier.getId());
         System.out.println("antes da query");
         ps.executeUpdate();
        
@@ -192,9 +190,9 @@ public class supplierData {
      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
      sdf.format(dia);
      String day= sdf.format(dia);
-     System.out.println("supplier_evaluation:"+supplier.getEval());
-     String sql = "insert into supplier (supplier_name, supplier_evaluation, supplier_capacity_id, supplier_comment, supplier_description, created_at, updated_at)"
-             + " values ('"+supplier.getName()+"', "+supplier.getEval()+", "+supplier.getCapacityId()+", '"+supplier.getComment()+"', '"+supplier.getDescription()+"', '"+day+"', '"+day+"');";
+     
+     String sql = "insert into supplier (supplier_name, supplier_comment, supplier_description, created_at, updated_at)"
+             + " values ('"+supplier.getName()+"', '"+supplier.getComment()+"', '"+supplier.getDescription()+"', '"+day+"', '"+day+"');";
      System.out.println(sql);
      Statement stmt = con.createStatement();
      stmt.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
@@ -233,8 +231,6 @@ public class supplierData {
         supplierDO s = new supplierDO();
         s.setId (rs.getInt("id"));
         s.setName (rs.getString("supplier_name"));
-        s.setEval(rs.getDouble("supplier_evaluation"));
-        s.setCapacityId(rs.getInt("supplier_capacity_id"));
         s.setComment(rs.getString("supplier_comment"));
         s.setDescription(rs.getString("supplier_description"));
         System.out.println("ID fornecedor="+s.getId());

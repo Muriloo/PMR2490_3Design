@@ -123,7 +123,6 @@ Such 3D!<br>
              <tr>
                 <td>Nome</td>
                 <td>Avaliação</td>
-                <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
                 
@@ -133,7 +132,6 @@ Such 3D!<br>
 %>              <tr>
                    <td><%= supplier.getName() %></td>
                    <td><%= supplier.getEval() %></td>
-                   <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>
                    
@@ -279,7 +277,6 @@ Tabela de Materiais
              <tr>
                 <td>Nome</td>
                 <td>Avaliação</td>
-                <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
                 <td>Contatos</td>
@@ -292,7 +289,6 @@ Tabela de Materiais
 %>              <tr>
                    <td><%= supplier.getName() %></td>
                    <td><%= supplier.getEval() %></td>
-                   <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>
                    <td>

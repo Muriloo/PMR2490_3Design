@@ -73,7 +73,6 @@ Such 3D!<br>
           <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>
                 <td>Ver</td>
@@ -84,7 +83,6 @@ Such 3D!<br>
                 supplierDO supplier = (supplierDO)suppliers.elementAt(i);
 %>              <tr>
                    <td><%= supplier.getName() %></td>
-                   <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>
                    <td>
@@ -93,6 +91,7 @@ Such 3D!<br>
                 <input type="submit" name="ver" value="Ver" />
                        </form> 
                    </td>               
+                  
                    
                 </tr>        
 <%           } // for i      
@@ -114,13 +113,11 @@ Such 3D!<br>
          <table BORDER="1">
              <tr>
                 <td>Nome</td>
-                <td>Capacidade</td>
                 <td>Comentarios</td>
                 <td>Descrição</td>                
             </tr>
             <tr>
                    <td><%= supplier.getName() %></td>
-                   <td><%= supplier.getCapacityId() %></td>
                    <td><%= supplier.getComment() %></td>
                    <td><%= supplier.getDescription() %></td>
                 </tr>        
