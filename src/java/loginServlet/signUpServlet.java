@@ -56,6 +56,7 @@ public class signUpServlet extends HttpServlet {
                 contato.setEmail(email);
                 contato.setSenha(senha);
                 contato.setPais(pais);
+                contato.setUserpermissionid(1);//permissao de usuario
 
                 if (tn.buscarEmail(email) || tn.buscarUsername(username)) {
                     RequestDispatcher rd = getServletContext().getRequestDispatcher("/signUp.jsp");

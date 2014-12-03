@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/query.jsp</file>
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/form_sample.html</file>
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/WEB-INF/header.jsp</file>
@@ -26,6 +27,18 @@
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/index.html</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/approval-confirmation.jsp</file>
 >>>>>>> RamoDoArthur
+=======
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/DeletarUsuario.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/EditarProjeto.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/user/userDATA.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoDesenvolvedor/remocaoprojeto.jsp</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/user/userDO.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/project/projectData.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/project/projectDO.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoModerador/remocaoprojeto.jsp</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/DeletarProjeto.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoModerador/removerusuario.jsp</file>
+>>>>>>> RamoRodrigoY
         </group>
     </open-files>
 </project-private>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : remocaoprojeto
-    Created on : 20/11/2014, 15:43:01
-    Author     : PFA
+    Created on : 02/12/2014, 00:02:14
+    Author     : RodrigoY
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,7 +17,8 @@
 <!--------------------Header--------------------------------------------------->
         <%@include file="../WEB-INF/header.jsp" %>    
 <!-------------Fim do Header--------------------------------------------------->
-        <% boolean is_printable = true;
+        <%            boolean is_printable = true;
+
             if (request.getParameter("campo_controle") != null) {
                 String id = request.getParameter("id");
 
@@ -43,14 +44,14 @@
         <%
                 }
             }
-            if (is_printable && request.getParameter("id") != null) {
+            if (is_printable) {
+
         %>
         <div id="form_container">
 
             <h1><a>Página de exclusão de projeto</a></h1>
 
-            <div class="form_description">
-
+            <div class="form_description">		
                 <p>Você deseja realmente excluir este projeto?</p>
             </div>	
             <ul >
@@ -60,18 +61,14 @@
                     <input type="hidden" name="campo_controle" />
                 </form>
                 <br><br>
-                
+                <%}%>
                 <br><br>
                 <a href="http://localhost:8080/3Design/project.jsp?projectId=<%= request.getParameter("id")%>"> Voltar </a>
             </ul>
-        </div>
-        <%} else {%>
-        <h2>Nenhum projeto selecionado!</h2>
-        <a href="./../index.jsp">Voltar</a>
-        <%}%>
-        
+
             <%@include file="../WEB-INF/footer.jsp" %>    
 
 
     </body>
 </html>
+
