@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             <file>file:/C:/Users/Edson%20Yuji%20Tsuzuke/Documents/NetBeansProjects/3Design/web/pending-projects.jsp</file>
             <file>file:/C:/Users/Edson%20Yuji%20Tsuzuke/Documents/NetBeansProjects/3Design/web/blank.jsp</file>
@@ -51,6 +52,22 @@
             <file>file:/C:/Users/Eliza/PMR2490_3Design/3Design/web/projects.jsp</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/supplierInsert.jsp</file>
 >>>>>>> master
+=======
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/project/projectData.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/data/ContatoData.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/transaction/UploadProject.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/order/orderitemData.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/web/PaginaDoDesenvolvedor/verdesenvolvedor.jsp</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/src/java/data/ContatoDO.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/3Design/web/WEB-INF/header.jsp</file>
+=======
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/PMR2490_3Design/web/PaginaDoDesenvolvedor/testeMurilo.jsp</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/PMR2490_3Design/web/Transacao.java</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/PMR2490_3Design/web/index.html</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/PMR2490_3Design/web/PaginaDoDesenvolvedor/SalesData.html</file>
+            <file>file:/C:/Users/Eduardo%20Seiti/Documents/NetBeans-3Design/PMR2490_3Design/PMR2490_3Design/web/PaginaDoDesenvolvedor/SalesData.jsp</file>
+>>>>>>> 4d8ca8d204aeeff8d2655ea2717c4f1a898d70a9
+>>>>>>> RamodaMari
         </group>
     </open-files>
 </project-private>
