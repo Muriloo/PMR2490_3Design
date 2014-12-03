@@ -31,6 +31,10 @@ public class projectDO {
         this.setImages(images);
     }
     
+    public projectDO(String name, Integer id){
+        this.setName(name);
+    }
+    
     public int getCustomerId() {
         return _customerId;
     }

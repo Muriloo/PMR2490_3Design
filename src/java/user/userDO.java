@@ -12,6 +12,33 @@ package user;
 public class userDO {
     private int _id;
     private String _name;
+    private String _lastname;
+    private String _username;
+
+    public String getUsername() {
+        return _username;
+    }
+
+    public void setUsername(String _username) {
+        this._username = _username;
+    }
+
+    public String getLastname() {
+        return _lastname;
+    }
+
+    public void setLastname(String _lastname) {
+        this._lastname = _lastname;
+    }
+
+    public String getCountry() {
+        return _country;
+    }
+
+    public void setCountry(String _country) {
+        this._country = _country;
+    }
+    private String _country;
     private String _email;
 
     public userDO(){}

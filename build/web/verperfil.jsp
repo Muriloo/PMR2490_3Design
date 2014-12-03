@@ -1,92 +1,125 @@
 <%-- 
-    Document   : blank
-    Created on : 19/11/2014, 12:59:32
-    Author     : Arthur
+    Document   : Perfil
+    Created on : 18/11/2014, 15:48:09
+    Author     : Rodrigo & Caue
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pagina do Perfil</title>
         <link rel="stylesheet" type="text/css" href="index.css" media="all">
     </head>
     <body>
-        
-<!--------------------Header--------------------------------------------------->
-        
-        <div style="height:90px;margin:0px;background-color: #6ED4B8">
-<div id="header" style="vertical-align: top;height:80px">
-    <a href="index.html">
-        <img src="images/Logo2.bmp" alt="3Design" style="width:250px;height:80px;float: left">
-    </a>
-    <div style="float:right;">
-    <a class="header" href="teste.jsp">Sign Up</a>
-    <span style="letter-spacing:14px;"> |</span>
-    <a class="header" href="index.html">Log In </a>
-    <span style="letter-spacing:14px;"> |</span>
-    <a href="index.html">
-        <img src="images/Carrinho.bmp" alt="3Design" style="width:40px;height:40px;position:relative;top:12px">
-    </a>
-    </div>
-    <div style="display:inline;text-align: center">
-    <br>
-    <form>
-        <input type="search" name="firstname" placeholder="Search" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" size="50">
-        <input type="submit" value="" style="background:url(images/lupa.bmp) no-repeat;width: 30px;height: 30px;position:relative;left:-42px;top: 6px" />
-    </form>
-    </div>
-</div>
-</div>
 
-<div id="page">
-<div id="nav">
-Coisa 3D<br>
-Mais uma coisa 3D<br>
-Such 3D!<br>
-</div>
+        <!--------------------Header--------------------------------------------------->
+        <%@include file="WEB-INF/header.jsp" %>
 
-<div id="section">
-<h2>Perfil: </h2>
-        
-<!-------------Fim do Header--------------------------------------------------->
+        <div id="page">
+            <div id="nav">
+                Coisa 3D<br>
+                Mais uma coisa 3D<br>
+                Such 3D!<br>
+            </div>
 
+            <div id="section">
 
-                     <!código da página>
+                <!-------------Fim do Header--------------------------------------------------->
 
-                     
-                     
-<!--------------------------Footer--------------------------------------------->
+                <%@ page import="java.util.Vector" %>
+                <%@ page import="utils.MetodosUteis" %>
+                <%@ page import="data.ContatoDO" %>
+                <%@ page import="user.userDO" %>
+                <%@ page import="project.projectDO" %>
 
-</div>
-</div>
-    
-<div style="height:160px;margin: 0px auto;display: block;background-color:#6ED4B8;clear:both;">
-<div id="footer">
-    <table id="bottomlinks">
-        <tbody>
-            <tr>
-                <td style="vertical-align: top;width:800px">
-                    <h3>Modo de Pagamento</h3>
-                    <a href="https://pagseguro.uol.com.br/" target="_blank">
-                        <img src="images/pagseguro.bmp" alt="pagseguro" style="width:100px;height:30px">
-                    </a>
-                </td>
-                <td style="vertical-align: top">
-                    <h3>Contato</h3>
-                    <h5>Email: contato@3design.com</h5>
-                    <h5>Telefone: +55 11 99975-6644</h5>
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</div>    
-    
-<!-------------------Fim do Footer--------------------------------------------->
+                <!------------pega o projeto do BD--------------------------------------------->
+                <% if (customerId == null) {
+                    %> Por favor fazer Login. 
+                <%
+                    } else {
+                
+                
+                String customerIdStr = request.getParameter("id");
 
-</body>
+                    transaction.VerPerfil Perfil = new transaction.VerPerfil();
+                    Vector pInfo = Perfil.getCustomerInfo(customerIdStr);
+                    session.setAttribute("vector", pInfo);
+
+                    transaction.VerPerfil Perfil2 = new transaction.VerPerfil();
+                    Vector pInfo2 = Perfil2.getCustomerProjectInfo(customerIdStr);
+                    session.setAttribute("vector", pInfo2);
+
+                    userDO user = (userDO) pInfo.elementAt(0);%>
+                <h1> Perfil: <%=user.getName()%></h1> 
+                <table><tr><td>Nome:</td> <td><%=user.getName()%> <%=user.getLastname()%></td></tr>
+                    <tr><td>País:</td> <td><%=user.getCountry()%></td> </tr>
+                </table>
+                <br>
+                <%
+                    if ((pInfo2 == null) || (pInfo2.size() == 0)) {
+                        // avisar usuario que nao ha' contatos com este nome
+                %>
+                Projetos encontrados: Nenhum.
+
+                <%
+                } //if nenhum resultado 
+                else {
+                %> 
+                <table><tr><td>Projetos:</td></tr>
+                    <%          for (int i = 0; i < pInfo2.size(); i++) {
+                            projectDO project = (projectDO) pInfo2.elementAt(i);
+
+                    %>
+                    <tr><td><a href="./project.jsp?projectId=<%=project.getId()%>"><%= project.getName()%></a></td></tr>
+                            <%           } // for i      
+                            %>
+                </table>
+                <%
+                    } //searchproject
+                %>
+
+                <!--------------------------Botões--------------------------------------------->              
+
+                <br><br>
+                <%if (customerId == null) {
+                    } else if (Integer.parseInt(customerId) == user.getId()) {
+                %>
+                <div style="width:400px;">
+                    <div style="float: left; width: 130px"> 
+                        <form id="thisone">
+                            <a href="./PaginaDoUsuário/editarperfil.jsp?id=<%=customerIdStr%>">Editar Perfil</a>
+                        </form>
+                    </div>
+                    <div style="float: right; width: 225px"> 
+                        <form id="thistoo">
+                            <a href="./PaginaDoUsuário/removerperfil.jsp?id=<%=customerIdStr%>">Remover Perfil</a>
+                        </form>
+                    </div>
+                </div>
+                <%
+    } else if (Integer.parseInt(user_permission_id) == 2) {%>
+                <div> 
+                    <form>
+                        <a href="./PaginaDoModerador/removerusuario.jsp?id=<%=customerIdStr%>">Remover Projeto</a>
+                    </form>
+                </div>
+                <%
+                    }
+                %>
+                <%
+                    }
+                %>
+                <!--------------------------Footer--------------------------------------------->
+
+            </div>
+        </div>
+
+        <%@include file="WEB-INF/footer.jsp" %>    
+        <!-------------------Fim do Footer--------------------------------------------->
+
+    </body>
 
 </html>

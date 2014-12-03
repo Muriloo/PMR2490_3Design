@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/DeletarUsuario.java</file>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/EditarProjeto.java</file>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/user/userDATA.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/WEB-INF/header.jsp</file>
             <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoDesenvolvedor/remocaoprojeto.jsp</file>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/user/userDO.java</file>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/project/projectData.java</file>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/project/projectDO.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoUsuário/editarperfil.jsp</file>
             <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoModerador/remocaoprojeto.jsp</file>
-            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/src/java/transaction/DeletarProjeto.java</file>
+            <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoDesenvolvedor/editarprojeto.jsp</file>
             <file>file:/C:/Users/Yuji/Documents/NetBeansProjects/3Design/3Design/web/PaginaDoModerador/removerusuario.jsp</file>
         </group>
     </open-files>
