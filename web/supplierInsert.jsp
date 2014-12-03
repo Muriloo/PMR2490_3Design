@@ -63,12 +63,13 @@ Such 3D!<br>
     Vector contacts = new Vector();
     Vector banks = new Vector();
     Vector addresses = new Vector();
-    ArrayList<String> materials = new ArrayList<String> ();
+    ArrayList<String> materials = new ArrayList<String>();
     boolean erro = false;
     if(null != request.getParameter("indice")){
         // editar fornecedor específico
         
     Vector vector = new Vector();
+    
     vector = (Vector) session.getAttribute("suppliers");
     int i = Integer.parseInt(request.getParameter("indice"));
     System.out.println("INDICE="+i);
@@ -77,7 +78,7 @@ Such 3D!<br>
     if (supplier == null){
         System.out.println("fornecedor nulo");
     }
-    }else if(null != request.getParameter("editar2")){
+    }else if(null != request.getParameter("editar2") && session.getAttribute("supplier")!=null){
     supplier = (supplierDO) session.getAttribute("supplier");
     contacts = supplier.getContactInfo();
     addresses = supplier.getAddress();
@@ -90,7 +91,7 @@ Such 3D!<br>
                supplier.setId(Integer.parseInt(request.getParameter("id")));
                if(request.getParameter("name") != null) supplier.setName(request.getParameter("name"));
                else {
-                   %> Nome inválido!<%
+                   %> Nome de Fornecedor inválido!<%
                    erro = true;
                }
                System.out.println("supplier name: "+ supplier.getName());
@@ -102,28 +103,41 @@ Such 3D!<br>
                    eval = eval*10;
                    int eval2 = (int) eval;
                    eval = eval2/10;
+                   supplier.setEval( eval );
                }
-               supplier.setEval( eval );
-               supplier.setCapacityId(Integer.parseInt(request.getParameter("capacity")) );
-               supplier.setComment(request.getParameter("comment"));
-               supplier.setDescription(request.getParameter("description"));
+               
+               if(request.getParameter("capacity") != null && (Integer.parseInt(request.getParameter("capacity")) == 1 || Integer.parseInt(request.getParameter("capacity")) == 2 || Integer.parseInt(request.getParameter("capacity")) == 3))
+                    supplier.setCapacityId(Integer.parseInt(request.getParameter("capacity")) );
+               else{
+                   erro = true;
+                    %> Capacidade Inválida!<%
+               }
+               if (request.getParameter("comment") != null)
+                    supplier.setComment(request.getParameter("comment"));
+               else supplier.setComment("");
+               if (request.getParameter("description") != null )
+                    supplier.setDescription(request.getParameter("description"));
+               else supplier.setDescription("");
                System.out.println("parametros ok");
            
     //contatos
            
-           int p=0;
-           String name = request.getParameter("contactName"+p);
-           System.out.println("contactName "+name+" size "+name.length());
-           
+           int p=0;      
            while(null != request.getParameter("contactName"+p) && request.getParameter("contactName"+p).length() != 0){
                contactInfoDO contact = new contactInfoDO();
                if(null != request.getParameter("contactId"+p) && request.getParameter("contactId"+p).length() != 0)
                     contact.setId(Integer.parseInt(request.getParameter("contactId"+p)));
                System.out.println("entrei no contacts "+request.getParameter("contactName"+p));
                contact.setName(request.getParameter("contactName"+p));
-               contact.setPosition(request.getParameter("contactPosition"+p));
-               contact.setEmail(request.getParameter("contactEmail"+p));
-               contact.setPhone(request.getParameter("contactPhone"+p));
+               if(request.getParameter("contactPosition"+p) !=null)
+                    contact.setPosition(request.getParameter("contactPosition"+p));
+               else contact.setPosition("");
+               if(request.getParameter("contactEmail"+p) != null)
+                    contact.setEmail(request.getParameter("contactEmail"+p));
+               else contact.setEmail("");
+               if(request.getParameter("contactPhone"+p) != null)
+                    contact.setPhone(request.getParameter("contactPhone"+p));
+               else contact.setPhone("");
                contacts.add(contact);
                p++;
            }
@@ -138,9 +152,15 @@ Such 3D!<br>
                if(null != request.getParameter("bankId"+p) && request.getParameter("bankId"+p).length() != 0)
                     bank.setId(Integer.parseInt(request.getParameter("bankId"+p)));
                bank.setBankNumber(request.getParameter("bankNumber"+p));
-               bank.setAgency(request.getParameter("bankAgency"+p));
-               bank.setAccount(request.getParameter("bankAccount"+p));
-               bank.setCnpjCpf(request.getParameter("bankCnpjCpf"+p));
+               if(request.getParameter("bankAgency"+p)!=null)
+                    bank.setAgency(request.getParameter("bankAgency"+p));
+               else bank.setAgency("");
+               if(request.getParameter("bankAccount"+p)!=null)
+                    bank.setAccount(request.getParameter("bankAccount"+p));
+               else bank.setAccount("");
+               if(request.getParameter("bankCnpjCpf"+p)!=null)
+                    bank.setCnpjCpf(request.getParameter("bankCnpjCpf"+p));
+               else bank.setCnpjCpf("");
                banks.add(bank);
                p++;
            }
@@ -154,11 +174,21 @@ Such 3D!<br>
                if(null != request.getParameter("addressId"+p) && request.getParameter("addressId"+p).length() != 0)
                     address.setId(Integer.parseInt(request.getParameter("addressId"+p)));
                address.setCountry(request.getParameter("addressCountry"+p));
-               address.setState(request.getParameter("addressState"+p));
-               address.setCity(request.getParameter("addressCity"+p));
-               address.setStreet(request.getParameter("addressStreet"+p));
-               address.setComplement(request.getParameter("addressComplement"+p));
-               address.setPostalcode(request.getParameter("addressPostalcode"+p));
+               if(request.getParameter("addressState"+p)!=null)
+                    address.setState(request.getParameter("addressState"+p));
+               else address.setState("");
+               if(request.getParameter("addressCity"+p)!=null)
+                    address.setCity(request.getParameter("addressCity"+p));
+               else address.setCity("");
+               if(request.getParameter("addressStreet"+p)!=null)
+                    address.setStreet(request.getParameter("addressStreet"+p));
+               else address.setStreet("");
+               if(request.getParameter("addressComplement"+p)!=null)
+                    address.setComplement(request.getParameter("addressComplement"+p));
+               else address.setComplement("");
+               if(request.getParameter("addressPostalcode"+p)!=null)
+                    address.setPostalcode(request.getParameter("addressPostalcode"+p));
+               else address.setPostalcode("");
                addresses.add(address);
                p++;
            }
@@ -173,10 +203,16 @@ Such 3D!<br>
             }
             if (materials==null) System.out.println("materials nulo");
             else supplier.setMaterials(materials.toArray());
-           
+           session.setAttribute("supplier", supplier);
            supplier sp = new supplier();
            System.out.println("vai inserir");
-           if(null != request.getParameter("inserir")){
+           if(erro){
+               %>
+               Erro no formul&aacuterio!
+               <%
+           }else {
+               
+                if(null != request.getParameter("inserir")){
                 supplierDO supplier2 = sp.include(supplier);
                 if(supplier2.getId() != -1){// fornecedor inserido
                 System.out.println("inserido");
@@ -207,7 +243,7 @@ Such 3D!<br>
                 <%
             }//erro na edição
            }//editar
-           
+           } //erro no formulario
        } // novo fornecedor
 %>        
 

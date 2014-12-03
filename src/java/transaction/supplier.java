@@ -16,13 +16,21 @@ public class supplier {
     public supplierDO update (supplierDO supplier) throws Exception {
        Transacao tr = new Transacao(); 
        try{ 
+            System.out.println("1entra no try");
             supplierData sdata = new supplierData();
+            System.out.println("2 data");
             Vector addresses = supplier.getAddress();
+            System.out.println("3.getAddress");
             Vector contacts = supplier.getContactInfo();
+                    System.out.println("4.getContact info");
             Vector banks = supplier.getBankInfo();
-            int Aid=sdata.include(supplier, tr);
-            supplier.setId(Aid);
+            System.out.println("5get bank info");
+            int Aid = supplier.getId();
+            System.out.println("6get ID");
+            sdata.update(supplier, tr);
+            System.out.println("7fez update");
             if (addresses != null){
+                
                 for (int i=0;i<addresses.size();i++){
                 supplierAddressDO address = (supplierAddressDO) addresses.elementAt(i);
                 Aid = sdata.insertAddress(address, tr);
@@ -47,13 +55,16 @@ public class supplier {
                  bank.setId(Aid);
                  banks.add(i,bank);
              }
+              System.out.println("antes de bank");
              supplier.setBankInfo(banks);
          }
-          
+          System.out.println("antes de commitar");
        tr.commit();
+       System.out.println("pois de commitar");
        return supplier;
        
      } catch(Exception e) {
+             System.out.println("cai no catch");
          tr.rollback();
          System.out.println("erro ao editar " + supplier.getName());
          e.printStackTrace();
@@ -65,16 +76,20 @@ public class supplier {
     
     public supplierDO include (supplierDO supplier) throws Exception {
        Transacao tr = new Transacao(); 
+       
        try{ 
-       tr.begin();
+       tr.begin();  
          supplierData sdata = new supplierData();
          Vector addresses = supplier.getAddress();
          Vector contacts = supplier.getContactInfo();
          Vector banks = supplier.getBankInfo();
+         // verificação geral
          int Aid=sdata.include(supplier, tr);
          supplier.setId(Aid);
          if (addresses != null){
+             System.out.println(addresses.size());
              for (int i=0;i<addresses.size();i++){
+                System.out.println("dentro do for iteração i="+i); 
                  supplierAddressDO address = (supplierAddressDO) addresses.elementAt(i);
                  Aid = sdata.insertAddress(address, tr);
                  address.setId(Aid);
@@ -105,6 +120,7 @@ public class supplier {
        return supplier;
        
      } catch(Exception e) {
+         System.out.println("cai no catch");
          tr.rollback();
          System.out.println("erro ao incluir " + supplier.getName());
          e.printStackTrace();

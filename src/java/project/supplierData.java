@@ -22,6 +22,42 @@ import java.sql.Statement;
  */
 public class supplierData {
     
+    public void insertMaterial(supplierDO supplier, Transacao tr) throws Exception{
+        Connection con = tr.obterConexao();
+        Date dia = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(dia);
+        String day= sdf.format(dia);
+        ArrayList<String> materials = new ArrayList<String> ();
+        Object[] materials2 = supplier.getMaterials();
+        for(int i=0; i<materials2.length;i++){
+            String mat =(String) materials2[i];
+            String sql = "select * from material where material_name = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, mat);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                int matId = rs.getInt("id");
+                String sql2 = "select * from supplier_material_relation where material_name = ?";
+                PreparedStatement ps2 = con.prepareStatement(sql2);
+                ps2.setString(1, mat);
+                ResultSet rs2 = ps2.executeQuery();
+                if(!rs2.next()){
+                    String sql3 = "insert into supplier_material_relation set supplier_id=?, material_id=?";
+                    PreparedStatement ps3 = con.prepareStatement(sql3);
+                    ps3.setInt(1,supplier.getId());
+                    ps3.setInt(2,rs.getInt("id"));
+                    ps3.executeUpdate();
+                }else{
+                    String sql3 = "insert into material set material_name=?";
+                    PreparedStatement ps3 = con.prepareStatement(sql3);
+                    ps3.setString(2,mat);
+                    ps3.executeUpdate();
+                }
+            }
+        }
+    }
+    
     public int insertAddress(supplierAddressDO address, Transacao tr) throws Exception{
         Connection con = tr.obterConexao();
         Date dia = new Date();
@@ -121,14 +157,19 @@ public class supplierData {
         return bank.getId();
     }
     public void update(supplierDO supplier, Transacao tr) throws Exception{
+        System.out.println("entra no update");
         Connection con = tr.obterConexao();
+        System.out.println("cria conexão");
         Date dia = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
         sdf.format(dia);
         String day= sdf.format(dia);
+        
         String sql = "update supplier set supplier_name=?, supplier_evaluation=?, "
                 + "supplier_capacity_id=?, supplier_comment=?, supplier_description=?, created_at=?, updated_at=? where id=?";
+        System.out.println("fez sql");
         PreparedStatement ps =con.prepareStatement(sql);
+        System.out.println("prepara statement");
         ps.setString(1, supplier.getName());
         ps.setDouble(2, supplier.getEval());
         ps.setInt(3, supplier.getCapacityId());
@@ -137,6 +178,7 @@ public class supplierData {
         ps.setString(6, day);
         ps.setString(7, day);
         ps.setInt(8, supplier.getId());
+        System.out.println("antes da query");
         ps.executeUpdate();
        
      System.out.println("executou a query de update");
@@ -148,6 +190,7 @@ public class supplierData {
      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
      sdf.format(dia);
      String day= sdf.format(dia);
+     System.out.println("supplier_evaluation:"+supplier.getEval());
      String sql = "insert into supplier (supplier_name, supplier_evaluation, supplier_capacity_id, supplier_comment, supplier_description, created_at, updated_at)"
              + " values ('"+supplier.getName()+"', "+supplier.getEval()+", "+supplier.getCapacityId()+", '"+supplier.getComment()+"', '"+supplier.getDescription()+"', '"+day+"', '"+day+"');";
      System.out.println(sql);
