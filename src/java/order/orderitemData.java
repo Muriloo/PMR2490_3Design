@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Vector;
 import utils.Transacao;
-//import project.projectDO;
+import project.projectDO;
 
 
 
@@ -37,7 +37,7 @@ public class orderitemData {
             p.setId (rs.getInt("id"));
             p.setName (rs.getString("project_name"));
             p.setDescription (rs.getString("project_description"));
-            p.setStatus_id (rs.getInt("project_status_id"));
+            //p.setStatus_id (rs.getInt("project_status_id"));
             p.setDetail (rs.getString("project_detail"));
             p.setPrice (rs.getFloat("project_price"));
             //orderitemDO p = new orderitemDO();

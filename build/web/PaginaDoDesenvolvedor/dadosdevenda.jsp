@@ -35,7 +35,6 @@
             
        <!--------------verifica se o usuário está logado-------------->
             <%
-            
             if(customerId != null){
                 int CustId = Integer.parseInt(customerId);
                 
@@ -46,7 +45,8 @@
                                
                 if(venda == null || venda.size() == 0){
                     %>
-                    Nenhuma venda encontrada.
+                    N&atilde; o h&aacute projetos dispon
+                    &iacute;veis para visualiza&ccedil; &atilde; o
                     <%
                 }
                 else{
@@ -63,16 +63,16 @@
                                 <td>Visibilidade</td>
                                 <td>Visualisar</td>
                             </tr>
-                        <%                    
+<%                    
                         for(int i = 0; i < venda.size(); i++){     //imprime order
                             dadosdevendaDO resultados = (dadosdevendaDO)venda.elementAt(i);                  
-                            %>
+%>
                             <tr>
                                 <td>Imagem</td>
                                 <td><%=resultados.getProject_name()%></td>
                                 <td><%=resultados.getSoldQuantity()%></td>
                                 <td><%=resultados.getSoldTotal()%></td>
-                                <%
+<%
                                 String status;
                                 if( resultados.getProject_status_id() == 1 ){
                                     status = "aprovado";
@@ -83,16 +83,18 @@
                                 if( resultados.getProject_status_id() == 3){
                                     status = "Reprovado";
                                 }
-                                else {
+                                if( resultados.getProject_status_id() != 1 && resultados.getProject_status_id() != 2 && resultados.getProject_status_id() != 3){
                                     status = "Erro"                                            
                                 }
-                                %>
-                                <td><% status %></td>
+%>
+                                <td> status </td>
                                 <td>Visibilidade(?)</td>
                                 <td> Colocar o link aqui</td>
                                     
                             </tr>
-                            }                          
+<%
+                            } // imprime order
+%>                         
                             </table>
                     <%                     
                    }// else venda
