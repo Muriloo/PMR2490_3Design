@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
+import user.*;
 import utils.Transacao;
 import java.text.SimpleDateFormat;
 
@@ -118,12 +119,30 @@ public class projectData {
     
     public void editProject(projectDO project, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();
-        String sql = "update project set project_name = ?, project_description = ?, project_price = ? where id = ?;";
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+        sdf.format(now);
+        String now_str = sdf.format(now);
+        String sql = "update project set project_name = ?, project_description = ?, project_price = ?, updated_at = ? where id = ?;";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, project.getName());
         ps.setString(2, project.getDescription());
         ps.setFloat(3, project.getPrice());
-        ps.setInt(4, project.getId());
+        ps.setString(4, now_str);
+        ps.setInt(5, project.getId());
         int result = ps.executeUpdate();
+    }
+    
+    public void deleteProject(projectDO project, Transacao tr) throws Exception {
+       Connection con = tr.obterConexao();
+       Date now = new Date();
+       SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
+       sdf.format(now);
+       String now_str = sdf.format(now);
+       String sql = "update project set deleted = 1, deleted_at = ? where id = ?;";
+       PreparedStatement ps = con.prepareStatement(sql);
+       ps.setString(1, now_str);
+       ps.setInt(2, project.getId());
+       int result = ps.executeUpdate();   
     }
 }

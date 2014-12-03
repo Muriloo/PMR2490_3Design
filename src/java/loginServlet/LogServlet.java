@@ -44,9 +44,12 @@ public class LogServlet extends HttpServlet {
                 login.setSenha(senha);
                 userSenha = tn.buscarUsernameSenha(username);
                 String customerId = Integer.toString(userSenha.getId());
+                String user_permission_id = Integer.toString(userSenha.getUserpermissionid());
                 if (username.equals(userSenha.getUsername()) && senha.equals(userSenha.getSenha())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("customerId", customerId);
+                    session.setAttribute("user_permission_id", user_permission_id);
+                    System.out.print("LogServet" + user_permission_id);
                     //setting session to expiry in 30 mins
                     session.setMaxInactiveInterval(30 * 60);
                     Cookie userName = new Cookie("customerId", customerId);

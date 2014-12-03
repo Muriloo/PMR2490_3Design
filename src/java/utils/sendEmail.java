@@ -7,10 +7,10 @@ package utils;
 
 import java.util.Properties;
 import project.versionDO;
+import user.userDO;
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
-
 
 /**
  *
@@ -96,5 +96,40 @@ public class sendEmail {
  
          
    }//main
+    
+    public boolean deleteUserEmail(String emailAddress, String name) {
+        
+        final String fromEmail = "3designpoli@gmail.com"; //requires valid gmail id
+        final String password = "Pmr2490SI"; // correct password for gmail id
+        final String toEmail = emailAddress; // can be any email id 
+        String message;
+        System.out.println("SSLEmail Start");
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
+        props.put("mail.smtp.socketFactory.port", "465"); //SSL Port
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+        props.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
+        props.put("mail.smtp.port", "465"); //SMTP Port
+         
+        Authenticator auth = new Authenticator() {
+            //override the getPasswordAuthentication method
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(fromEmail, password);
+            }
+        };
+        String subject = "3Design: Conta Deletada";
+            message = name + ", sua conta foi encerrada";
+        
+                Session session = Session.getDefaultInstance(props, auth);
+        System.out.println("Session created");
+            return emailUtil.sendEmail(session, toEmail,subject, message);
+ 
+ 
+        
+        
+        
+        
+    }//deleteuserEmail
 }//sendEmail
 

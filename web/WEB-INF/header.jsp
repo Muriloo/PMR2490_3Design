@@ -8,6 +8,8 @@
 <%
 //allow access only if session exists
 String customerId = (String) session.getAttribute("customerId");
+String user_permission_id = (String) session.getAttribute("user_permission_id");
+System.out.print("header" + user_permission_id);
 String userName = null;
 String sessionID = null;
 Cookie[] cookies = request.getCookies();

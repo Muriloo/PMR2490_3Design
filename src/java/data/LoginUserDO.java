@@ -15,6 +15,15 @@ public class LoginUserDO {
     private int _id;
     private String _senha;
     private String _username;
+    private int _userpermissionid;
+
+    public int getUserpermissionid() {
+        return _userpermissionid;
+    }
+
+    public void setUserpermissionid(int _userpermissionid) {
+        this._userpermissionid = _userpermissionid;
+    }
 
     public int getId() {
         return _id;

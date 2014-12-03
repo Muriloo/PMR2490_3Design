@@ -28,6 +28,7 @@ public class LoginUserData {
      contato.setUsername(rs.getString("username"));
      contato.setSenha(rs.getString("password"));
      contato.setId(rs.getInt("id"));
+     contato.setUserpermissionid(rs.getInt("user_permission_id"));
      return contato;
   } // buscar
 }
