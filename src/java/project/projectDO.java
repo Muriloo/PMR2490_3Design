@@ -23,7 +23,8 @@ public class projectDO {
     
     private int _customerId;
 
-    public projectDO(String name, String description, String detail, float price){
+    public projectDO(String name, String description, String detail, float price,int id){
+        this.setId(id);
         this.setName(name);
         this.setDescription(description);
         this.setDetail(detail);

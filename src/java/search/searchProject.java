@@ -14,56 +14,6 @@ import java.util.*;
  */
 public class searchProject {
     
-      public boolean approve (versionDO ver) throws Exception{
-
-     // validacao das regras de negocio
-     if ( (isEmpty(ver.getName())) || ( ver.getStatusId()!=2) ) {
-       return false;
-     }
-
-     // efetuando a transacao
-     Transacao tr = new Transacao();
-     try {
-
-       tr.begin();
-         projectData pdata = new projectData();
-         pdata.approve(ver, tr);
-       tr.commit();
-       return true;
-       
-     } catch(Exception e) {
-         tr.rollback();
-         System.out.println("erro ao aprovar " + ver.getName());
-         e.printStackTrace();
-     }
-     return false;
-  } // approve project
-
- public boolean reprove (versionDO ver) throws Exception{
-
-     // validacao das regras de negocio
-     if ( (isEmpty(ver.getName())) || ( ver.getStatusId()!=2) ) {
-       return false;
-     }
-
-     // efetuando a transacao
-     Transacao tr = new Transacao();
-     try {
-
-       tr.begin();
-         projectData pdata = new projectData();
-         pdata.reprove(ver, tr);
-       tr.commit();
-       return true;
-       
-     } catch(Exception e) {
-         tr.rollback();
-         System.out.println("erro ao reprovar " + ver.getName());
-         e.printStackTrace();
-     }
-     return false;
-  } // reprove project
- 
   public Vector getResults(String keyword) {
      
     Transacao tr = new Transacao();
@@ -83,13 +33,5 @@ public class searchProject {
      return null;
   } // pesquisar
 
-  private boolean isEmpty(String s) {
-     if (null == s)
-       return true;
-     if (s.length() == 0)
-       return true;
-     return false;
-  }
 
-
-}//pendingProject
+}//searchProject

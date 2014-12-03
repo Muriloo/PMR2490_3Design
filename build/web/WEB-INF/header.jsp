@@ -8,6 +8,8 @@
 <%
 //allow access only if session exists
 String customerId = (String) session.getAttribute("customerId");
+String user_permission_id = (String) session.getAttribute("user_permission_id");
+System.out.print("header" + user_permission_id);
 String userName = null;
 String sessionID = null;
 Cookie[] cookies = request.getCookies();
@@ -34,9 +36,9 @@ if(customerId != null){
         </div>
         <div style="display:inline;text-align: center">
             <br>
-            <form>
-                <input type="search" name="search" placeholder="Search" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" size="50">
-                <input type="submit" value="" style="background:url(images/lupa.bmp) no-repeat;width: 30px;height: 30px;position:relative;left:-42px;top: -2px" />
+            <form method="post" action="/3Design/search.jsp">
+                <input type="search" name="keyword" placeholder="Search" style="height:40px;font-size:14pt;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;" size="50">
+                <input type="submit" value="" style="background:url(/3Design/images/lupa.bmp) no-repeat;width: 30px;height: 30px;position:relative;left:-42px;top: 6px" />
             </form>
         </div>
     </div>

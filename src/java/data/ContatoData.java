@@ -22,8 +22,8 @@ public class ContatoData {
      SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd hh-mm-ss");
      sdf.format(dia);
      String day= sdf.format(dia);
-     String sql = "insert into customer (name, last_name,username, email, password, country, updated_at)"
-             + " values (?, ?, ?, ?, ?, ?, ?)";
+     String sql = "insert into customer (name, last_name,username, email, password, country, updated_at, user_permission_id)"
+             + " values (?, ?, ?, ?, ?, ?, ?, ?)";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, contato.getNome());
      ps.setString(2, contato.getSobrenome());
@@ -32,6 +32,7 @@ public class ContatoData {
      ps.setString(5, contato.getSenha());
      ps.setString(6, contato.getPais());
      ps.setString (7, day);
+     ps.setInt (8, contato.getUserpermissionid());
      int result = ps.executeUpdate();
 
   }

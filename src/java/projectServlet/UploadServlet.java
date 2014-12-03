@@ -120,7 +120,7 @@ public class UploadServlet extends HttpServlet {
                     price = Float.valueOf(price_str).floatValue();                    
                 }
                 project.projectDO project = new project.projectDO(map.get("name"),  map.get("description"),  
-                        map.get("comments"), price);
+                        map.get("comments"), price, 0);
                 project.versionDO version = new project.versionDO();
                 version.setFilepath(map.get("projectFile"));
                 System.out.print("filename:"+map.get("projectFile"));

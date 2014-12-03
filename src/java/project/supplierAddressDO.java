@@ -15,6 +15,7 @@ public class supplierAddressDO {
     private int _supplier;
     private String _country;
     private String _state;
+    private String _city;
     private String _street;
     private String _complement;
     private String _postalcode;
@@ -49,6 +50,14 @@ public class supplierAddressDO {
 
     public void setState(String _state) {
         this._state = _state;
+    }
+    
+     public String getCity() {
+        return _city;
+    }
+
+    public void setCity(String _city) {
+        this._city = _city;
     }
 
     public String getStreet() {

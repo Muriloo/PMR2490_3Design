@@ -17,44 +17,49 @@
         
 <!--------------------Header--------------------------------------------------->
 <%@include file="WEB-INF/header.jsp" %>
-
 <div id="page">
 <div id="nav">
 Coisa 3D<br>
 Mais uma coisa 3D<br>
-Such 3D!<br>
+Such 3D!<br> 
+<a href="./pending-projects.jsp">Projetos Pendentes</a><br> 
+<a href="./projects.jsp">Lista de Todos Projetos</a><br>               
+<a href="./user-list.jsp">Listar usuários</a><br>
+<a href="./PaginaDoDesenvolvedor/uploadprojeto.jsp">Subir Projeto</a>
 </div>
-
 <div id="section">
        
 <!-------------Fim do Header--------------------------------------------------->
         
 
-
-
                 <%@ page import="java.util.Vector" %>
                 <%@ page import="search.searchProject" %>
                 <%@ page import="project.projectDO" %>
+                <%@ page import="project.userInfoDO" %>
+                <%@ page import="search.searchUser" %>
 
                 <%            String keyword = request.getParameter("keyword");
                     keyword = keyword.toUpperCase();
                 %>
 
-                <h3>Resultados encontrados para o termo: "<%=keyword%>"</h3>     
+                <h4>Resultados encontrados para o termo: "<%=keyword%>"</h4>     
 
+<!--------------------------------Search Projects------------------------------------------------>
                 <%
                     search.searchProject tn = new search.searchProject();
                     Vector searchResults = tn.getResults(keyword);
                     session.setAttribute("vector", searchResults);
-                    if ((searchResults == null) || (searchResults.size() == 0)) {
+                    
+                    if ((searchResults == null)|| (searchResults.size() == 0)) {
                         // avisar usuario que nao ha' contatos com este nome
                 %>
-                <h2>Nenhum resultado encontrado</h2>
+                <h3>Projetos encontrados: Nenhum.</h3>
 
                 <%
                 } //if nenhum resultado 
                 else {
-                %>    
+                %> 
+               <h3>Projetos encontrados:</h3>
                 <table BORDER="1">
                     <tr>
                         <td>Nome do projeto</td>
@@ -64,15 +69,50 @@ Such 3D!<br>
                     </tr>
                     <%          for (int i = 0; i < searchResults.size(); i++) {
                             projectDO searchResult = (projectDO) searchResults.elementAt(i);
-                    %>              <tr>
-                        <td><%= searchResult.getName()%></td>
+                    %>              
+                    <tr>
+                        <td><a href="./project.jsp?projectId=<%=searchResult.getId()%>"><%= searchResult.getName()%></a></td>
                         <td><%= searchResult.getPrice()%></td>
                         <td><%= searchResult.getDescription()%></td>
-                        <td><form action="./pageProject.jsp" method="post">
-             
-         <input type="submit" name="1" value="teste"  />               
-      
-         </form></td>
+                        <td><%= searchResult.getCustomerId()%></td>
+                    </tr>        
+                    <%           } // for i      
+                    %>        </table>
+
+                    <%
+                } //searchproject
+                %>   
+                
+<!--------------------------------Search User------------------------------------------------>    
+                <%
+                    search.searchUser tn2 = new search.searchUser();
+                    Vector searchResults2 = tn2.getResults(keyword);
+                    session.setAttribute("vector", searchResults2);
+                    
+                    if ((searchResults2 == null)|| (searchResults2.size() == 0)) {
+                        // avisar usuario que nao ha' contatos com este nome
+                %>
+
+                <h3>Usuários encontrados: Nenhum.</h3>
+
+                <%
+                } //if nenhum resultado 
+                else {
+                %>                     
+                <h3>Usuários encontrados:</h3>
+<table BORDER="1">
+                    <tr>
+                        <td>Username</td>
+                        <td>E-mail</td>
+                        <td>Country</td>
+                    </tr>
+                    <%for (int i = 0; i < searchResults2.size(); i++) {
+                            userInfoDO searchResult2 = (userInfoDO) searchResults2.elementAt(i);
+                    %>              
+                    <tr>
+                        <td><%= searchResult2.getUsername()%></td>
+                        <td><%= searchResult2.getEmail()%></td>
+                        <td><%= searchResult2.getCountry()%></td>
                     </tr>        
                     <%           } // for i      
                     %>        </table>

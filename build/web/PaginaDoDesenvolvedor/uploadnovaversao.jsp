@@ -25,32 +25,24 @@
 		</div>						
 			<ul >
 			
-					<li id="li_1" >
-		<label class="description" for="element_1">Faça o upload de uma nova versão </label>
-		<div>
+		<li id="li_1" >
+                    <label class="description" for="element_1">Faça o upload de uma nova versão </label>
+                    <br><br>
+                    <div>
 			<input id="element_1" name="element_1" class="element file" type="file"/> 
-		</div> 
-		</li>
-                
-                <li class="buttons">
-			    <input type="hidden" name="form_id" value="930200" />
-			    
-				<input id="enviar" class="button_text" type="submit" name="enviar" value="Enviar" />
+                    </div> 
 		</li>
                 <br><br>
-                <li class="buttons">
-                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/editarprojeto.jsp">
-			    
+                
+			    <input type="hidden" name="form_id" value="930200" />
+			    <input id="enviar" class="button_text" type="submit" name="enviar" value="Enviar" />
+		              
+                    <form method="post" action="/3Design/PáginaDoDesenvolvedor/editarprojeto.jsp">			    
 				<input id="editar" class="button_text" type="submit" name="editar" value="Editar descrição" >
                     </form>
-		</li>
-                <br><br>
-                <li class="buttons">
                     <form method="post" action="/3Design/PáginaDoDesenvolvedor/remocaoprojeto.jsp">
-			    
-				<input id="excluir" class="button_text" type="submit" name="excluir" value="Excluir projeto" />
+			<input id="excluir" class="button_text" type="submit" name="excluir" value="Excluir projeto" />
                     </form>
-		</li>
 			</ul>
 		
         </div>

@@ -20,13 +20,13 @@ public class supplierDO {
     private Vector _bank_info;
     private Vector _contact_info;
     private Vector _address;
-    private String[] _materials;
+    private Object[] _materials;
     
-    public String[] getMaterials(){
+    public Object[] getMaterials(){
         return _materials;
     }
     
-    public void setMaterials(String[] materials){
+    public void setMaterials(Object[] materials){
         _materials=materials;
     }
     
@@ -94,10 +94,17 @@ public class supplierDO {
   public void setBankInfo(int i, BankInfoDO bank_info){
       _bank_info.add(i, bank_info);
   }  
+  public void setBankInfo(Vector bank_info){
+      _bank_info=bank_info;
+  }  
   
   public Vector getBankInfo(){
       return _bank_info;
   }  
+  
+  public void setContactInfo(Vector _contact_info) {
+        this._contact_info = _contact_info;
+    }
   
   public void setContactInfo(int i, contactInfoDO contact){
       _contact_info.add(i, contact);
