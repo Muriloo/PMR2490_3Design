@@ -23,13 +23,7 @@ public class projectDO {
     
     private int _customerId;
 
-<<<<<<< HEAD
     public projectDO(String name, String description, String detail, float price){
-=======
-    public projectDO(){}
-    
-    public projectDO(String name, String description, String detail, float price, String images){
->>>>>>> RamoRodrigoY
         this.setName(name);
         this.setDescription(description);
         this.setDetail(detail);

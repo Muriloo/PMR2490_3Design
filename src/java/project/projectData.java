@@ -150,7 +150,6 @@ public class projectData {
         
     }
     
-<<<<<<< HEAD
      public Vector getAllProjects(Transacao tr) throws Exception {
      Connection con = tr.obterConexao();
      String sql = "select * from project";
@@ -195,7 +194,7 @@ public class projectData {
      return projetos;
   } // gets versions with "pending" status
     
-=======
+
     public void editProject(projectDO project, Transacao tr) throws Exception {
         Connection con = tr.obterConexao();
         Date now = new Date();
@@ -224,5 +223,5 @@ public class projectData {
        ps.setInt(2, project.getId());
        int result = ps.executeUpdate();   
     }
->>>>>>> RamoRodrigoY
+
 }
