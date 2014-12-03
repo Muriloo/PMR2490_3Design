@@ -44,7 +44,9 @@ public class LogServlet extends HttpServlet {
                 login.setSenha(senha);
                 userSenha = tn.buscarUsernameSenha(username);
                 String customerId = Integer.toString(userSenha.getId());
+                
                 String user_permission_id = Integer.toString(userSenha.getUserpermissionid());
+                System.out.print("LogServlet" + user_permission_id);
                 if (username.equals(userSenha.getUsername()) && senha.equals(userSenha.getSenha())) {
                     HttpSession session = request.getSession();
                     session.setAttribute("customerId", customerId);

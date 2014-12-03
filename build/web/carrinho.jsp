@@ -4,9 +4,6 @@
     Author     : Arthur
 --%>
 
-
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,7 +35,6 @@ Such 3D!<br>
 <%@ page import="cart.cartDO" %>
 <%@ page import="transaction.ProjectTransactions" %>
 <%@ page import="project.projectDO" %>
-
 
 <!-------checa se tem algum item a ser adicionado------------------------------>
 <%     if ( null != request.getParameter("adicionar")) {
@@ -94,13 +90,13 @@ Such 3D!<br>
 
 
 <!-------checa se tem algum item a ser deletado-------------------------------->
-<%     if ( null != request.getParameter("deletar")) {
-    String itemCartId = request.getParameter("itemCartId");
-    System.out.println(itemCartId);
-    transaction.CartTransactions del = new transaction.CartTransactions();
-    cartDO itemDelete = new cartDO();
-    itemDelete.setId(Integer.parseInt(itemCartId));
-    
+<%  if ( null != request.getParameter("deletar")) {
+        String itemCartId = request.getParameter("itemCartId");
+        System.out.println(itemCartId);
+        transaction.CartTransactions del = new transaction.CartTransactions();
+        cartDO itemDelete = new cartDO();
+        itemDelete.setId(Integer.parseInt(itemCartId));
+
     if (del.removeItem(itemDelete)){
 %>        
 <h3>Item deletado!</h3>
@@ -132,7 +128,9 @@ Seu carrinho está vazio. Volte para a <a href="index.jsp"> página inicial</a> 
          
 <%     } else {
 %>
-          
+          <form action="checkout.jsp" method="post">               
+             <input type="submit" value="Finalizar Compra" style="position:relative;float: right" />
+          </form>
           <table BORDER="1">
              <tr>
                 <td>Thumbnail</td>
@@ -167,7 +165,7 @@ Seu carrinho está vazio. Volte para a <a href="index.jsp"> página inicial</a> 
                 <td></td>
                 <td></td>
                 <td></td>
-                <td><%= soma %></td>
+                <td><b><%= soma %></b></td>
                 <td></td>
              </tr>
         </table>            

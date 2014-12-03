@@ -4,6 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            <file>file:/C:/Users/Edson%20Yuji%20Tsuzuke/Documents/NetBeansProjects/3Design/web/pending-projects.jsp</file>
+            <file>file:/C:/Users/Edson%20Yuji%20Tsuzuke/Documents/NetBeansProjects/3Design/web/blank.jsp</file>
+            <file>file:/C:/Users/Edson%20Yuji%20Tsuzuke/Documents/NetBeansProjects/3Design/web/checkout.jsp</file>
+            <file>file:/C:/Users/Edson%20Yuji%20Tsuzuke/Documents/NetBeansProjects/3Design/web/carrinho.jsp</file>
+=======
+>>>>>>> RamoDoEd
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/query.jsp</file>
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/form_sample.html</file>
             <file>file:/C:/Users/Murilo/Documents/NetBeansProjects/3Design/web/WEB-INF/header.jsp</file>
@@ -42,6 +50,7 @@
             <file>file:/C:/Users/Eliza/PMR2490_3Design/3Design/web/WEB-INF/header.jsp</file>
             <file>file:/C:/Users/Eliza/PMR2490_3Design/3Design/web/projects.jsp</file>
             <file>file:/C:/Users/Arthur/Documents/NetBeansProjects/PMR2490_3Design/web/supplierInsert.jsp</file>
+>>>>>>> master
         </group>
     </open-files>
 </project-private>
