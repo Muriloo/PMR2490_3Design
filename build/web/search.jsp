@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Página de Resultados</title>
         <link rel="stylesheet" type="text/css" href="index.css" media="all">
     </head>
 
@@ -34,7 +34,7 @@ Such 3D!<br>
 
                 <%@ page import="java.util.Vector" %>
                 <%@ page import="search.searchProject" %>
-                <%@ page import="project.projectDO" %>
+                <%@ page import="project.projectInfoDO" %>
                 <%@ page import="project.userInfoDO" %>
                 <%@ page import="search.searchUser" %>
 
@@ -68,13 +68,13 @@ Such 3D!<br>
                         <td>Desenvolvedor</td>
                     </tr>
                     <%          for (int i = 0; i < searchResults.size(); i++) {
-                            projectDO searchResult = (projectDO) searchResults.elementAt(i);
+                            projectInfoDO searchResult = (projectInfoDO) searchResults.elementAt(i);
                     %>              
                     <tr>
                         <td><a href="./project.jsp?projectId=<%=searchResult.getId()%>"><%= searchResult.getName()%></a></td>
                         <td><%= searchResult.getPrice()%></td>
                         <td><%= searchResult.getDescription()%></td>
-                        <td><%= searchResult.getCustomerId()%></td>
+                        <td><a href="./verperfil.jsp?id=<%=searchResult.getCustomerId()%>">Ver</a></td>
                     </tr>        
                     <%           } // for i      
                     %>        </table>
@@ -110,7 +110,7 @@ Such 3D!<br>
                             userInfoDO searchResult2 = (userInfoDO) searchResults2.elementAt(i);
                     %>              
                     <tr>
-                        <td><%= searchResult2.getUsername()%></td>
+                        <td><a href="./verperfil.jsp?id=<%=searchResult2.getId()%>"><%= searchResult2.getUsername()%></a></td>
                         <td><%= searchResult2.getEmail()%></td>
                         <td><%= searchResult2.getCountry()%></td>
                     </tr>        

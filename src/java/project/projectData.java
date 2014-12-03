@@ -211,7 +211,8 @@ public class projectData {
         v.setDetail(rs.getString("project_detail"));
         v.setVersionName(rs.getString("version_name"));
         v.setVersionFile(rs.getString("version_file"));
-        
+        v.setCustomerId(rs.getInt("customer_id"));
+            
         projetos.add(v);
      }
      return projetos;   

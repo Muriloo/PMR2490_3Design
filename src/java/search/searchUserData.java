@@ -19,9 +19,12 @@ public class searchUserData {
 
     public Vector searchUser(Transacao tr, String keyword) throws Exception {
      Connection con = tr.obterConexao();
-     String sql = "select * from customer where upper(name) like ?";
+     System.out.println("entrou aqui");
+     String sql = "select * from customer where (upper(name) like ?) or (upper(last_name) like ?) or (upper(username) like ?)";
      PreparedStatement ps = con.prepareStatement(sql);
      ps.setString(1, "%"+keyword+"%");
+     ps.setString(2, "%"+keyword+"%");
+     ps.setString(3, "%"+keyword+"%");
      ResultSet rs = ps.executeQuery();
      Vector userInfo = new Vector();
      while (rs.next()) {
