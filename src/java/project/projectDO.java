@@ -31,17 +31,14 @@ public class projectDO {
         this.setPrice(price);
     }
     
-<<<<<<< HEAD
+
     public projectDO(){        
     }
-    
-    
-=======
+
     public projectDO(String name, Integer id){
         this.setName(name);
     }
     
->>>>>>> RamoRodrigoY
     public int getCustomerId() {
         return _customerId;
     }

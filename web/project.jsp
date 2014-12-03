@@ -117,12 +117,12 @@ Such 3D!<br>
 <div style="width:400px;">
 <div style="float: left; width: 130px"> 
 <form id="thisone">
-    <a href="./PaginaDoDesenvolvedor/editarprojeto.jsp?id="<%=projectIdStr%>>Editar Projeto</a>
+    <a href="./PaginaDoDesenvolvedor/editarprojeto.jsp?id=<%=projectIdStr%>">Editar Projeto</a>
 </form>
 </div>
 <div style="float: right; width: 225px"> 
     <form id="thistoo">
-    <a href="./PaginaDoDesenvolvedor/remocaoprojeto.jsp?id="<%=projectIdStr%>>Remover Projeto</a>
+    <a href="./PaginaDoDesenvolvedor/remocaoprojeto.jsp?id=<%=projectIdStr%>">Remover Projeto</a>
     </form>
 </div>
 </div>
@@ -131,7 +131,7 @@ Such 3D!<br>
     else if(Integer.parseInt(user_permission_id) == 2){ %>
     <div> 
 <form>
-    <a href="./PaginaDoModerador/remocaoprojeto.jsp?id="<%=projectIdStr%>>Remover Projeto</a>
+    <a href="./PaginaDoModerador/remocaoprojeto.jsp?id=<%=projectIdStr%>">Remover Projeto</a>
 </form>
     </div>
 <%
